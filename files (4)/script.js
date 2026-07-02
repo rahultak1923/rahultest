@@ -1,0 +1,340 @@
+// ---- Custom Cyber Cursor Animation System ----
+const cursorDot = document.getElementById('customCursor');
+const cursorBlur = document.getElementById('customCursorBlur');
+
+if (cursorDot && cursorBlur && window.innerWidth > 900) {
+  window.addEventListener('mousemove', (e) => {
+    const posX = e.clientX;
+    const posY = e.clientY;
+
+    cursorDot.style.transform = `translate3d(${posX - 4}px, ${posY - 4}px, 0)`;
+    
+    cursorBlur.animate({
+      transform: `translate3d(${posX - 17}px, ${posY - 17}px, 0)`
+    }, { duration: 240, fill: "forwards" });
+  });
+
+  function applyCursorHooks() {
+    const interactives = document.querySelectorAll('a, .btn, .work-card, .strategy-card, .blog-card, .faq-q, .chat-bubble, .suggest-chip, .close-chat-btn, .send-msg-btn');
+    interactives.forEach(el => {
+      el.addEventListener('mouseenter', () => document.body.classList.add('cursor-hovering'));
+      el.addEventListener('mouseleave', () => document.body.classList.remove('cursor-hovering'));
+    });
+  }
+  applyCursorHooks();
+}
+
+// ---- Unified Scroll Reveal Interceptors ----
+const revealSections = document.querySelectorAll('.scroll-reveal');
+const revealObserver = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      entry.target.classList.add('active');
+    }
+  });
+}, { threshold: 0.1, rootMargin: "0px 0px -40px 0px" });
+
+revealSections.forEach(section => {
+  revealObserver.observe(section);
+});
+
+// ---- Header Scroll Listener Engine ----
+const mainHeader = document.getElementById('mainHeader');
+window.addEventListener('scroll', () => {
+  if (window.scrollY > 40) {
+    mainHeader.classList.add('scrolled');
+  } else {
+    mainHeader.classList.remove('scrolled');
+  }
+});
+
+// ---- Project card data (Our work Grid Workspace) ----
+const projects = [
+  { img: "https://images.unsplash.com/photo-1557821552-17105176677c?auto=format&fit=crop&w=760&q=68", title: "D2C Storefront", tag: "Shopify conversion build" },
+  { img: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=760&q=68", title: "Performance Ads", tag: "Meta + Google funnels" },
+  { img: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=760&q=68", title: "Analytics Hub", tag: "SEO growth dashboard" },
+  { img: "https://images.unsplash.com/photo-1611162617474-5b21e879e113?auto=format&fit=crop&w=760&q=68", title: "Social Launch", tag: "Reels and creator content" },
+  { img: "https://images.unsplash.com/photo-1551650975-87deedd944c3?auto=format&fit=crop&w=760&q=68", title: "CRM Flow", tag: "Lead nurture system" },
+  { img: "https://images.unsplash.com/photo-1552664730-d307ca884978?auto=format&fit=crop&w=760&q=68", title: "Creator Ads", tag: "Short-form launch kit" },
+];
+
+function renderGridWorkspace(el, list) {
+  if(!el) return;
+  el.innerHTML = list.map((p, idx) => `
+    <div class="work-card" data-index="${idx}" onclick="updatePhoneDisplay('${p.img}', this)">
+      <img src="${p.img}" alt="${p.title}" loading="lazy">
+      <div class="work-card-body">
+        <b>${p.title}</b>
+        <span>${p.tag}</span>
+      </div>
+    </div>
+  `).join('');
+
+  if(list.length > 0) {
+    const firstCard = el.querySelector('.work-card');
+    if(firstCard) {
+      updatePhoneDisplay(list[0].img, firstCard);
+    }
+  }
+  
+  if (typeof applyCursorHooks === "function") applyCursorHooks();
+}
+
+function updatePhoneDisplay(imgUrl, element) {
+  const phoneScreen = document.getElementById('phoneMockScreen');
+  if(phoneScreen) {
+    phoneScreen.innerHTML = '';
+    phoneScreen.style.backgroundImage = `url('${imgUrl}')`;
+  }
+
+  document.querySelectorAll('.work-card').forEach(card => card.classList.remove('active'));
+  if(element) {
+    element.classList.add('active');
+  }
+}
+
+renderGridWorkspace(document.getElementById('gridWorkspace'), projects);
+
+// ---- Testimonials Framework ----
+const testimonials = [
+  { rating: 5, text: "The team is quite supportive — they patiently listen to every query and understand exactly what is needed. Our online visibility has improved significantly.", initials: "NR", name: "Nikita Roy", role: "Fashion Brand Owner" },
+  { rating: 4.8, text: "We wanted a partner who could help us rank at the top of search results. Soon after starting with Digital Whopper's SEO team, we began seeing positive results. Truly professional.", initials: "SS", name: "Saurabh Sharma", role: "Founder, Home Décor Business" },
+  { rating: 4.8, text: "I ran an offline store and wanted to take it online, but my own attempts didn't deliver. Digital Whopper ran campaigns that brought great ROI — really happy!", initials: "DS", name: "Dev Saxena", role: "Small Business Owner" },
+  { rating: 4.8, text: "Thanks to Digital Whopper's social media team, our reach has grown remarkably over the past few months. We're really satisfied with their work.", initials: "SY", name: "Shruti Yadav", role: "Influencer" },
+];
+
+function renderTestimonials(el, list) {
+  if(!el) return;
+  const doubled = [...list, ...list];
+  el.innerHTML = doubled.map(t => `
+    <div class="test-card">
+      <span class="stars">★★★★★</span><span class="test-score">${t.rating}</span>
+      <p>"${t.text}"</p>
+      <div class="test-who">
+        <div class="avatar">${t.initials}</div>
+        <div><b>${t.name}</b><span>${t.role}</span></div>
+      </div>
+    </div>
+  `).join('');
+}
+renderTestimonials(document.getElementById('testTrack'), testimonials);
+
+// ---- Stat counters ----
+const counters = document.querySelectorAll('.counter');
+const counterObserver = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      const el = entry.target;
+      const target = parseInt(el.dataset.target, 10);
+      let current = 0;
+      const step = Math.max(1, Math.round(target / 60));
+      const tick = () => {
+        current += step;
+        if (current >= target) { el.textContent = target + '+'; return; }
+        el.textContent = current;
+        requestAnimationFrame(tick);
+      };
+      tick();
+      counterObserver.unobserve(el);
+    }
+  });
+}, { threshold: 0.4 });
+counters.forEach(c => counterObserver.observe(c));
+
+// ---- FAQ accordion ----
+document.querySelectorAll('.faq-q').forEach(q => {
+  q.addEventListener('click', () => {
+    const item = q.parentElement;
+    const wasOpen = item.classList.contains('open');
+    document.querySelectorAll('.faq-item').forEach(i => i.classList.remove('open'));
+    if (!wasOpen) item.classList.add('open');
+  });
+});
+
+
+// --------------------------------------------------
+// 🤖 DYNAMIC INTERACTIVE AI CHATBOT IMPLEMENTATION ENGINE
+// --------------------------------------------------
+const chatbotWrapper = document.querySelector('.chatbot-wrapper');
+const chatBubble = document.getElementById('chatBubble');
+const closeChatBtn = document.getElementById('closeChatBtn');
+const sendChatBtn = document.getElementById('sendChatBtn');
+const chatUserInput = document.getElementById('chatUserInput');
+const chatMessages = document.getElementById('chatMessages');
+
+// Toggle Open state
+if(chatBubble && chatbotWrapper) {
+  chatBubble.addEventListener('click', () => chatbotWrapper.classList.add('chat-open'));
+}
+if(closeChatBtn && chatbotWrapper) {
+  closeChatBtn.addEventListener('click', () => chatbotWrapper.classList.remove('chat-open'));
+}
+
+// Send Message Flow
+function handleUserSendMessage() {
+  const text = chatUserInput.value.trim();
+  if(!text) return;
+
+  // Append user message bubble layout
+  appendMessageBubble(text, 'user-msg');
+  chatUserInput.value = '';
+
+  // Fire simulated bot thinking matrix response
+  processBotBrainResponse(text);
+}
+
+if(sendChatBtn) sendChatBtn.addEventListener('click', handleUserSendMessage);
+if(chatUserInput) {
+  chatUserInput.addEventListener('keydown', (e) => {
+    if(e.key === 'Enter') handleUserSendMessage();
+  });
+}
+
+function appendMessageBubble(text, className) {
+  const bubble = document.createElement('div');
+  bubble.className = `msg-bubble ${className}`;
+  bubble.innerHTML = text;
+  
+  // Hide suggestion chip layout context if active
+  const suggestions = document.getElementById('chatSuggestions');
+  if(suggestions) suggestions.remove();
+
+  chatMessages.appendChild(bubble);
+  chatMessages.scrollTop = chatMessages.scrollHeight;
+}
+
+// Chip response launcher hook
+function triggerBotResponse(keyword) {
+  appendMessageBubble(`I want to know about ${keyword}`, 'user-msg');
+  processBotBrainResponse(keyword);
+}
+
+// AI Engine Knowledge Database Context Simulation 
+function processBotBrainResponse(input) {
+  const query = input.toLowerCase();
+  
+  // Typing state component injection
+  const typing = document.createElement('div');
+  typing.className = 'typing-indicator';
+  typing.id = 'typingIndicator';
+  typing.innerText = 'Whoppy is typing...';
+  chatMessages.appendChild(typing);
+  chatMessages.scrollTop = chatMessages.scrollHeight;
+
+  setTimeout(() => {
+    const indicator = document.getElementById('typingIndicator');
+    if(indicator) indicator.remove();
+
+    let botReply = "That's interesting! Let me connect you directly to our growth team on WhatsApp for details. Or type 'services' to see what we build! 🚀";
+
+    if(query.includes('services') || query.includes('service') || query.includes('work')) {
+      botReply = "We provide full 360° digital growth solutions! ✦ App & Shopify Build ✦ SEO Optimization ✦ Performance Meta/Google Funnel Ads ✦ D2C scaling. Which one are you looking for?";
+    } else if(query.includes('pricing') || query.includes('price') || query.includes('cost') || query.includes('charge')) {
+      botReply = "Our packages are fully customized based on your business targets! Let's build a free consultation map. Drop us a ping on WhatsApp at +916200379161.";
+    } else if(query.includes('contact') || query.includes('human') || query.includes('speak') || query.includes('call')) {
+      botReply = "Perfect! Opening direct WhatsApp hotline channel with our strategist. Click here: <a href='https://wa.me/916200379161' target='_blank' style='text-decoration:underline;color:#00f2fe;'>Chat on WhatsApp</a> 📲";
+    }
+
+    appendMessageBubble(botReply, 'bot-msg');
+    if (typeof applyCursorHooks === "function") applyCursorHooks();
+  }, 1100);
+}
+
+
+// ==========================================================================
+// 🌟 NEW: PRELOADER EVENT LISTENER CONTROLLER (APPEND AT THE VERY BOTTOM)
+// ==========================================================================
+window.addEventListener('load', () => {
+  const preloader = document.getElementById('customPreloader');
+  if (preloader) {
+    // Thoda delay taaki user animation dekh sake aur window smoothly reveal ho
+    setTimeout(() => {
+      preloader.classList.add('fade-out');
+    }, 1200); 
+  }
+});
+
+// ==========================================================================
+// 🌟 NEW: LOADING SLIDE-UP & SCROLL DRIVEN HEADING ZOOM CONTROLLERS
+// ==========================================================================
+
+// 1. Loading Screen Smooth Slide-Up Engine
+window.addEventListener('load', () => {
+  const preloader = document.getElementById('customPreloader');
+  if (preloader) {
+    // 1.2 seconds ka delay taaki user preloader branding aur spinner dekh sake
+    setTimeout(() => {
+      preloader.classList.add('fade-out');
+    }, 1200); 
+  }
+});
+
+// 2. Real-Time Dynamic Scroll Heading Zoom Engine
+const heroHeading = document.querySelector('.hero h1');
+
+if (heroHeading) {
+  window.addEventListener('scroll', () => {
+    const scrollPosition = window.scrollY;
+    
+    // Sirf tabhi calculate karein jab hero section viewport me visible ho (performance boost)
+    if (scrollPosition <= 600) {
+      // Base scale 1.0 se start hoga aur niche scroll karne par dheere-dheere 1.25 tak scale big hoga
+      // 0.0005 factor ko change karke aap zoom ki speed ko control kar sakte hain
+      const targetScale = 1 + (scrollPosition * 0.0005);
+      
+      // Scale ki maximum limit 1.25 par lock ki hai taaki heading screen se bahar na chali jaye
+      const finalScale = Math.min(targetScale, 1.25);
+      
+      // Update hardware-accelerated matrix transforms
+      heroHeading.style.transform = `scale(${finalScale})`;
+    }
+  });
+}
+
+
+// ==========================================================================
+// 🌟 NEW: AUTOMATIC CHARACTER TYPEWRITER ENGINE (APPEND AT THE VERY BOTTOM)
+// ==========================================================================
+const wordsToType = [ "to Next Level", "via Web Dev", "via Paid Ads"];
+let currentWordIndex = 0;
+let currentCharacterIndex = 0;
+let isDeletingArrayString = false;
+const targetTypewriterSpan = document.getElementById('typewriterText');
+
+function startTypewriterLoop() {
+  if (!targetTypewriterSpan) return;
+
+  const currentFullWord = wordsToType[currentWordIndex];
+
+  if (isDeletingArrayString) {
+    // Character delete karne ka logic
+    targetTypewriterSpan.textContent = currentFullWord.substring(0, currentCharacterIndex - 1);
+    currentCharacterIndex--;
+  } else {
+    // Character type karne ka logic
+    targetTypewriterSpan.textContent = currentFullWord.substring(0, currentCharacterIndex + 1);
+    currentCharacterIndex++;
+  }
+
+  // Speed controls configuration
+  let typingSpeed = isDeletingArrayString ? 40 : 100; // Delete tez hoga, typing smooth hogi
+
+  // Agar poora word type ho gaya ho
+  if (!isDeletingArrayString && currentCharacterIndex === currentFullWord.length) {
+    typingSpeed = 1600; // Word type hone ke baad 1.6 seconds tak ruka rahega
+    isDeletingArrayString = true;
+  } 
+  // Agar poora word delete ho gaya ho
+  else if (isDeletingArrayString && currentCharacterIndex === 0) {
+    isDeletingArrayString = false;
+    currentWordIndex = (currentWordIndex + 1) % wordsToType.length; // Agla word index load hoga
+    typingSpeed = 400; // Agla word shuru hone se pehle chota sa pause
+  }
+
+  setTimeout(startTypewriterLoop, typingSpeed);
+}
+
+// Initialize the typewriter execution chain on document bootup
+document.addEventListener('DOMContentLoaded', () => {
+  setTimeout(startTypewriterLoop, 1500); // Preloader ke hatne ke baad shuru hoga
+});
