@@ -3,13 +3,16 @@
   --bg-alt: #040409;
   --surface: rgba(10, 10, 22, 0.7);
   --surface-2: #090912;
-  --line: rgba(255, 255, 255, 0.08); 
+  /* --line: rgba(255, 255, 255, 0.08);  */
+  --line: rgba(255, 255, 255, 0.11); 
   --gold: #ff6b8b; 
   --gold-2: #e04a65;
   --neon-pink: linear-gradient(135deg, #ff5376, #ff8e53); 
   --btn-grad: linear-gradient(135deg, #ff416c, #ff4b2b); 
-  --teal-glow: rgba(0, 242, 254, 0.18);
-  --pink-glow: rgba(230, 0, 90, 0.18);
+  --teal-glow: rgba(0, 242, 254, 0.45);
+  --pink-glow: rgba(230, 0, 90, 0.35);
+  /* --teal-glow: rgba(0, 242, 254, 0.18);
+  --pink-glow: rgba(230, 0, 90, 0.18); */
   --card-shadow-default: 0 10px 30px rgba(255, 65, 108, 0.08), 0 2px 10px rgba(0, 242, 254, 0.04);
   --card-shadow-active: 0 20px 40px rgba(255, 65, 108, 0.25), 0 5px 15px rgba(0, 242, 254, 0.15);
   --text: #f3f1eb;
