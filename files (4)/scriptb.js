@@ -422,3 +422,134 @@ window.addEventListener('load', () => {
     }, 1200); 
   }
 });
+
+
+// ==========================================================================
+// 🧠 FUTURISTIC AI CONSTELLATION BACKGROUND ENGINE (CANVAS NODE NET)
+// ==========================================================================
+document.addEventListener('DOMContentLoaded', () => {
+  const canvas = document.getElementById('aiNodeCanvas');
+  if (!canvas) return;
+  const ctx = canvas.getContext('2d');
+
+  let container = canvas.parentElement;
+  let width = canvas.width = container['clientWidth'];
+  let height = canvas.height = container['clientHeight'];
+
+  const nodes = [];
+  // स्क्रीन साइज़ के हिसाब से स्टार्स की संख्या सेट करें
+  const nodeCount = window.innerWidth < 768 ? 40 : 110; 
+  const connectionDistance = 115; // कितनी दूरी पर लाइन्स आपस में जुड़ेंगी
+  
+  // माउस कर्सर कोऑर्डिनेट्स को ट्रैक करने के लिए
+  const mousePointer = { x: null, y: null, radius: 180 };
+
+  window.addEventListener('mousemove', (e) => {
+    // कैनवास के सापेक्ष माउस की पोजीशन कैलकुलेट करें
+    const rect = canvas.getBoundingClientRect();
+    mousePointer.x = e.clientX - rect.left;
+    mousePointer.y = e.clientY - rect.top;
+  });
+
+  window.addEventListener('mouseleave', () => {
+    mousePointer.x = null;
+    mousePointer.y = null;
+  });
+
+  // स्क्रीन रीसाइज़ होने पर कैनवास को रीसेट करना
+  window.addEventListener('resize', () => {
+    width = canvas.width = container['clientWidth'];
+    height = canvas.height = container['clientHeight'];
+  });
+
+  // एआई स्टार्स (Nodes) की प्रॉपर्टीज जेनेरेट करना
+  for (let i = 0; i < nodeCount; i++) {
+    nodes.push({
+      x: Math.random() * width,
+      y: Math.random() * height,
+      vx: (Math.random() - 0.5) * 0.6, // मूविंग स्पीड X
+      vy: (Math.random() - 0.5) * 0.6, // मूविंग स्पीड Y
+      radius: Math.random() * 2 + 1.5,  // स्टार का साइज़
+      pulseSpeed: Math.random() * 0.03 + 0.01,
+      alpha: Math.random(),
+      phase: Math.random() * Math.PI
+    });
+  }
+
+  // एनीमेशन लूप इंजन
+  function animateAINetwork() {
+    ctx.clearRect(0, 0, width, height);
+
+    // 1. स्टार्स की पोजीशन अपडेट करना और उन्हें ड्रा करना
+    nodes.forEach(node => {
+      node.x += node.vx;
+      node.y += node.vy;
+
+      // दीवारों से टकराकर वापस बाउंस होना
+      if (node.x < 0 || node.x > width) node.vx *= -1;
+      if (node.y < 0 || node.y > height) node.vy *= -1;
+
+      // ट्विंकलिंग/पल्सिंग इफ़ेक्ट कैलकुलेशन
+      node.phase += node.pulseSpeed;
+      let currentAlpha = 0.3 + (Math.sin(node.phase) + 1) * 0.35;
+
+      // स्टार पॉइंट ड्रा करें (Cyber Blue Tech Node)
+      ctx.beginPath();
+      ctx.arc(node.x, node.y, node.radius, 0, Math.PI * 2);
+      ctx.fillStyle = `rgba(0, 82, 255, ${currentAlpha})`;
+      ctx.fill();
+      
+      // स्टार्स के चारों तरफ हल्का सा ग्लो आभामंडल
+      ctx.beginPath();
+      ctx.arc(node.x, node.y, node.radius * 2.5, 0, Math.PI * 2);
+      ctx.fillStyle = `rgba(0, 210, 255, ${currentAlpha * 0.25})`;
+      ctx.fill();
+    });
+
+   // 2. Draw Subtle Connecting Lines (Sharp & Darker Matrix)
+    for (let i = 0; i < nodes.length; i++) {
+      for (let j = i + 1; j < nodes.length; j++) {
+        const n1 = nodes[i];
+        const n2 = nodes[j];
+
+        const dx = n1.x - n2.x;
+        const dy = n1.y - n2.y;
+        const dist = Math.sqrt(dx * dx + dy * dy);
+
+        if (dist < connectionDistance) {
+          // 🚀 LINES DARK MATRIX: Opepacity ratio ko 0.08 se badha kar 0.22 kiya hai taki lines saaf aur dark dikhein
+          const lineAlpha = (1 - dist / connectionDistance) * 0.22;
+          ctx.beginPath();
+          ctx.moveTo(n1.x, n1.y);
+          ctx.lineTo(n2.x, n2.y);
+          ctx.strokeStyle = `rgba(0, 82, 255, ${lineAlpha})`; // Pure Cyber Blue Lines
+          ctx.lineWidth = 0.95; // 🚀 Line ki thickness ko bhi 0.6 se badha kar 0.95 kiya hai crisp look ke liye
+          ctx.stroke();
+        }
+      }
+
+      // 3. Mouse Connections (Subtle Glow on Hover)
+      if (mousePointer.x !== null && mousePointer.y !== null) {
+        const n = nodes[i];
+        const mdx = n.x - mousePointer.x;
+        const mdy = n.y - mousePointer.y;
+        const mDist = Math.sqrt(mdx * mdx + mdy * mdy);
+
+        if (mDist < mousePointer.radius) {
+          // 🚀 Cursor lines ko bhi thoda progressive dark (0.28) kiya hai interactive feel ke liye
+          const mouseAlpha = (1 - mDist / mousePointer.radius) * 0.28;
+          ctx.beginPath();
+          ctx.moveTo(n.x, n.y);
+          ctx.lineTo(mousePointer.x, mousePointer.y);
+          ctx.strokeStyle = `rgba(0, 210, 255, ${mouseAlpha})`;
+          ctx.lineWidth = 1.1;
+          ctx.stroke();
+        }
+      }
+    }
+
+    requestAnimationFrame(animateAINetwork);
+  }
+
+  animateAINetwork();
+});
