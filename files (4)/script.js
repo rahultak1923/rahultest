@@ -48,52 +48,139 @@ window.addEventListener('scroll', () => {
   }
 });
 
-// ---- Project card data (Our work Grid Workspace) ----
+// 🌟 1. अपडेटेड प्रोजेक्ट डेटा (हर प्रोजेक्ट में अपनी इमेजेस का Array डालें)
 const projects = [
-  { img: "https://images.unsplash.com/photo-1557821552-17105176677c?auto=format&fit=crop&w=760&q=68", title: "D2C Storefront", tag: "Shopify conversion build" },
-  { img: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=760&q=68", title: "Performance Ads", tag: "Meta + Google funnels" },
-  { img: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=760&q=68", title: "Analytics Hub", tag: "SEO growth dashboard" },
-  { img: "https://images.unsplash.com/photo-1611162617474-5b21e879e113?auto=format&fit=crop&w=760&q=68", title: "Social Launch", tag: "Reels and creator content" },
-  { img: "https://images.unsplash.com/photo-1551650975-87deedd944c3?auto=format&fit=crop&w=760&q=68", title: "CRM Flow", tag: "Lead nurture system" },
-  { img: "https://images.unsplash.com/photo-1552664730-d307ca884978?auto=format&fit=crop&w=760&q=68", title: "Creator Ads", tag: "Short-form launch kit" },
+  { 
+    title: "D2C Storefront", 
+    tag: "Shopify conversion build",
+    images: [
+      "https://images.unsplash.com/photo-1557821552-17105176677c?auto=format&fit=crop&w=760&q=68",
+      "https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=760&q=68",
+      "https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=760&q=68"
+    ]
+  },
+  { 
+    title: "Performance Ads", 
+    tag: "Meta + Google funnels",
+    images: [
+      "https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=760&q=68",
+      "https://images.unsplash.com/photo-1611162617474-5b21e879e113?auto=format&fit=crop&w=760&q=68"
+    ]
+  },
+  { 
+    title: "Analytics Hub", 
+    tag: "SEO growth dashboard",
+    images: [
+      "https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=760&q=68",
+      "https://images.unsplash.com/photo-1551650975-87deedd944c3?auto=format&fit=crop&w=760&q=68"
+    ]
+  },
+  { 
+    title: "Social Launch", 
+    tag: "Reels and creator content",
+    images: [
+      "https://images.unsplash.com/photo-1611162617474-5b21e879e113?auto=format&fit=crop&w=760&q=68",
+      "https://images.unsplash.com/photo-1552664730-d307ca884978?auto=format&fit=crop&w=760&q=68"
+    ]
+  },
+  { 
+    title: "CRM Flow", 
+    tag: "Lead nurture system",
+    images: [
+      "https://images.unsplash.com/photo-1551650975-87deedd944c3?auto=format&fit=crop&w=760&q=68",
+      "https://images.unsplash.com/photo-1557821552-17105176677c?auto=format&fit=crop&w=760&q=68"
+    ]
+  },
+  { 
+    title: "Creator Ads", 
+    tag: "Short-form launch kit",
+    images: [
+      "https://images.unsplash.com/photo-1552664730-d307ca884978?auto=format&fit=crop&w=760&q=68",
+      "https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=760&q=68"
+    ]
+  }
 ];
 
+let carouselIntervalIndex = null; // टाइमर स्टोर करने के लिए
+
+// 🌟 2. ग्रिड वर्कस्पेस को रेंडर करने का नया फंक्शन
 function renderGridWorkspace(el, list) {
   if(!el) return;
   el.innerHTML = list.map((p, idx) => `
-    <div class="work-card" data-index="${idx}" onclick="updatePhoneDisplay('${p.img}', this)">
-      <img src="${p.img}" alt="${p.title}" loading="lazy">
+    <div class="work-card" data-index="${idx}" onclick="updatePhoneDisplay(${idx}, this)">
+      <img src="${p.images[0]}" alt="${p.title}" loading="lazy">
       <div class="work-card-body">
         <b>${p.title}</b>
         <span>${p.tag}</span>
       </div>
     </div>
   `).join('');
-
-  if(list.length > 0) {
-    const firstCard = el.querySelector('.work-card');
-    if(firstCard) {
-      updatePhoneDisplay(list[0].img, firstCard);
-    }
-  }
   
   if (typeof applyCursorHooks === "function") applyCursorHooks();
 }
 
-function updatePhoneDisplay(imgUrl, element) {
-  const phoneScreen = document.getElementById('phoneMockScreen');
-  if(phoneScreen) {
-    phoneScreen.innerHTML = '';
-    phoneScreen.style.backgroundImage = `url('${imgUrl}')`;
-  }
+// 🌟 3. कार्ड क्लिक होने पर कैरोसेल इंजन लोड करने का लॉजिक
+function updatePhoneDisplay(projectIndex, element) {
+  const track = document.getElementById('phoneCarouselTrack');
+  const placeholder = document.getElementById('screenPlaceholder');
+  const screenWrapper = document.getElementById('phoneMockScreen');
+  const project = projects[projectIndex];
 
+  if (!track || !project) return;
+
+  // पुराने किसी भी एक्टिव टाइमर को क्लियर करें
+  if (carouselIntervalIndex) clearInterval(carouselIntervalIndex);
+
+  // प्लेसहोल्डर छिपाएं और स्क्रीन पर क्लास जोड़ें
+  if (placeholder) placeholder.style.display = 'none';
+  if (screenWrapper) screenWrapper.classList.add('has-carousel');
+
+  // ट्रैक के अंदर इमेजेस इन्जेक्ट करें
+  track.innerHTML = project.images.map(imgUrl => `
+    <img src="${imgUrl}" class="phone-carousel-slide" alt="Showcase Slide">
+  `).join('');
+
+  // स्क्रॉल पोजीशन रीसेट करें
+  track.scrollLeft = 0;
+
+  // एक्टिव कार्ड हाइलाइट संभालें
   document.querySelectorAll('.work-card').forEach(card => card.classList.remove('active'));
-  if(element) {
-    element.classList.add('active');
+  if (element) element.classList.add('active');
+
+  // 🌟 2.5 सेकंड का ऑटोप्ले इंटरवल इंजन
+  let currentSlide = 0;
+  const totalSlides = project.images.length;
+
+  carouselIntervalIndex = setInterval(() => {
+    if (totalSlides <= 1) return;
+    currentSlide = (currentSlide + 1) % totalSlides;
+    const slideWidth = track.clientWidth;
+    track.scrollTo({
+      left: currentSlide * slideWidth,
+      behavior: 'smooth'
+    });
+  }, 2500); // 2500ms = 2.5 Seconds Auto-rotation Lock
+}
+
+// 🌟 4. राइट साइड के आइकॉन बटन पर क्लिक करने का मैनुअल लॉजिक
+function moveCarouselNext(event) {
+  if(event) event.stopPropagation(); // पैरेंट क्लिक इवेंट रोकें
+  const track = document.getElementById('phoneCarouselTrack');
+  if (!track || !track.firstElementChild) return;
+
+  const slideWidth = track.clientWidth;
+  // अगर हम बिल्कुल एंड में पहुँच गए हैं तो वापस शुरुआत में आ जाएं, नहीं तो अगला स्लाइड करें
+  if (track.scrollLeft + slideWidth >= track.scrollWidth - 10) {
+    track.scrollTo({ left: 0, behavior: 'smooth' });
+  } else {
+    track.scrollBy({ left: slideWidth, behavior: 'smooth' });
   }
 }
 
-renderGridWorkspace(document.getElementById('gridWorkspace'), projects);
+// बूटअप रेंडर चालू करें
+document.addEventListener('DOMContentLoaded', () => {
+  renderGridWorkspace(document.getElementById('gridWorkspace'), projects);
+});
 
 // ---- Testimonials Framework ----
 const testimonials = [

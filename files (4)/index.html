@@ -7,8 +7,20 @@
 <meta name="description" content="Digital Whopper — the best digital marketing agency in Jaipur. SEO, performance marketing, web development & e-commerce solutions that get you seen, clicked, and converting.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;500;600;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="style.css">
+<link rel="stylesheet" href="styleb.css">
 </head>
+<style>
+  /* ==========================================================================
+   📸 BRAND IMAGE LOGO MULTI-SCALE SYNCHRONIZATION
+   ========================================================================== */
+.logo-img-asset {
+  height: 34px;          /* Sahi proportion aur height lock karne ke liye */
+  width: auto;           /* Aspect ratio automatic sahi rahega */
+  object-fit: contain;
+  display: inline-block;
+  margin-right: 2px;     /* "Digital Whopper" text se thoda gap rakhne ke liye */
+}
+</style>
 <body>
 <div id="customPreloader" class="preloader-overlay">
   <div class="preloader-content">
@@ -27,8 +39,12 @@
 
 <header id="mainHeader">
   <nav>
-    <a href="/" class="logo"><div class="logo-mark">DW</div>Digital Whopper</a>
-    <div class="nav-links">
+    <!-- <a href="/" class="logo"><div class="logo-mark">DW</div>Digital Whopper</a> -->
+<a href="/" class="logo">
+  <!-- 🌟 DW div ki jagah aapki image link kar di hai -->
+  <img src="img/landing-logo.png" alt="Digital Whopper Logo" class="logo-img-asset">
+  Digital Whopper
+</a>    <div class="nav-links">
       <a href="#">Home</a>
       <a href="/services.html">Services</a>
       <a href="/contact.html">Contact</a>
@@ -110,11 +126,15 @@
         <div class="mock-device">
           <div class="phone-notch"></div>
           <div class="phone-screen-display" id="phoneMockScreen">
-            <div class="screen-placeholder">
-              <span class="pulsing-circle"></span>
-              <p>Click any card <br>to view live</p>
-            </div>
-          </div>
+  <div class="screen-placeholder" id="screenPlaceholder">
+    <span class="pulsing-circle"></span>
+    <p>Click any card <br>to view live</p>
+  </div>
+  
+  <div class="phone-carousel-track" id="phoneCarouselTrack"></div>
+  
+  <div class="carousel-next-indicator" id="carouselNextBtn" onclick="moveCarouselNext(event)">✦</div>
+</div>
           <div class="phone-home-indicator"></div>
         </div>
       </div>
@@ -320,6 +340,6 @@
   </div>
 </div>
 
-<script src="script.js"></script>
+<script src="scriptb.js"></script>
 </body>
 </html>

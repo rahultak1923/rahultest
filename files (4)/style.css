@@ -3,7 +3,7 @@
   --bg-alt: #040409;
   --surface: rgba(10, 10, 22, 0.7);
   --surface-2: #090912;
-  --line: rgba(255, 255, 255, 0.10); 
+  /* --line: rgba(255, 255, 255, 0.10);  */
   /* --line: rgba(255, 255, 255, 0.11);  */
   --gold: #ff6b8b; 
   --gold-2: #e04a65;
@@ -656,5 +656,75 @@ footer { border-top: 1px solid var(--line); padding: 60px 0 30px; color: var(--m
 }
 
 .contact-map-wrapper:hover {
+  opacity: 1;
+}
+
+
+/* ==========================================================================
+   📱 MOBILE MOCKUP HORIZONTAL CAROUSEL ENGINE STYLES (APPEND AT BOTTOM)
+   ========================================================================== */
+.phone-screen-display {
+  position: relative;
+  overflow: hidden !important; /* बाहर इमेजेस नहीं निकलेंगी */
+  padding: 0 !important; /* फुल स्क्रीन व्यू के लिए */
+}
+
+/* इमेजेस को एक हॉरिजॉन्टल लाइन में रखने वाला ट्रैक */
+.phone-carousel-track {
+  display: flex;
+  width: 100%;
+  height: 100%;
+  overflow-x: scroll;
+  scroll-behavior: smooth;
+  scroll-snap-type: x mandatory;
+  -webkit-overflow-scrolling: touch;
+}
+
+/* ब्राउज़र का डिफ़ॉल्ट स्क्रॉलबार छिपाने के लिए */
+.phone-carousel-track::-webkit-scrollbar {
+  display: none;
+}
+
+/* हर एक इमेज जो स्लाइड होगी */
+.phone-carousel-slide {
+  width: 100%;
+  height: 100%;
+  flex: none;
+  scroll-snap-align: start;
+  object-fit: cover;
+}
+
+/* राइट साइड का प्रीमियम नियॉन नेविगेशन आइकॉन */
+.carousel-next-indicator {
+  position: absolute;
+  right: 12px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 28px;
+  height: 28px;
+  background: rgba(6, 6, 15, 0.85);
+  border: 1px solid rgba(255, 83, 118, 0.4);
+  border-radius: 50%;
+  color: #ff5376;
+  font-size: 11px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 30;
+  cursor: pointer;
+  pointer-events: auto; /* क्लिक इनेबल रखने के लिए */
+  box-shadow: 0 0 10px rgba(255, 83, 118, 0.3);
+  transition: all 0.3s ease;
+  opacity: 0; /* शुरुआत में छिपा रहेगा, कार्ड क्लिक पर दिखेगा */
+}
+
+.carousel-next-indicator:hover {
+  border-color: #00f2fe;
+  color: #00f2fe;
+  box-shadow: 0 0 12px #00f2fe;
+}
+
+/* जब कैरोसेल एक्टिव होगा तब एरो दिखाई देगा */
+.phone-screen-display.has-carousel .carousel-next-indicator {
   opacity: 1;
 }
