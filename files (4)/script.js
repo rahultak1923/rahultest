@@ -338,3 +338,95 @@ function startTypewriterLoop() {
 document.addEventListener('DOMContentLoaded', () => {
   setTimeout(startTypewriterLoop, 1500); // Preloader ke hatne ke baad shuru hoga
 });
+
+
+
+// service
+
+// ---- Preloader Slide-Up Reset Controller ----
+window.addEventListener('load', () => {
+  const preloader = document.getElementById('customPreloader');
+  if (preloader) {
+    setTimeout(() => {
+      preloader.classList.add('fade-out');
+    }, 1000); 
+  }
+});
+
+
+
+// ==========================================================================
+// 🌟 GLOBAL HEADER & FOOTER AUTO-INJECTION SYSTEM (ALL PAGES SYNC)
+// ==========================================================================
+document.addEventListener('DOMContentLoaded', () => {
+  const globalHeaderContainer = document.getElementById('mainHeader');
+  const globalFooterContainer = document.getElementById('footer');
+
+  // 1. Dynamic Navbar Engine (Matches your exact home page layout)
+  if (globalHeaderContainer) {
+    globalHeaderContainer.innerHTML = `
+      <nav>
+        <a href="/" class="logo"><div class="logo-mark">DW</div>Digital Whopper</a>
+        <div class="nav-links">
+          <a href="/">Home</a>
+          <a href="services.html">Services</a>
+          <a href="contact.html">Contact</a>
+        </div>
+        <div class="nav-cta">
+          <a href="/" class="btn btn-gold">Enquire now</a>
+        </div>
+      </nav>
+    `;
+  }
+
+  // 2. Dynamic Footer Engine (Matches your exact home page layout)
+  if (globalFooterContainer) {
+    globalFooterContainer.innerHTML = `
+      <div class="wrap">
+        <div class="foot-top">
+          <div class="foot-brand">
+            <a href="/" class="logo"><div class="logo-mark">DW</div>Digital Whopper</a>
+            <p>3rd Floor, 4/11, Vidyut Abhiyanta Colony, Sector 4, Malviya Nagar, Jaipur, Rajasthan 302017</p>
+            <p>
+              <a href="tel:+916200379161">+91 6200379161</a><br>
+              <a href="mailto:hello@digitalwhopper.com">hello@digitalwhopper.com</a>
+            </p>
+            <div class="socials">
+              <a href="https://www.facebook.com/officialdigitalwhopper" target="_blank" rel="noopener">Facebook</a>
+              <a href="https://www.instagram.com/digital_whopper/" target="_blank" rel="noopener">Instagram</a>
+              <a href="https://www.linkedin.com/company/digitalwhopper/" target="_blank" rel="noopener">LinkedIn</a>
+            </div>
+          </div>
+          <div class="foot-links">
+            <div class="foot-col">
+              <h4>Pages</h4>
+              <a href="/">Home</a>
+              <a href="services.html">Services</a>
+              <a href="/#about">About</a>
+              <a href="/contact">Contact</a>
+            </div>
+            <div class="foot-col">
+              <h4>Our services</h4>
+              <a href="/services">App &amp; Shopify Development</a>
+              <a href="/services">SEO &amp; SMO Optimisation</a>
+              <a href="/services">E-Commerce</a>
+              <a href="/services">Performance Marketing</a>
+              <a href="/services">Web Design &amp; Development</a>
+            </div>
+            <div class="foot-col">
+              <h4>Quick links</h4>
+              <a href="/#blog">Blog</a>
+              <a href="/#faq">FAQ</a>
+              <a href="/#milestones">Our journey</a>
+              <a href="https://wa.me/916200379161" target="_blank" rel="noopener">WhatsApp</a>
+            </div>
+          </div>
+        </div>
+        <div class="foot-bottom">
+          <span>© 2026 Digital Whopper. All rights reserved.</span>
+          <span>Made with ✦ in Jaipur, the Pink City</span>
+        </div>
+      </div>
+    `;
+  }
+});

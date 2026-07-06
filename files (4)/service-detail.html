@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Service Details | Digital Whopper</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;500;600;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+<style>
+  /* 🌟 Reduced gap from header and optimized container padding */
+  .detail-hero-section {
+    padding: 105px 0 60px !important; 
+    position: relative;
+  }
+  .detail-box-container {
+    background: rgba(15, 15, 35, 0.65);
+    border: 1px solid var(--line);
+    border-radius: var(--radius);
+    padding: 50px;
+    margin-top: 24px; /* Reduced vertical spacing gap */
+    box-shadow: var(--card-shadow-active);
+  }
+  .back-btn-wrapper {
+    display: flex;
+    justify-content: flex-start; /* 🌟 Pushes back button completely to the left */
+    width: 100%;
+  }
+  .feature-list-render {
+    margin-top: 32px;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 16px;
+    list-style: none;
+  }
+  @media(max-width: 600px) { 
+    .feature-list-render { grid-template-columns: 1fr; } 
+    .detail-box-container { padding: 30px 20px; }
+  }
+  .feature-list-render li {
+    font-size: 15px; color: var(--muted); display: flex; align-items: center; gap: 10px;
+  }
+  .feature-list-render li::before {
+    content: "✦"; color: #00f2fe; text-shadow: 0 0 8px #00f2fe;
+  }
+</style>
+</head>
+<body>
+
+<div class="custom-cursor" id="customCursor"></div>
+<div class="custom-cursor-blur" id="customCursorBlur"></div>
+
+<!-- <header id="mainHeader">
+
+  <nav>
+    <a href="/" class="logo"><div class="logo-mark">DW</div>Digital Whopper</a>
+    <div class="nav-links">
+      <a href="/">Home</a>
+      <a href="services.html">Services</a>
+    </div>
+    <div class="nav-cta">
+      <a href="https://wa.me/916200379161" target="_blank" class="btn btn-gold">Consult Now</a>
+    </div>
+  </nav>
+</header> -->
+<header id="mainHeader"></header>
+
+<section class="detail-hero-section">
+  <div class="pink-blob"></div>
+  <div class="purple-ambient-glow"></div>
+
+  <div class="wrap">
+    <div class="back-btn-wrapper">
+      <a href="services.html" class="btn btn-ghost" style="padding: 10px 22px; font-size: 13px; border-color: rgba(255,255,255,0.08);">← Back to Services</a>
+    </div>
+    
+    <div class="detail-box-container">
+      <div style="font-size: 50px; margin-bottom: 16px;" id="serviceIcon">🚀</div>
+      <h1 class="text-shine" id="serviceTitle" style="font-size: clamp(26px, 4vw, 42px); text-align: left;">Loading Strategy...</h1>
+      <p class="lead" id="serviceDesc" style="max-width: 100%; font-size: 16.5px; margin-top: 14px; line-height: 1.6;"></p>
+      
+      <div style="margin-top: 36px; border-top: 1px solid rgba(255,255,255,0.06); padding-top: 26px;">
+        <h3 style="color: #ff5376; font-size: 17px; font-family: 'Sora', sans-serif;">Core Deliverables Included:</h3>
+        <ul class="feature-list-render" id="serviceFeatures"></ul>
+      </div>
+
+      <div style="margin-top: 44px;">
+        <a href="https://wa.me/916200379161" target="_blank" class="btn btn-gold" style="padding: 15px 32px; font-size: 14.5px;">Deploy This Strategy Now ✦</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<script src="script.js"></script>
+<script>
+  const serviceDatabase = [
+    { title: "Performance Marketing", icon: "🚀", desc: "We plan, execute, and scale aggressive ad matrix campaigns across Meta and Google networks. No vanity metrics—pure focus on incremental margins and volume scalability.", features: ["Funnel Architecture Planning", "CBO Scaling Protocols", "Ad Creative Matrix Mapping", "ROAS Optimization System"] },
+    { title: "SEO Domination Systems", icon: "🔍", desc: "Reverse-engineering organic search behavior. We build scalable content clusters, high-authority backlink parameters, and technical speed frameworks that win rank positions permanently.", features: ["Intent Keyword Architecture", "Core Web Vitals Boost", "High-Velocity Link Outreach", "Semantic Content Mapping"] },
+    { title: "Shopify Store Architecture", icon: "🛒", desc: "Standard themes limit revenue potential. We develop bespoke, lightning-fast Shopify architectures engineered exclusively to maximize average order value (AOV) and lifetime value.", features: ["Custom Liquid Programming", "One-Page Instant Checkout", "Retention Flow Integrations", "Speed Performance Locking"] },
+    { title: "UI/UX Cyber Blueprints", icon: "🖼️", desc: "Design is product psychology. We create high-fidelity high-contrast dark wireframes and user journeys built to reduce bounce rates and enforce micro-actions.", features: ["Interactive Wireframing", "Figma Prototype Execution", "Conversion Heatmap Tuning", "Neuromarketing Visual Tones"] },
+    { title: "Full Stack App Build", icon: "🔗", desc: "Deploying production-ready native mobile software and robust server systems capable of handling heavy database loads and real-time client micro-interactions flawlessly.", features: ["Cross-Platform App Engines", "Node.js Secure Backend Architecture", "API Connection Mapping", "Database Cloud Tuning"] },
+    { title: "Social Authority Scaling", icon: "📢", desc: "Attention is the new global currency. We direct short-form retention architectures (Reels/TikToks) designed to construct thousands of absolute organic core brand advocates daily.", features: ["Script Hook Blueprints", "High-Retention Editing Systems", "Creator Alignment Pipelines", "Multi-Channel Virality Map"] }
+  ];
+
+  const params = new URLSearchParams(window.location.search);
+  const id = parseInt(params.get('id')) || 0;
+  const currentData = serviceDatabase[id];
+
+  if(currentData) {
+    document.getElementById('serviceIcon').innerText = currentData.icon;
+    document.getElementById('serviceTitle').innerText = currentData.title;
+    document.getElementById('serviceDesc').innerText = currentData.desc;
+    document.getElementById('serviceFeatures').innerHTML = currentData.features.map(f => `<li>${f}</li>`).join('');
+    document.title = `${currentData.title} | Digital Whopper`;
+  }
+</script>
+<footer id="footer"></footer>
+<script src="script.js"></script>
+</body>
+</html>
