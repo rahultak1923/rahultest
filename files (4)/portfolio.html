@@ -1,0 +1,431 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Our Portfolio | Digital Whopper - Jaipur</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;500;600;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<!-- 🌟 exact main responsive stylesheet linked to sync header and footer variables -->
+<link rel="stylesheet" href="styleb.css">
+<style>
+  /* ==========================================================================
+     🖼️ PORTFOLIO CORE ARCHITECTURE GRAPHIC OVERRIDES
+     ========================================================================== */
+
+     .logo-img-asset {
+  height: 34px;          /* Sahi proportion aur height lock karne ke liye */
+  width: auto;           /* Aspect ratio automatic sahi rahega */
+  object-fit: contain;
+  display: inline-block;
+  margin-right: 2px;     /* "Digital Whopper" text se thoda gap rakhne ke liye */
+}
+
+
+  .portfolio-hero {
+    padding: 160px 0 40px !important;
+    position: relative;
+    z-index: 2;
+    text-align: center;
+  }
+
+  /* 🎯 DYNAMIC FILTER TAB MODULE */
+  .filter-tabs-wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 12px;
+    margin: 32px 0 12px;
+    flex-wrap: wrap;
+    width: 100%;
+  }
+  
+  .filter-btn {
+    padding: 10px 22px;
+    font-size: 13px;
+    font-family: 'Sora', sans-serif;
+    font-weight: 600;
+    border-radius: 999px;
+    cursor: pointer;
+    transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+    background: #ffffff;
+    border: 1px solid rgba(0, 82, 255, 0.1);
+    color: var(--text);
+  }
+  .filter-btn:hover {
+    border-color: #0052ff;
+    color: #0052ff;
+    transform: translateY(-2px);
+  }
+  .filter-btn.active-tab {
+    background: var(--btn-grad);
+    color: #ffffff;
+    border-color: transparent;
+    box-shadow: 0 4px 12px rgba(0, 82, 255, 0.2);
+  }
+
+  /* 📦 PORTFOLIO SHUFFLE GRID LAYOUT */
+  .portfolio-grid-workspace {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 32px;
+    padding: 40px 0 100px;
+    width: 100%;
+  }
+
+  /* Overriding work-card layout to support visual mockups gracefully */
+  .portfolio-card {
+    background: #ffffff;
+    border: 1px solid rgba(0, 82, 255, 0.06);
+    border-radius: var(--radius);
+    overflow: hidden;
+    box-shadow: var(--card-shadow-default);
+    transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+    display: flex;
+    flex-direction: column;
+  }
+  
+  /* Shuffling scale animation triggers */
+  .portfolio-card.hide-project {
+    opacity: 0;
+    transform: scale(0.9) translateY(20px);
+    position: absolute;
+    visibility: hidden;
+    pointer-events: none;
+    width: 0; height: 0; padding: 0; margin: 0; border: none;
+  }
+  .portfolio-card.show-project {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+    position: relative;
+    visibility: visible;
+    pointer-events: auto;
+  }
+
+  .portfolio-card:hover {
+    transform: translateY(-8px);
+    border-color: rgba(0, 82, 255, 0.15);
+    box-shadow: var(--card-shadow-active);
+  }
+
+  /* Mockup Frame Engine */
+  .project-mockup-frame {
+    width: 100%;
+    height: 210px;
+    overflow: hidden;
+    position: relative;
+    border-bottom: 1px solid rgba(0, 82, 255, 0.05);
+  }
+  .project-mockup-frame img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+  .portfolio-card:hover .project-mockup-frame img {
+    transform: scale(1.05);
+  }
+
+  /* 🧬 TECH BADGES WRAPPER SYSTEM */
+  .tech-badges-row {
+    display: flex;
+    gap: 6px;
+    flex-wrap: wrap;
+    margin: 12px 0;
+  }
+  .tech-pill {
+    font-size: 10.5px;
+    font-family: 'Inter', sans-serif;
+    font-weight: 600;
+    background: rgba(0, 82, 255, 0.04);
+    color: #0052ff;
+    padding: 4px 10px;
+    border-radius: 4px;
+    border: 1px solid rgba(0, 82, 255, 0.06);
+  }
+
+  /* 📊 MICRO ROI COUNTER FOOTER PANEL */
+  .project-roi-footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: auto; /* Pushes to absolute bottom of card body */
+    padding-top: 14px;
+    border-top: 1px solid rgba(0, 82, 255, 0.06);
+  }
+  .roi-counter-badge {
+    font-size: 12px;
+    font-family: 'Sora', sans-serif;
+    font-weight: 700;
+    color: #0052ff;
+    display: flex;
+    align-items: center;
+    gap: 4px;
+  }
+  
+  .live-anchor-btn {
+    font-size: 13px;
+    font-weight: 700;
+    color: var(--text);
+    text-decoration: none;
+    transition: color 0.2s;
+    display: inline-flex;
+    align-items: center;
+    gap: 2px;
+  }
+  .live-anchor-btn:hover { color: #0052ff; }
+
+  /* 📱 Adaptive Breakpoint Grid Configurations */
+  @media(max-width: 1024px) {
+    .portfolio-grid-workspace { grid-template-columns: repeat(2, 1fr); gap: 24px; }
+  }
+  @media(max-width: 700px) {
+    .portfolio-hero { padding: 130px 0 30px !important; }
+    .portfolio-grid-workspace { grid-template-columns: 1fr; gap: 24px; padding-bottom: 60px; }
+    .filter-tabs-wrapper { gap: 8px; }
+    .filter-btn { padding: 8px 16px; font-size: 12px; }
+    .project-mockup-frame { height: 180px; }
+  }
+</style>
+</head>
+<body>
+
+<div id="customPreloader" class="preloader-overlay">
+  <div class="preloader-content">
+    <h2 class="preloader-brand">Digital Whopper</h2>
+    <div class="preloader-spinner">
+      <span class="spinner-dot"></span>
+      <span class="spinner-dot"></span>
+    </div>
+  </div>
+</div>
+
+<div class="custom-cursor" id="customCursor"></div>
+<div class="custom-cursor-blur" id="customCursorBlur"></div>
+
+<!-- Global Injection Header Anchor Frame -->
+<header id="mainHeader"></header>
+
+<!-- ==========================================================================
+     🖼️ PORTFOLIO BRANDING HERO SECTION
+     ========================================================================== -->
+<section class="portfolio-hero scroll-reveal">
+  <div class="pink-blob"></div>
+  <div class="purple-ambient-glow"></div>
+  <div class="stars-container"><canvas id="aiNodeCanvas"></canvas></div>
+
+  <div class="wrap">
+    <div class="eyebrow">Our Proven Artifacts</div>
+    <h1>We Build High-Performance <span class="highlight text-shine">Digital Masterpieces</span></h1>
+    <p class="lead" style="margin: 15px auto 0; max-width: 660px;">Explore our curated ecosystem of high-converting architectures, lightning-fast technical layouts, and absolute search domination frameworks.</p>
+    
+    <!-- 🎯 Dynamic Categorized Filter System Tabs -->
+    <div class="filter-tabs-wrapper">
+      <button class="filter-btn active-tab" data-filter="all">All Projects</button>
+      <button class="filter-btn" data-filter="web">Web Engineering</button>
+      <button class="filter-btn" data-filter="ecommerce">E-Commerce</button>
+      <button class="filter-btn" data-filter="marketing">Growth Systems</button>
+    </div>
+  </div>
+</section>
+
+<!-- ==========================================================================
+     📦 GRID PORTFOLIO SHUFFLE WORKSPACE
+     ========================================================================== -->
+<section class="scroll-reveal" style="padding: 10px 0;">
+  <div class="wrap">
+    <div class="portfolio-grid-workspace" id="portfolioGrid">
+      
+      <!-- Project Card 1: Ekatra India (E-Commerce / Web) -->
+      <div class="portfolio-card show-project" data-category="ecommerce web">
+        <div class="project-mockup-frame">
+          <img src="img/shark.png" alt="Ekatra India Custom Platform Screen Grid">
+        </div>
+        <div class="work-card-body" style="padding: 24px; display: flex; flex-direction: column; flex-grow: 1;">
+          <b style="font-size: 18px; display: block; color: var(--text);">Ekatra India Storefront</b>
+          
+          <div class="tech-badges-row">
+            <span class="tech-pill">Shopify Liquid</span>
+            <span class="tech-pill">Node.js Sync</span>
+            <span class="tech-pill">UI Framework</span>
+          </div>
+          
+          <p style="color: var(--muted); font-size: 13.5px; margin: 6px 0 20px; line-height: 1.5;">
+            Custom high-concurrency Liquid architecture engineered to easily manage heavy live television scale spikes smoothly.
+          </p>
+          
+          <div class="project-roi-footer">
+            <span class="roi-counter-badge">⚡ 0.4s Speed Lock</span>
+            <a href="https://ekatraindia.com" target="_blank" class="live-anchor-btn">Launch Site ↗</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Project Card 2: Custom SaaS Dash (Web) -->
+      <div class="portfolio-card show-project" data-category="web">
+        <div class="project-mockup-frame">
+          <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=600&q=80" alt="SaaS Growth Metrics System Profile">
+        </div>
+        <div class="work-card-body" style="padding: 24px; display: flex; flex-direction: column; flex-grow: 1;">
+          <b style="font-size: 18px; display: block; color: var(--text);">Analytics Core Dashboard</b>
+          
+          <div class="tech-badges-row">
+            <span class="tech-pill">React.js Engine</span>
+            <span class="tech-pill">REST Clusters</span>
+            <span class="tech-pill">Tailwind Grid</span>
+          </div>
+          
+          <p style="color: var(--muted); font-size: 13.5px; margin: 6px 0 20px; line-height: 1.5;">
+            High-fidelity control panels built with real-time vector metrics tracking interfaces for modern tech enterprises.
+          </p>
+          
+          <div class="project-roi-footer">
+            <span class="roi-counter-badge">📦 99.9% Cloud Uptime</span>
+            <a href="#" class="live-anchor-btn">Preview Prototype ↗</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Project Card 3: SEO Matrix Run (Marketing) -->
+      <div class="portfolio-card show-project" data-category="marketing">
+        <div class="project-mockup-frame">
+          <img src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=600&q=80" alt="SEO Keyword Structure Platform Scale">
+        </div>
+        <div class="work-card-body" style="padding: 24px; display: flex; flex-direction: column; flex-grow: 1;">
+          <b style="font-size: 18px; display: block; color: var(--text);">SEO Domination Architecture</b>
+          
+          <div class="tech-badges-row">
+            <span class="tech-pill">Intent Blueprint</span>
+            <span class="tech-pill">Semantic Content</span>
+            <span class="tech-pill">PR Outreach</span>
+          </div>
+          
+          <p style="color: var(--muted); font-size: 13.5px; margin: 6px 0 20px; line-height: 1.5;">
+            Massive keyword content clustering strategy executing permanent positions on Google organic high-intent indexing.
+          </p>
+          
+          <div class="project-roi-footer">
+            <span class="roi-counter-badge">📈 +450% Traffic Growth</span>
+            <a href="shark-tank-journey.html" class="live-anchor-btn">View Case Study ↗</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Project Card 4: D2C Performance Scaler (E-Commerce / Marketing) -->
+      <div class="portfolio-card show-project" data-category="ecommerce marketing">
+        <div class="project-mockup-frame">
+          <img src="https://images.unsplash.com/photo-1557821552-17105176677c?auto=format&fit=crop&w=600&q=80" alt="E-Commerce Ad Optimization Funnel Matrix">
+        </div>
+        <div class="work-card-body" style="padding: 24px; display: flex; flex-direction: column; flex-grow: 1;">
+          <b style="font-size: 18px; display: block; color: var(--text);">Alpha Funnel System</b>
+          
+          <div class="tech-badges-row">
+            <span class="tech-pill">CBO Scaling Matrix</span>
+            <span class="tech-pill">Meta Ads Api</span>
+            <span class="tech-pill">AOV Upsells</span>
+          </div>
+          
+          <p style="color: var(--muted); font-size: 13.5px; margin: 6px 0 20px; line-height: 1.4;">
+            Advanced ad infrastructure and multi-tier retargeting setup engineered exclusively to maximize conversion volume margins.
+          </p>
+          
+          <div class="project-roi-footer">
+            <span class="roi-counter-badge">🚀 3.2X ROAS Multiplier</span>
+            <a href="#" class="live-anchor-btn">Launch Funnel ↗</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Project Card 5: Figma UI Cyber Blueprint (Web) -->
+      <div class="portfolio-card show-project" data-category="web">
+        <div class="project-mockup-frame">
+          <img src="https://images.unsplash.com/photo-1541462608141-ad4979e408c9?auto=format&fit=crop&w=600&q=80" alt="Figma UIUX Wireframing Vector Chassis">
+        </div>
+        <div class="work-card-body" style="padding: 24px; display: flex; flex-direction: column; flex-grow: 1;">
+          <b style="font-size: 18px; display: block; color: var(--text);">UI/UX Dark Neuromatrix</b>
+          
+          <div class="tech-badges-row">
+            <span class="tech-pill">Figma Wireframing</span>
+            <span class="tech-pill">HIFI Prototypes</span>
+            <span class="tech-pill">UX Tuning</span>
+          </div>
+          
+          <p style="color: var(--muted); font-size: 13.5px; margin: 6px 0 20px; line-height: 1.5;">
+            Bespoke high-fidelity interface layouts designed explicitly around cognitive micro-actions and bounce rate reduction.
+          </p>
+          
+          <div class="project-roi-footer">
+            <span class="roi-counter-badge">📉 -35% Bounce Rate</span>
+            <a href="#" class="live-anchor-btn">View Figma Deck ↗</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Project Card 6: Custom Portal (Web / E-Commerce) -->
+      <div class="portfolio-card show-project" data-category="web ecommerce">
+        <div class="project-mockup-frame">
+          <img src="https://images.unsplash.com/photo-1555066931-4365d14bab8c?auto=format&fit=crop&w=600&q=80" alt="Node Code Repository Automation Framework">
+        </div>
+        <div class="work-card-body" style="padding: 24px; display: flex; flex-direction: column; flex-grow: 1;">
+          <b style="font-size: 18px; display: block; color: var(--text);">Omni Channel API Node</b>
+          
+          <div class="tech-badges-row">
+            <span class="tech-pill">Node.js Server</span>
+            <span class="tech-pill">GraphQL Grid</span>
+            <span class="tech-pill">AWS Secure</span>
+          </div>
+          
+          <p style="color: var(--muted); font-size: 13.5px; margin: 6px 0 20px; line-height: 1.5;">
+            Production-grade server sync systems capable of automating logistics inventory across multi-vendor retail platforms.
+          </p>
+          
+          <div class="project-roi-footer">
+            <span class="roi-counter-badge">⚡ Instant Stock Sync</span>
+            <a href="#" class="live-anchor-btn">Inspect Engine ↗</a>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- Global Injection Footer Frame Anchor Frame -->
+<footer id="footer"></footer>
+
+<script src="scriptb.js"></script>
+
+<!-- ==========================================================================
+     🕹️ LOCAL INTERACTIVE SHUFFLE FILTERS JAVASCRIPT ENGINE
+     ========================================================================== -->
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    const filterButtons = document.querySelectorAll('.filter-btn');
+    const projectCards = document.querySelectorAll('#portfolioGrid .portfolio-card');
+
+    filterButtons.forEach(button => {
+      button.addEventListener('click', () => {
+        // Active tab color class setup matrix switching toggle
+        filterButtons.forEach(btn => btn.classList.remove('active-tab'));
+        button.classList.add('active-tab');
+
+        const filterValue = button.getAttribute('data-filter');
+
+        projectCards.forEach(card => {
+          const cardCategories = card.getAttribute('data-category').split(' ');
+
+          // Core checking condition logic to reveal or smooth hide the targets
+          if (filterValue === 'all' || cardCategories.includes(filterValue)) {
+            card.classList.remove('hide-project');
+            card.classList.add('show-project');
+          } else {
+            card.classList.remove('show-project');
+            card.classList.add('hide-project');
+          }
+        });
+      });
+    });
+  });
+</script>
+</body>
+</html>

@@ -1,0 +1,676 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Shark Tank India Journey - Marbleous | Digital Whopper</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;500;600;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styleb.css">
+<style>
+  /* ==========================================================================
+     🦈 SHARK TANK CASE STUDY MASTER GRAPHIC LAYOUT OVERRIDES
+     ========================================================================== */
+  .logo-img-asset {
+    height: 34px;
+    width: auto;
+    object-fit: contain;
+    display: inline-block;
+    margin-right: 2px;
+  }
+
+  /* WIDE CONTAINER: Only for Hero Section Framework */
+  .wrap-hero {
+    width: 100%;
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 0 40px;
+    box-sizing: border-box;
+  }
+
+  .case-hero {
+    padding: 160px 0 80px !important;
+    position: relative;
+    z-index: 2;
+    width: 100%;
+  }
+  
+  .hero-split-container {
+    display: grid;
+    grid-template-columns: 1.1fr 0.9fr;
+    gap: 48px;
+    align-items: center;
+    width: 100%;
+  }
+
+  .hero-left-content {
+    text-align: left;
+  }
+  .hero-left-content h1 {
+    font-size: clamp(34px, 4.5vw, 54px);
+    font-weight: 700;
+    line-height: 1.15;
+    letter-spacing: -0.02em;
+    margin: 12px 0 20px;
+    color: var(--text);
+  }
+
+  /* 🌟 FIX: Added higher z-index to completely push canvas blue dots to the background stack */
+  .pitch-image-frame {
+    position: relative;
+    z-index: 5; /* 👈 Locks image above the flying animated nodes */
+    border-radius: 24px;
+    overflow: hidden;
+    border: 1px solid rgba(0, 82, 255, 0.12);
+    box-shadow: var(--card-shadow-active);
+    width: 100%;
+    height: 440px; 
+  }
+  .pitch-image-frame img { 
+    width: 100%; 
+    height: 100%; 
+    object-fit: cover; 
+    display: block; 
+  }
+  
+  .floating-shark-badge {
+    position: absolute;
+    bottom: 20px; left: 20px;
+    background: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(10px);
+    padding: 10px 20px;
+    border-radius: 12px;
+    font-size: 13px;
+    font-weight: 700;
+    color: var(--text);
+    box-shadow: var(--card-shadow-active);
+    display: flex; align-items: center; gap: 8px;
+    z-index: 6; /* 👈 Keeps badge safe above the image layer */
+  }
+  .floating-shark-badge::before { content: "🦈"; }
+
+  /* MEDIA AS SEEN ON BAR */
+  .media-featured-bar {
+    margin-top: 48px;
+    padding-top: 24px;
+    border-top: 1px solid rgba(0, 82, 255, 0.08);
+  }
+  .media-featured-bar span {
+    font-size: 12px;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: var(--muted);
+    display: block;
+    margin-bottom: 12px;
+  }
+  .media-logos {
+    display: flex;
+    gap: 28px;
+    align-items: center;
+    opacity: 0.6;
+    font-family: 'Sora', sans-serif;
+    font-weight: 700;
+    font-size: 14px;
+    color: var(--text);
+  }
+
+  /* FOUNDER TESTIMONIAL QUOTE CARD */
+  .founder-quote-card {
+    background: #f8fafd;
+    border: 1px solid rgba(0, 82, 255, 0.06);
+    border-radius: var(--radius);
+    padding: 32px;
+    margin: 40px 0;
+    position: relative;
+  }
+  .founder-quote-card::before {
+    content: "“";
+    position: absolute;
+    top: -10px; left: 24px;
+    font-size: 80px;
+    color: rgba(0, 82, 255, 0.08);
+    font-family: serif;
+  }
+  .founder-meta {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-top: 16px;
+  }
+
+  /* SIDE GRID LAYOUTS */
+  .custom-side-grid-section {
+    padding: 60px 0;
+    border-top: 1px solid rgba(0, 82, 255, 0.08);
+  }
+  .side-flex-layout {
+    display: grid;
+    grid-template-columns: 1fr 1.1fr;
+    gap: 48px;
+    align-items: stretch;
+  }
+  
+  /* CUSTOM SHORT IMAGE LAYOUT: Specially for Strategic Evaluation Section */
+  .interview-flex-layout {
+    display: grid;
+    grid-template-columns: 0.60fr 1.40fr; 
+    gap: 48px;
+    align-items: stretch; 
+  }
+
+  /* 🌟 FIX: Applied z-index layering safety nodes to side frames too */
+  .side-grid-image-frame {
+    position: relative;
+    z-index: 5; /* 👈 Keeps dots strictly behind middle block components */
+    border-radius: 20px;
+    overflow: hidden;
+    border: 1px solid rgba(0, 82, 255, 0.1);
+    box-shadow: var(--card-shadow-active);
+    width: 100%;
+    height: 100%; 
+  }
+  .side-grid-image-frame img {
+    width: 100%; 
+    height: 100%; 
+    object-fit: cover; 
+    display: block;
+  }
+
+  /* FOUNDERS PROFILE GRID SECTION */
+  .founders-showcase-section {
+    padding: 60px 0;
+    border-top: 1px solid rgba(0, 82, 255, 0.08);
+  }
+  .founders-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 32px;
+    margin-top: 32px;
+  }
+  .founder-detail-card {
+    background: #ffffff;
+    border: 1px solid rgba(0, 82, 255, 0.06);
+    border-radius: var(--radius);
+    padding: 32px;
+    box-shadow: var(--card-shadow-default);
+  }
+  .founder-header-block {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    margin-bottom: 16px;
+  }
+
+  /* INTERACTIVE STEP DIAGRAM ENGINE GRID */
+  .diagram-flow-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 24px;
+    margin: 52px 0;
+    position: relative;
+  }
+  .diagram-flow-grid::before {
+    content: "";
+    position: absolute;
+    top: 35px; left: 50px; right: 50px;
+    height: 2px;
+    border-top: 2px dashed rgba(0, 82, 255, 0.15);
+    z-index: 1;
+  }
+
+  .flow-node-card {
+    background: #ffffff;
+    border: 1px solid rgba(0, 82, 255, 0.08);
+    border-radius: var(--radius);
+    padding: 28px;
+    text-align: center;
+    position: relative;
+    z-index: 2;
+    box-shadow: var(--card-shadow-default);
+    transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+  .flow-node-card:hover {
+    transform: translateY(-8px);
+    border-color: #0052ff;
+    box-shadow: var(--card-shadow-active);
+  }
+
+  .node-badge-num {
+    width: 44px; height: 44px;
+    background: var(--btn-grad);
+    color: #ffffff;
+    border-radius: 50%;
+    display: flex;
+    align-items: center; justify-content: center;
+    font-family: 'Sora', sans-serif;
+    font-weight: 700;
+    font-size: 15px;
+    margin: 0 auto 16px;
+    box-shadow: 0 4px 12px rgba(0, 82, 255, 0.2);
+  }
+  .flow-node-card h3 { font-size: 16.5px; font-weight: 700; color: var(--text); margin-bottom: 8px; }
+  .flow-node-card p { font-size: 13px; color: var(--muted); line-height: 1.5; }
+
+  /* CYBER TIMELINE JOURNEY LAYOUT */
+  .vertical-journey-timeline {
+    position: relative;
+    max-width: 900px;
+    margin: 0 auto;
+    padding-left: 40px;
+  }
+  .vertical-journey-timeline::before {
+    content: "";
+    position: absolute;
+    top: 10px; bottom: 10px; left: 16px;
+    width: 2px;
+    background: linear-gradient(to bottom, #0052ff, #00d2ff, rgba(0, 82, 255, 0.05));
+    z-index: 1;
+  }
+  .journey-point-item {
+    position: relative;
+    display: grid;
+    grid-template-columns: 200px 1fr;
+    gap: 40px;
+    margin-bottom: 44px;
+  }
+  .journey-meta-time { display: flex; flex-direction: column; justify-content: center; text-align: right; }
+  .time-badge { font-family: 'Sora', sans-serif; font-size: 14px; font-weight: 700; color: #0052ff; }
+  .phase-title { font-size: 12px; color: var(--muted); text-transform: uppercase; margin-top: 4px; }
+  
+  .journey-node-indicator {
+    position: absolute; left: -29px; top: 50%; transform: translateY(-50%);
+    width: 14px; height: 14px; border-radius: 50%;
+    background: #ffffff; border: 3px solid #0052ff;
+    box-shadow: 0 0 10px rgba(0, 82, 255, 0.4); z-index: 2;
+  }
+  .journey-content-card {
+    background: #ffffff; border: 1px solid rgba(0, 82, 255, 0.06);
+    border-radius: var(--radius); padding: 28px; box-shadow: var(--card-shadow-default);
+    transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+  .journey-point-item:hover .journey-content-card {
+    transform: translateX(6px); border-color: rgba(0, 82, 255, 0.15); box-shadow: var(--card-shadow-active);
+  }
+  .journey-content-card h3 { font-size: 17px; font-weight: 700; color: var(--text); margin-bottom: 8px; }
+  .journey-content-card p { font-size: 14px; color: var(--muted); line-height: 1.6; }
+
+  /* CASE STUDY CONTENT SPLIT MATRIX */
+  .case-split-layout {
+    display: grid;
+    grid-template-columns: 1.15fr 0.85fr;
+    gap: 52px;
+    align-items: start;
+    padding: 40px 0 60px;
+  }
+  .case-rich-text h2 { font-size: 28px; font-weight: 700; margin-bottom: 18px; color: var(--text); }
+  .case-rich-text p { font-size: 15.5px; color: var(--muted); line-height: 1.7; margin-bottom: 20px; }
+
+  .case-metrics-panel {
+    background: #ffffff; border: 1px solid rgba(0, 82, 255, 0.08);
+    border-radius: var(--radius); padding: 36px; box-shadow: var(--card-shadow-active);
+    position: sticky; top: 120px;
+  }
+  .case-metrics-panel h4 { font-family: 'Sora', sans-serif; font-size: 16px; margin-bottom: 24px; color: var(--text); border-bottom: 1px solid rgba(0,0,0,0.05); padding-bottom: 12px; }
+  
+  .metric-stat-row { display: flex; align-items: center; gap: 16px; margin-bottom: 20px; }
+  .metric-icon-box {
+    width: 48px; height: 48px; background: rgba(0, 82, 255, 0.04);
+    border-radius: 12px; display: flex; align-items: center; justify-content: center;
+    font-size: 20px; color: #0052ff;
+  }
+  .metric-info b { display: block; font-family: 'Sora', sans-serif; font-size: 22px; color: #0052ff; line-height: 1.2; }
+  .metric-info span { font-size: 13px; color: var(--muted); }
+
+  /* 📱 ADAPTIVE RESPONSIVENESS OVERRIDES */
+  @media(max-width: 1024px) {
+    .wrap-hero { padding: 0 24px; }
+    .hero-split-container { grid-template-columns: 1fr; text-align: center; gap: 40px; }
+    .hero-left-content { text-align: center; }
+    .pitch-image-frame { height: 320px; }
+    .founders-grid { grid-template-columns: 1fr; }
+    .side-flex-layout, .interview-flex-layout { grid-template-columns: 1fr; gap: 32px; text-align: center; }
+    .side-grid-image-frame { height: 260px; min-height: auto; }
+    .diagram-flow-grid { grid-template-columns: repeat(2, 1fr); gap: 20px; }
+    .diagram-flow-grid::before { display: none; }
+    .case-split-layout { grid-template-columns: 1fr; gap: 40px; padding-bottom: 60px; }
+    .case-metrics-panel { position: relative; top: auto; }
+    .journey-point-item { grid-template-columns: 1fr; gap: 12px; }
+    .journey-meta-time { text-align: left; }
+    .vertical-journey-timeline { padding-left: 24px; }
+    .vertical-journey-timeline::before { left: 4px; }
+    .journey-node-indicator { left: -25px; top: 20px; transform: none; }
+  }
+  @media(max-width: 600px) {
+    .case-hero { padding: 140px 0 40px !important; }
+    .diagram-flow-grid { grid-template-columns: 1fr; }
+    .pitch-image-frame img { height: 240px; }
+    .side-grid-image-frame img { height: 220px; }
+  }
+</style>
+</head>
+<body>
+
+<div id="customPreloader" class="preloader-overlay">
+  <div class="preloader-content">
+    <h2 class="preloader-brand">Digital Whopper</h2>
+    <div class="preloader-spinner">
+      <span class="spinner-dot"></span>
+      <span class="spinner-dot"></span>
+    </div>
+  </div>
+</div>
+
+<div class="custom-cursor" id="customCursor"></div>
+<div class="custom-cursor-blur" id="customCursorBlur"></div>
+
+<header id="mainHeader"></header>
+
+<!-- ==========================================================================
+     🦈 HERO CASE STUDY WITH NEW CUSTOM WIDE GRID (1400px Locked)
+     ========================================================================== -->
+<section class="case-hero scroll-reveal">
+  <div class="pink-blob"></div>
+  <div class="purple-ambient-glow"></div>
+  <div class="stars-container"><canvas id="aiNodeCanvas"></canvas></div>
+
+  <div class="wrap-hero">
+    <div class="hero-split-container">
+      
+      <!-- Left Column: Marbleous Story & Digital Whopper Integration -->
+      <div class="hero-left-content">
+        <div class="eyebrow">Proven Scale Mastery — Marbleous</div>
+        <h1>Scaling Luxury Handicrafts to <span class="highlight text-shine">Shark Tank India</span></h1>
+        <p class="lead" style="color: var(--muted); font-size: 16px; line-height: 1.6; margin-top: 12px;">
+          How we engineered elite e-commerce infrastructure, optimized semantic search cluster models, and built a rock-solid tech funnel to help <b>Marbleous</b> take Indian marble artisan handicraft to the national spotlight[cite: 3].
+        </p>
+        
+        <div class="media-featured-bar">
+          <span>Broadcasted On &amp; Featured In:</span>
+          <div class="media-logos">
+            <div>📺 Shark Tank India</div>
+            <div>📱 SonyLIV Live</div>
+            <div>👑 Luxury Decor Hub</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Right Column: Shark Tank Pitch Image Frame (Image 1 - Layer Fixed) -->
+      <div class="hero-right-content">
+        <div class="pitch-image-frame">
+          <img src="img/shark-marble.jpeg" alt="Marbleous Luxury Handicrafts Presentation on Shark Tank India">
+          <div class="floating-shark-badge">Marbleous Success Locked</div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ==========================================================================
+     🧬 THE STRATEGY VECTOR ROADMAP
+     ========================================================================== -->
+<section class="scroll-reveal" style="padding: 20px 0;">
+  <div class="wrap">
+    <div class="eyebrow" style="margin-bottom: 12px;">The Blueprint Map</div>
+    <h2 class="h2 text-shine">Our Strategy Vector Roadmap</h2>
+    
+    <div class="diagram-flow-grid">
+      <div class="flow-node-card">
+        <div class="node-badge-num">01</div>
+        <h3>SEO Cluster Build</h3>
+        <p>Reverse-engineering luxury handicraft search trends to build dominant semantic organic traffic nodes[cite: 3].</p>
+      </div>
+      <div class="flow-node-card">
+        <div class="node-badge-num">02</div>
+        <h3>Funnel Infrastructure</h3>
+        <p>Eliminating heavy checkout loop friction and coding customized UI layers to uplift scaling Average Order Values (AOV)[cite: 3].</p>
+      </div>
+      <div class="flow-node-card">
+        <div class="node-badge-num">03</div>
+        <h3>Authority Domination</h3>
+        <p>Securing high-velocity links and authoritative press validation parameters ahead of national airtime[cite: 3].</p>
+      </div>
+      <div class="flow-node-card">
+        <div class="node-badge-num">04</div>
+        <h3>Shark Tank Pitch 🦈</h3>
+        <p>Handling heavy server load concurrency metrics live and executing cloud lockups perfectly without crashes[cite: 3].</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ==========================================================================
+     🤝 HANDSHAKE ALLIANCE SECTION (Image 2 - Standard Layout)
+     ========================================================================== -->
+<section class="custom-side-grid-section scroll-reveal">
+  <div class="wrap">
+    <div class="side-flex-layout">
+      <!-- Left column: Handshake Picture Matrix Frame -->
+      <div class="side-grid-image-frame">
+        <img src="img/digital-whopper-hand.png" alt="Digital Whopper and Marbleous Founders Corporate Handshake">
+      </div>
+      <!-- Right column: Text Content -->
+      <div class="side-grid-text-block">
+        <div class="eyebrow">Strategic Partnership Alliance</div>
+        <h2 class="h2">The Handshake That Fueled Mainstream Growth</h2>
+        <p style="color: var(--muted); font-size: 15px; line-height: 1.6;">
+          Hundreds of workers are working with us to build a leading brand name in the mainstream, aiming to provide unprecedented customer service at your doorstep. We believe in creating valuable crafting with affection and perfection for each product[cite: 3]. 
+        </p>
+        <p style="color: var(--muted); font-size: 15px; line-height: 1.6; margin-top: 12px;">
+          By aligning Digital Whopper's elite technical engineering stack with Marbleous's raw artisan talent, we established an iron-clad business agreement built to respect the efforts of each artisan who crafts every outcome with dedication[cite: 3].
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ==========================================================================
+     🧬 THE STEP-BY-STEP REAL DATA GROWTH JOURNEY TIMELINE
+     ========================================================================== -->
+<section class="scroll-reveal" style="padding: 40px 0;">
+  <div class="wrap">
+    <div class="eyebrow">The Timeline Roadmap</div>
+    <h2 class="h2 text-shine" style="margin-bottom: 44px;">The Step-by-Step Growth Journey</h2>
+    
+    <div class="vertical-journey-timeline">
+      
+      <!-- Step 1 -->
+      <div class="journey-point-item">
+        <div class="journey-meta-time">
+          <span class="time-badge">December 2019</span>
+          <span class="phase-title">The Spark</span>
+        </div>
+        <div class="journey-node-indicator"></div>
+        <div class="journey-content-card">
+          <h3>The Taj Mahal Inspiration &amp; Conceptualization</h3>
+          <p>सॉफ्टवेयर इंजीनियर आयुषी शर्मा ने भारत, ऑस्ट्रेलिया और अफ्रीका की यात्राओं के बाद दिसंबर 2019 में ताजमहल के संगमरमर की कलाकृति (Inlay motifs) को लक्ज़री होम डेकोर में बदलने का फैसला किया[cite: 3]। पति शशांक शर्मा के साथ मिलकर "Marbleous" ब्रांड की नींव रखी गई ताकि मार्बल को पीतल, लकड़ी और रेजिन के साथ खूबसूरती से ब्लेंड किया जा सके[cite: 3]。</p>
+        </div>
+      </div>
+
+      <!-- Step 2 -->
+      <div class="journey-point-item">
+        <div class="journey-meta-time">
+          <span class="time-badge">Phase 02</span>
+          <span class="phase-title">Artisan Scale</span>
+        </div>
+        <div class="journey-node-indicator"></div>
+        <div class="journey-content-card">
+          <h3>Building India's Leading Artisan Network</h3>
+          <p>कंपनी ने सैकड़ों स्थानीय कारीगरों को अपने साथ जोड़ा, जो हर एक हैंडीक्राफ्ट को हाथ से तराशते हैं[cite: 3]। लाख (lacquer) की हैंड-इनले कोटिंग से संगमरमर की चमक को बरकरार रखा गया[cite: 3]। डिजिटल व्हॉपर ने इस समय इनके ट्रेडिशनल मॉडल को ग्लोबल लेवल पर विज़ुअली रिप्रेजेंट करने के लिए यूआई/यूएक्स वायरफ्रेमिंग आर्किटेक्चर डिज़ाइन किया[cite: 3]。</p>
+        </div>
+      </div>
+
+      <!-- Step 3 -->
+      <div class="journey-point-item">
+        <div class="journey-meta-time">
+          <span class="time-badge">Phase 03</span>
+          <span class="phase-title">Digital Domination</span>
+        </div>
+        <div class="journey-node-indicator"></div>
+        <div class="journey-content-card">
+          <h3>Custom Liquid Engineering &amp; Global SEO Clusters</h3>
+          <p>लक्ज़री डेकोर के कीवर्ड्स को गूगल पर टॉप रैंकिंग्स पर लाने के लिए हमने एडवांस्ड सिमेंटिक क्लस्टरिंग की[cite: 3]। इसी के साथ शशांक के इंटरनेशनल बिज़नेस स्किल्स के साथ सिंक करके, वेबसाइट पर कस्टमाइज़्ड पैरामेट्रिक लिक्विड कोड डाला गया ताकि लोडिंग स्पीड 0.4s पर आ जाए और चेकआउट का फ्रिक्शन पूरी तरह खत्म हो जाए[cite: 3]。</p>
+        </div>
+      </div>
+
+      <!-- Step 4 -->
+      <div class="journey-point-item">
+        <div class="journey-meta-time">
+          <span class="time-badge">Live On Stage</span>
+          <span class="phase-title">The Funding Round</span>
+        </div>
+        <div class="journey-node-indicator"></div>
+        <div class="journey-content-card">
+          <h3>Shark Tank India Pitch &amp; Live Scale Execution 🦈</h3>
+          <p>जब आयुषी और शशांक राष्ट्रीय टेलीविजन पर लाइव थे, तब सोनीलिव के ब्रॉडकास्ट के दौरान अचानक लाखों यूजर्स वेबसाइट पर आ गए[cite: 3]। हमारे द्वारा बनाए गए सर्वर-लॉकिंग और एओवी ऑप्टिमाइजेशन की वजह से साइट बिना क्रैश हुए खड़ी रही, और ब्रांड ने सफलतापूर्वक लाइव फंडिंग और लाखों का रेवेन्यू हासिल किया[cite: 3]。</p>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ==========================================================================
+     🌟 STRATEGIC EVALUATION INTERVIEW SECTION (Image 3 - Small Width & Matching Height Fixed)
+     ========================================================================== -->
+<section class="custom-side-grid-section scroll-reveal" style="background: rgba(0, 82, 255, 0.01);">
+  <div class="wrap">
+    <div class="interview-flex-layout">
+      <!-- Left side: Custom Small Marbles Picture Frame -->
+      <div class="side-grid-image-frame">
+        <img src="img/marbles.jpg" alt="Marbleous Luxury Inlay Handicrafts Materials Grid Showcase">
+      </div>
+      <!-- Right side: Interview Context & Insights -->
+      <div class="side-grid-text-block">
+        <div class="eyebrow">Strategic Evaluation</div>
+        <h2 class="h2">Deep Strategy &amp; Growth Interview</h2>
+        <p style="color: var(--muted); font-size: 15px; line-height: 1.6;">
+          Before upgrading the system architecture, our tech and strategy desk conducted comprehensive operational interviews with the founders[cite: 3]. We focused on mapping their exclusive inlay motif processes—blending marble with brass, wood, and resin inlays—and translated this quintessential craftsmanship into clean, conversion-focused user journeys[cite: 3].
+        </p>
+        <p style="color: var(--muted); font-size: 15px; line-height: 1.6; margin-top: 12px;">
+          This interactive assessment helped identify legacy framework bottlenecks, ensuring the custom Shopify engine completely respects and brings out the true essence of their organization[cite: 3].
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ==========================================================================
+     📊 DEEP DETAILS CONTENT SPLIT SECTION (MARBLEOUS PROFILE REAL DATA)
+     ========================================================================== -->
+<section class="scroll-reveal" style="padding: 60px 0 20px;">
+  <div class="wrap">
+    <div class="case-split-layout">
+      
+      <!-- Left Column: Rich Case Study Text Details -->
+      <div class="case-rich-text">
+        <h2>The Challenge &amp; Vision Transformation</h2>
+        <p>Welcome to Marbleous, where beauty meets marble handicrafts[cite: 3]. We believe in transforming nature's finest marble into timeless pieces of art that enhance the decor of home and space[cite: 3]. Our passion for perfection and dedication to quality drives us to offer the finest luxury marble home decor items that stand the test of time[cite: 3]. Thus, to fulfill this desire of providing a touch of crown and grandeur, royalty and timelessness to every part and corner of your residence, we bring to you 'Marble'[cite: 3].</p>
+        
+        <!-- Founder Quote Component -->
+        <div class="founder-quote-card">
+          <p style="font-style: italic; color: var(--text); font-size: 14.5px; margin-bottom: 0;">
+            "I love to blend old with new, traditional with modern, while always keeping fashion, lifestyle and lavishness as the top priorities. It is a joy to help people enhance their version of beautiful, useful spaces with a touch of exclusivity."[cite: 3]
+          </p>
+          <div class="founder-meta">
+            <div class="founder-avatar" style="background: #0052ff; border-radius: 50%; width: 40px; height: 40px; display: flex; align-items: center; justify-content: center; color: white; font-weight: bold; font-size: 12px;">AS</div>
+            <div style="margin-left: 12px;">
+              <strong style="font-size: 13.5px; display: block; color: var(--text);">Ayushi Sharma</strong>
+              <span style="font-size: 11.5px; color: var(--muted);">Founder &amp; Designer, Marbleous</span>
+            </div>
+          </div>
+        </div>
+
+       
+      </div>
+
+      <!-- Right Column: Sticky ROI Growth Metrics Panel -->
+      <div class="case-metrics-panel">
+        <h4>Validated Growth Statistics</h4>
+        
+        <div class="metric-stat-row">
+          <div class="metric-icon-box">📈</div>
+          <div class="metric-info">
+            <b>450%</b>
+            <span>Organic Traffic Surge</span>
+          </div>
+        </div>
+
+        <div class="metric-stat-row">
+          <div class="metric-icon-box">💰</div>
+          <div class="metric-info">
+            <b>₹50L+</b>
+            <span>Capital Funding Secured</span>
+          </div>
+        </div>
+
+        <div class="metric-stat-row">
+          <div class="metric-icon-box">🚀</div>
+          <div class="metric-info">
+            <b>3.2X</b>
+            <span>ROAS Multiplier Boost</span>
+          </div>
+        </div>
+
+        <div class="metric-stat-row">
+          <div class="metric-icon-box">⚡</div>
+          <div class="metric-info">
+            <b>0.4s</b>
+            <span>Server Response Time Under Load</span>
+          </div>
+        </div>
+
+        <div style="margin-top: 28px;">
+          <a href="/contact.html" class="btn btn-gold" style="width: 100%; padding: 14px;">Build Your Success Story ✦</a>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ==========================================================================
+     👑 FOUNDERS PROFILE SHOWCASE SECTION
+     ========================================================================== -->
+<section class="founders-showcase-section scroll-reveal">
+  <div class="wrap">
+    <div class="eyebrow">The Leadership Fleet</div>
+    <h2 class="h2 text-shine">Meeting The Visionaries Behind Marbleous</h2>
+    
+    <div class="founders-grid">
+      <!-- Founder 1: Ayushi Sharma -->
+      <div class="founder-detail-card">
+        <div class="founder-header-block">
+          <div style="font-size: 28px;">👑</div>
+          <div>
+            <h3 style="font-family: 'Sora', sans-serif; font-size: 18px; font-weight: 700; color: var(--text);">Ayushi Sharma</h3>
+            <span style="font-size: 12px; color: #0052ff; font-weight: 600;">Founder &amp; Designer</span>
+          </div>
+        </div>
+        <p style="font-size: 13.5px; color: var(--muted); line-height: 1.6;">
+          Ayushi is a post-graduate of Pune University and has worked at Accenture Services Pvt. Ltd. as a Software Engineer[cite: 3]. She has travelled most of the States in India, Australia, New Zealand, Africa, &amp; Thailand[cite: 3]. In December 2019, she came to an idea of bringing Indian wonder touch “The Taj Mahal” marble in essence of decor products into the homes[cite: 3].
+        </p>
+      </div>
+
+      <!-- Founder 2: Shashank Sharma -->
+      <div class="founder-detail-card">
+        <div class="founder-header-block">
+          <div style="font-size: 28px;">💼</div>
+          <div>
+            <h3 style="font-family: 'Sora', sans-serif; font-size: 18px; font-weight: 700; color: var(--text);">Shashank Sharma</h3>
+            <span style="font-size: 12px; color: #0052ff; font-weight: 600;">Co-Founder</span>
+          </div>
+        </div>
+        <p style="font-size: 13.5px; color: var(--muted); line-height: 1.6;">
+          Shashank enjoys using his International Business &amp; Entrepreneurship Degree at Essex University in a variety of ways[cite: 3]. Since 2011, he has co-founded multiple businesses in different sectors such as FMCG, Packaging Industry, etc[cite: 3]. He excels in his leadership &amp; decision making skills and helps the subordinates managing all the tasks timely[cite: 3].
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer id="footer"></footer>
+
+<script src="scriptb.js"></script>
+</body>
+</html>

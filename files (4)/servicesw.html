@@ -1,0 +1,328 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Our Services | Digital Whopper - Jaipur</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;500;600;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styleb.css">
+</head>
+<style>
+  /* ==========================================================================
+   📸 BRAND IMAGE LOGO MULTI-SCALE SYNCHRONIZATION
+   ========================================================================== */
+  .logo-img-asset {
+    height: 34px;
+    width: auto;
+    object-fit: contain;
+    display: inline-block;
+    margin-right: 2px;
+  }
+
+  /* ==========================================================================
+   🌟 NEW TRIPLE MODULE SPLIT CORE GRID SYSTEM Layout
+   ========================================================================== */
+  .diagram-split-section {
+    display: grid;
+    grid-template-columns: 1fr 1.1fr; /* Left text parameters, Right floating network vector */
+    gap: 48px;
+    align-items: center;
+    padding: 40px 0;
+  }
+
+  /* Left Side Services Points Presentation Box */
+  .split-services-infobox h2 {
+    font-size: clamp(28px, 3.5vw, 42px);
+    font-weight: 700;
+    line-height: 1.2;
+    margin-bottom: 24px;
+    color: var(--text);
+  }
+  .split-services-infobox p {
+    color: var(--muted);
+    font-size: 15px;
+    line-height: 1.6;
+    margin-bottom: 32px;
+  }
+
+  /* Dynamic Clean Points UI List */
+  .core-services-list {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+  }
+  .service-point-item {
+    display: flex;
+    gap: 16px;
+    align-items: start;
+  }
+  .point-icon-badge {
+    width: 40px; height: 40px;
+    background: rgba(0, 82, 255, 0.05);
+    border-radius: 10px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 18px; color: #0052ff; flex-shrink: 0;
+  }
+  .point-text-block h3 {
+    font-size: 16px; font-weight: 700; color: var(--text); margin-bottom: 4px;
+  }
+  .point-text-block p {
+    font-size: 13.5px; color: var(--muted); margin-bottom: 0; line-height: 1.5;
+  }
+
+  /* ==========================================================================
+   🤖 FUTURISTIC IT SERVICES NODE HUB DIAGRAM LAYOUT
+   ========================================================================== */
+  .it-hub-container {
+    position: relative;
+    width: 100%;
+    max-width: 550px; /* Reduced width to fit beautifully on the right column */
+    height: 450px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto;
+  }
+
+  /* Central Core Orb */
+  .it-core-orb {
+    position: relative;
+    width: 130px;
+    height: 130px;
+    background: var(--btn-grad);
+    border-radius: 50%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    color: #ffffff;
+    text-align: center;
+    font-family: 'Sora', sans-serif;
+    font-weight: 700;
+    font-size: 14px;
+    box-shadow: var(--card-shadow-active), 0 0 30px rgba(0, 82, 255, 0.3);
+    z-index: 10;
+    animation: corePulse 4s ease-in-out infinite;
+  }
+  .it-core-orb span { font-size: 10px; font-weight: 500; opacity: 0.85; text-transform: uppercase; letter-spacing: 0.05em; }
+
+  /* Floating Perimeter Tags */
+  .hub-tag {
+    position: absolute;
+    background: #ffffff;
+    border: 1px solid rgba(0, 82, 255, 0.15);
+    padding: 8px 16px;
+    border-radius: 999px;
+    font-size: 12px;
+    font-weight: 600;
+    color: var(--text);
+    box-shadow: var(--card-shadow-default);
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    transition: all 0.3s ease;
+  }
+  .hub-tag:hover {
+    border-color: #0052ff;
+    transform: scale(1.05);
+    box-shadow: var(--card-shadow-active);
+  }
+  .hub-tag .dot-indicator { width: 6px; height: 6px; background: #00d2ff; border-radius: 50%; box-shadow: 0 0 8px #00d2ff; }
+
+  /* Perimeter Coordinate Mappings */
+  .tag-top-left     { top: 12%; left: 0%; }
+  .tag-top-right    { top: 12%; right: 0%; }
+  .tag-mid-left     { left: -8%; }
+  .tag-mid-right    { right: -8%; }
+  .tag-bottom-left  { bottom: 12%; left: 0%; }
+  .tag-bottom-right { bottom: 12%; right: 0%; }
+
+  /* SVG Connecting Vector Lines */
+  .hub-svg-lines {
+    position: absolute;
+    top: 0; left: 0; width: 100%; height: 100%;
+    pointer-events: none;
+    z-index: 1;
+  }
+  .hub-svg-lines line {
+    stroke: rgba(0, 82, 255, 0.12);
+    stroke-width: 1.5;
+    stroke-dasharray: 4 4;
+  }
+
+  @keyframes corePulse {
+    0%, 100% { transform: scale(1); box-shadow: 0 0 30px rgba(0, 82, 255, 0.2); }
+    50% { transform: scale(1.04); box-shadow: 0 0 45px rgba(0, 210, 255, 0.4); }
+  }
+
+  /* 📱 Responsive Mobile Adjustments for Diagram Grid */
+  @media(max-width: 968px) {
+    .diagram-split-section { grid-template-columns: 1fr; gap: 40px; }
+    .split-services-infobox { text-align: center; }
+    .service-point-item { text-align: left; }
+    .it-hub-container { max-width: 450px; height: 380px; }
+    .tag-mid-left { left: 0; }
+    .tag-mid-right { right: 0; }
+  }
+  @media(max-width: 600px) {
+    .it-hub-container { height: auto; flex-direction: column; gap: 12px; padding: 20px 0; }
+    .it-core-orb { width: 120px; height: 120px; font-size: 13px; animation: none; margin-bottom: 12px; }
+    .hub-tag { position: relative; top: auto; bottom: auto; left: auto; right: auto; width: 100%; max-width: 280px; justify-content: center; }
+    .hub-svg-lines { display: none; }
+  }
+</style>
+<body>
+
+<div id="customPreloader" class="preloader-overlay">
+  <div class="preloader-content">
+    <h2 class="preloader-brand">Digital Whopper</h2>
+    <div class="preloader-spinner">
+      <span class="spinner-dot"></span>
+      <span class="spinner-dot"></span>
+    </div>
+  </div>
+</div>
+
+<div class="custom-cursor" id="customCursor"></div>
+<div class="custom-cursor-blur" id="customCursorBlur"></div>
+
+<header id="mainHeader"></header>
+
+<section class="hero scroll-reveal" style="padding: 140px 0 30px;">
+  <div class="pink-blob"></div>
+  <div class="purple-ambient-glow"></div>
+  
+  <div class="stars-container">
+    <canvas id="aiNodeCanvas"></canvas>
+  </div>
+
+  <div class="wrap text-shine" style="text-align: center;">
+    <div class="eyebrow">Our Arsenal</div>
+    <h1>360° Digital <span class="highlight text-shine">Growth Engines</span></h1>
+    <p class="lead" style="margin: 15px auto 0; max-width: 680px;">We engineer high-converting funnels, elite technical setups, and absolute organic domination tactics to turn your business into an unstoppable brand.</p>
+  </div>
+</section>
+
+<!-- ==========================================================================
+     🌟 NEW RE-ALIGNED SPLIT TWO-COLUMN SERVICE PROFILE COMPONENT
+     ========================================================================== -->
+<section class="scroll-reveal" style="padding: 20px 0 40px;">
+  <div class="wrap">
+    <div class="diagram-split-section">
+      
+      <!-- 🌟 LEFT COLUMN: Premium Structured Points Presentation -->
+      <div class="split-services-infobox">
+        <div class="eyebrow">Integrated Capabilities</div>
+        <h2 class="text-shine">Our Core Tech Ecosystem</h2>
+        <p>We do not just deploy individual tasks—we integrate web engineering, market visibility parameters, and absolute brand infrastructure sync to establish scalable revenue systems for modern companies.</p>
+        
+        <div class="core-services-list">
+          <!-- Point 1 -->
+          <div class="service-point-item">
+            <div class="point-icon-badge">💻</div>
+            <div class="point-text-block">
+              <h3>Elite Web Development</h3>
+              <p>Bespoke frontend engineering setups combined with robust servers optimized flawlessly for sub-second responses and live concurrent scale spikes.</p>
+            </div>
+          </div>
+          <!-- Point 2 -->
+          <div class="service-point-item">
+            <div class="point-icon-badge">🔍</div>
+            <div class="point-text-block">
+              <h3>SEO Domination Systems</h3>
+              <p>Reverse-engineering intent patterns to build permanent authority networks, ranking keywords on top positions organically.</p>
+            </div>
+          </div>
+          <!-- Point 3 -->
+          <div class="service-point-item">
+            <div class="point-icon-badge">🚀</div>
+            <div class="point-text-block">
+              <h3>High-Velocity Brand Building</h3>
+              <p>Crafting conversion-optimized wireframe blueprints and data-driven marketing assets that lift startups up to national spotlight scales.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 🌟 RIGHT COLUMN: Beautiful Floating Network Vector Diagram Component -->
+      <div class="it-hub-container">
+        <div class="it-core-orb">
+          <span>Digital Core</span>
+          IT SERVICES
+        </div>
+
+        <svg class="hub-svg-lines">
+          <line x1="50%" y1="50%" x2="15%" y2="15%"></line>
+          <line x1="50%" y1="50%" x2="85%" y2="15%"></line>
+          <line x1="50%" y1="50%" x2="0%" y2="50%"></line>
+          <line x1="50%" y1="50%" x2="100%" y2="50%"></line>
+          <line x1="50%" y1="50%" x2="15%" y2="85%"></line>
+          <line x1="50%" y1="50%" x2="85%" y2="85%"></line>
+        </svg>
+
+        <div class="hub-tag tag-top-left"><span class="dot-indicator"></span>Cloud Scaling</div>
+        <div class="hub-tag tag-top-right"><span class="dot-indicator"></span>Custom SaaS Builds</div>
+        <div class="hub-tag tag-mid-left"><span class="dot-indicator"></span>Shopify Custom Liquid</div>
+        <div class="hub-tag tag-mid-right"><span class="dot-indicator"></span>Full Stack Frameworks</div>
+        <div class="hub-tag tag-bottom-left"><span class="dot-indicator"></span>Cyber Infrastructure</div>
+        <div class="hub-tag tag-bottom-right"><span class="dot-indicator"></span>UI/UX Tech Blueprints</div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<section class="scroll-reveal" style="padding: 30px 0 100px;">
+  <div class="wrap">
+    <div class="work-grid-container" id="gridWorkspace">
+       </div>
+  </div>
+</section>
+
+<footer id="footer"></footer>
+
+<script src="scriptb.js"></script>
+
+<script>
+  // Dynamic navigation parameter router
+  function navigateToService(id) {
+    window.location.href = `services-detailsw.html?id=${id}`;
+  }
+
+  // ONLY IN THIS PAGE ENGINE: Card rendering complete hone ke baad buttons inject karne ka logic
+  document.addEventListener('DOMContentLoaded', () => {
+    const checkGridRendered = setInterval(() => {
+      const cards = document.querySelectorAll('#gridWorkspace .work-card');
+      
+      if (cards.length > 0) {
+        clearInterval(checkGridRendered); 
+        
+        cards.forEach((card, index) => {
+          card.style.cursor = 'pointer';
+          card.setAttribute('onclick', `navigateToService(${index})`);
+          card.classList.add('active'); 
+          
+          const cardBody = card.querySelector('.work-card-body');
+          if (cardBody) {
+            if (!cardBody.querySelector('.btn-ghost')) {
+              const readMoreBtn = document.createElement('button');
+              readMoreBtn.className = 'btn btn-ghost';
+              readMoreBtn.style.cssText = 'padding: 8px 16px; font-size: 12px; border-color: rgba(0, 82, 255, 0.2); color: #0052ff; margin-top: 12px; display: inline-flex; width: auto;';
+              readMoreBtn.innerHTML = 'Read More ✦';
+              
+              readMoreBtn.addEventListener('click', (e) => {
+                e.stopPropagation(); 
+                navigateToService(index);
+              });
+
+              cardBody.appendChild(readMoreBtn);
+            }
+          }
+        });
+      }
+    }, 50); 
+  });
+</script>
+</body>
+</html>

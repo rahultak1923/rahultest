@@ -347,22 +347,50 @@ document.addEventListener('DOMContentLoaded', () => {
   const globalHeaderContainer = document.getElementById('mainHeader');
   const globalFooterContainer = document.getElementById('footer');
 
+ // 🌟 REPLACE THIS NAVBAR BLOCK IN YOUR SCRIPTB.JS
   if (globalHeaderContainer) {
     globalHeaderContainer.innerHTML = `
       <nav>
-<a href="/" class="logo">
+        <a href="/" class="logo">
           <img src="img/landing-logo.png" alt="Digital Whopper Logo" class="logo-img-asset">
           Digital Whopper
-        </a>        <div class="nav-links">
-          <a href="/">Home</a>
-          <a href="services.html">Services</a>
-          <a href="contact.html">Contact</a>
+        </a>        
+        <div class="nav-links" id="navLinksMenu">
+          <a href="/index.html">Home</a>
+      <a href="/servicesw.html">Services</a>
+      <a href="/portfolio.html">PortFolio</a>
+      <a href="#">SEO Audit</a>
+      <a href="#">SMO Audit</a>
+      <a href="/shark-tank-journey.html">Shark Tank Journey</a>
         </div>
-        <div class="nav-cta">
-          <a href="/contact.html" class="btn btn-gold">Enquire now</a>
-        </div>
+        <div class="nav-cta"><a href="contact.html" class="btn btn-gold">Why Us?</a></div>
+        
+        <button class="menu-toggle-trigger" id="hamburgerBtn" aria-label="Toggle Navigation">
+          <span></span>
+          <span></span>
+          <span></span>
+        </button>
       </nav>
     `;
+
+    // 🌟 HAMBURGER INTERACTIVE CLICK CLICK EVENT LOGIC
+    const hamburgerBtn = document.getElementById('hamburgerBtn');
+    if (hamburgerBtn) {
+      hamburgerBtn.addEventListener('click', (e) => {
+        e.stopPropagation();
+        globalHeaderContainer.classList.toggle('menu-active');
+      });
+    }
+
+    // Agar drawer open ho aur user screen par kahi aur click kare to menu auto-close ho jaye
+    document.addEventListener('click', (e) => {
+      if (globalHeaderContainer.classList.contains('menu-active')) {
+        const navMenu = document.getElementById('navLinksMenu');
+        if (navMenu && !navMenu.contains(e.target) && e.target !== hamburgerBtn) {
+          globalHeaderContainer.classList.remove('menu-active');
+        }
+      }
+    });
   }
 
   if (globalFooterContainer) {
