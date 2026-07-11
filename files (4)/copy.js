@@ -76,7 +76,6 @@ function renderThreeDivWorkspace() {
   const leftTarget = document.getElementById('gridWorkspaceLeft');
   const rightTarget = document.getElementById('gridWorkspaceRight');
   
-  // 🚀 SAFETY CHECK Added: Agar target nahi milega toh script chupchaap return ho jayegi, crash nahi hogi
   if (!leftTarget || !rightTarget || projects.length < 1) return;
 
   const halfLimit = Math.ceil(projects.length / 2);
@@ -196,7 +195,6 @@ const testimonials = [
 
 function renderTwoRowCarouselTestimonials() {
   const container = document.querySelector('.test-row');
-  // 🚀 SAFETY CHECK Added
   if (!container || testimonials.length < 2) return;
 
   const half = Math.ceil(testimonials.length / 2);
@@ -474,23 +472,21 @@ document.addEventListener('DOMContentLoaded', () => {
     `;
   }
 
-  // 🚀 SAFETY CHECK RUNNERS: Code tab rendering runs securely
+  // 🚀 [RESTORED SERVICES REDIRECT] Services Section core cards redirection listener
+  document.querySelectorAll('.service-card-core').forEach(card => {
+    card.addEventListener('click', () => {
+      window.location.href = '/services.html';
+    });
+  });
+
   renderThreeDivWorkspace();
   renderTwoRowCarouselTestimonials();
   
-  // ⚡ Default Project Auto-Focus Loader Block (Executed safely via DOM pointers check)
-  setTimeout(() => {
-    const firstCardElement = document.querySelector('.work-column-left .work-card[data-index="0"]');
-    if (firstCardElement) {
-      updatePhoneDisplay(0, firstCardElement);
-    }
-  }, 100);
-
   document.querySelectorAll('.counter').forEach(c => counterObserver.observe(c));
   setTimeout(startTypewriterLoop, 1500);
 });
 
-// Full Window Preloader Fade Out Engine
+// Full Window Slide Exit Trigger
 window.addEventListener('load', () => {
   const preloader = document.getElementById('customPreloader');
   if (preloader) {

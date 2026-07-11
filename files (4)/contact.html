@@ -6,7 +6,79 @@
 <title>Contact Us | Digital Whopper - Jaipur</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;500;600;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="style.css">
+<!-- 🌟 Exact white/light theme stylesheet linked -->
+<link rel="stylesheet" href="styleb.css">
+<style>
+  /* ==========================================================================
+   📸 BRAND IMAGE LOGO MULTI-SCALE SYNCHRONIZATION
+   ========================================================================== */
+  .logo-img-asset {
+    height: 34px;
+    width: auto;
+    object-fit: contain;
+    display: inline-block;
+    margin-right: 2px;
+  }
+
+  /* ==========================================================================
+   🎨 PREMIUM CONTACT SPLIT INTERACTIVE UI OVERRIDES
+   ========================================================================== */
+  .form-label-tag {
+    font-family: 'Sora', sans-serif;
+    font-size: 12px;
+    font-weight: 700;
+    color: var(--text);
+    display: block;
+    margin-bottom: 8px;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+  }
+
+  .form-field-input {
+    width: 100%;
+    background: #ffffff;
+    border: 1px solid rgba(0, 82, 255, 0.08);
+    border-radius: 12px;
+    padding: 14px 18px;
+    font-family: 'Inter', sans-serif;
+    font-size: 14px;
+    color: var(--text);
+    outline: none;
+    transition: all 0.3s ease;
+    box-shadow: inset 0 2px 4px rgba(0,0,0,0.01);
+  }
+
+  .form-field-input:focus {
+    border-color: #0052ff;
+    box-shadow: 0 0 0 4px rgba(0, 82, 255, 0.05);
+  }
+
+  .contact-detail-card-item {
+    background: #ffffff;
+    border: 1px solid rgba(0, 82, 255, 0.06);
+    border-radius: 16px;
+    padding: 24px;
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    box-shadow: var(--card-shadow-default);
+    transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  .contact-detail-card-item:hover {
+    border-color: rgba(0, 82, 255, 0.2);
+    transform: translateY(-2px);
+    box-shadow: var(--card-shadow-active);
+  }
+
+  /* 📱 Tablet & Mobile Responsive Adjustments */
+  @media(max-width: 900px) {
+    .contact-split-grid {
+      grid-template-columns: 1fr !important;
+      gap: 32px !important;
+    }
+  }
+</style>
 </head>
 <body>
 
@@ -23,15 +95,18 @@
 <div class="custom-cursor" id="customCursor"></div>
 <div class="custom-cursor-blur" id="customCursorBlur"></div>
 
+<!-- Global Navigation Dropdown Navbar Injection Frame -->
 <header id="mainHeader"></header>
 
-<section class="hero scroll-reveal" style="padding: 140px 0 20px;">
+<!-- ==========================================================================
+     🖼️ HERO GRAPHIC SECTION
+     ========================================================================== -->
+<section class="hero scroll-reveal" style="padding: 160px 0 30px;">
   <div class="pink-blob"></div>
   <div class="purple-ambient-glow"></div>
   
   <div class="stars-container">
-    <div class="star s1 color-pink"></div><div class="star s2 color-orange"></div><div class="star s3 color-cyan"></div>
-    <div class="star s4 color-gold"></div><div class="star s5 color-pink"></div><div class="star s6 color-cyan"></div>
+    <canvas id="aiNodeCanvas"></canvas>
   </div>
 
   <div class="wrap text-shine" style="text-align: center;">
@@ -41,47 +116,114 @@
   </div>
 </section>
 
+<!-- ==========================================================================
+     📐 MASTER CONTACT SPLIT GRID MODULE
+     ========================================================================== -->
 <section class="scroll-reveal" style="padding: 20px 0 80px;">
   <div class="wrap">
-    <div class="contact-split-grid">
+    
+    <!-- Left Info vs Right Enquire Form Matrix Grid -->
+    <div class="contact-split-grid" style="display: grid; grid-template-columns: 1fr 1.2fr; gap: 48px; align-items: start; margin-bottom: 52px; width: 100%;">
       
-      <div class="contact-info-panel">
-        <a href="https://wa.me/916200379161" target="_blank" class="contact-meta-card">
-          <div class="meta-icon">💬</div>
+      <!-- 🌟 LEFT SIDE: Interactive Contact Information Panel -->
+      <div class="contact-info-panel" style="display: flex; flex-direction: column; gap: 20px;">
+        
+        <!-- WhatsApp Connect Block -->
+        <a href="https://wa.me/916200379161" target="_blank" class="contact-detail-card-item">
+          <div class="meta-icon" style="width: 48px; height: 48px; background: rgba(16, 185, 129, 0.05); border-radius: 12px; display: flex; align-items: center; justify-content: center; font-size: 22px;">💬</div>
           <div class="meta-texts">
-            <b>WhatsApp</b>
-            <span>Chat with Whoppy — we reply fast</span>
+            <b style="display: block; font-size: 16px; color: var(--text); font-family: 'Sora', sans-serif;">WhatsApp Hotline</b>
+            <span style="font-size: 13.5px; color: var(--muted); margin-top: 2px; display: block;">Chat with Whoppy — we reply within minutes</span>
           </div>
         </a>
 
-        <a href="mailto:hello@digitalwhopper.com" class="contact-meta-card">
-          <div class="meta-icon">✉️</div>
+        <!-- Official Email Block -->
+        <a href="mailto:hello@digitalwhopper.com" class="contact-detail-card-item">
+          <div class="meta-icon" style="width: 48px; height: 48px; background: rgba(0, 82, 255, 0.05); border-radius: 12px; display: flex; align-items: center; justify-content: center; font-size: 20px;">✉️</div>
           <div class="meta-texts">
-            <b>Email</b>
-            <span>hello@digitalwhopper.com</span>
+            <b style="display: block; font-size: 16px; color: var(--text); font-family: 'Sora', sans-serif;">Email Transmission</b>
+            <span style="font-size: 13.5px; color: var(--muted); margin-top: 2px; display: block;">hello@digitalwhopper.com</span>
           </div>
         </a>
-      </div>
 
-      <div class="contact-form-panel">
-        <span class="form-eyebrow">MESSAGE</span>
-        <div class="form-input-container">
-          <textarea id="projectMessage" placeholder="Tell us about your project..." rows="4"></textarea>
+        <!-- Corporate Address Block -->
+        <div class="contact-detail-card-item">
+          <div class="meta-icon" style="width: 48px; height: 48px; background: rgba(0, 210, 255, 0.05); border-radius: 12px; display: flex; align-items: center; justify-content: center; font-size: 20px;">📍</div>
+          <div class="meta-texts">
+            <b style="display: block; font-size: 16px; color: var(--text); font-family: 'Sora', sans-serif;">Jaipur Headquarters</b>
+            <span style="font-size: 13.5px; color: var(--muted); margin-top: 2px; display: block; line-height: 1.5;">3rd Floor, 4/11, Vidyut Abhiyanta Colony, Sector 4, Malviya Nagar, Jaipur, Rajasthan 302017</span>
+          </div>
         </div>
-        <button class="btn btn-gold form-submit-trigger" id="submitFormBtn">Send enquiry ✦</button>
+
+      </div>
+
+      <!-- 🌟 RIGHT SIDE: Premium Conversion Enquire Form Panel -->
+      <div class="contact-form-panel" style="background: rgba(255, 255, 255, 0.8); backdrop-filter: blur(10px); border: 1px solid rgba(0, 82, 255, 0.08); border-radius: 20px; padding: 36px; box-shadow: var(--card-shadow-default);">
+        <span class="form-eyebrow" style="font-size: 11px; font-weight: 700; letter-spacing: 0.1em; color: var(--muted); display: block; margin-bottom: 20px; text-transform: uppercase;">Growth Transmission</span>
+        
+        <div style="display: flex; flex-direction: column; gap: 20px;">
+          <!-- Name Row -->
+          <div>
+            <label class="form-label-tag">Full Name</label>
+            <input type="text" id="enquiryName" class="form-field-input" placeholder="e.g., Rahul Sharma" autocomplete="off">
+          </div>
+
+          <!-- Email & Phone Grid Setup -->
+          <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 16px;">
+            <div>
+              <label class="form-label-tag">Email Address</label>
+              <input type="email" id="enquiryEmail" class="form-field-input" placeholder="name@company.com" autocomplete="off">
+            </div>
+            <div>
+              <label class="form-label-tag">Phone Number</label>
+              <input type="tel" id="enquiryPhone" class="form-field-input" placeholder="+91 98765-43210" autocomplete="off">
+            </div>
+          </div>
+
+          <!-- Message Field Container -->
+          <div>
+            <label class="form-label-tag">Project Parameters</label>
+            <textarea id="projectMessage" class="form-field-input" placeholder="Tell us about your project scale targets..." rows="4" style="resize: none;"></textarea>
+          </div>
+
+          <!-- Action Submission Button -->
+          <div style="margin-top: 8px;">
+            <button class="btn btn-gold form-submit-trigger" id="submitFormBtn" style="width: 100%; padding: 16px 28px; font-size: 14.5px;">Launch Brand Enquiry ✦</button>
+          </div>
+        </div>
       </div>
 
     </div>
 
-    <div class="contact-map-wrapper">
-      <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3559.8863618151996!2d75.8184518761273!3d26.843538463110292!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x396db6641883c833%3A0xb3513a967f6b0f9f!2sDigital%20Whopper!5e0!3m2!1sen!2sin!4v1720257500000!5m2!1sen!2sin" width="100%" height="400" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
-    </div>
+    <!-- HQ Map Blueprint Location Canvas Wrapper -->
+    <!-- 📍 LIVE UPDATED GOOGLE MAPS WORKING WRAPPER (DIGITAL WHOPPER - MALVIYA NAGAR, JAIPUR) -->
+<div class="contact-map-wrapper" style="border: 1px solid rgba(0, 82, 255, 0.06); border-radius: 20px; overflow: hidden; box-shadow: var(--card-shadow-default); opacity: 0.95;">
+  <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3559.6758808096083!2d75.81385277522205!3d26.850259476684464!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x396db70d6ddc5739%3A0x26f55464d633e961!2sDigital%20Whopper%20-%20digital%20marketing%20agency%20in%20Jaipur!5e0!3m2!1sen!2sin!4v1783761526528!5m2!1sen!2sin" width="1150" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="strict-origin-when-cross-origin"></iframe>
+</div>
 
   </div>
 </section>
 
+<!-- Global Injection Footer Frame Anchor Frame -->
 <footer id="footer"></footer>
 
-<script src="script.js"></script>
+<!-- 🌟 Integrated with services-script.js to synchronize header and footer dropdown menus perfectly -->
+<script src="services-script.js"></script>
+
+<script>
+  // Simple form submission response mapping listener
+  document.getElementById('submitFormBtn').addEventListener('click', () => {
+    const name = document.getElementById('enquiryName').value.trim();
+    const email = document.getElementById('enquiryEmail').value.trim();
+    const msg = document.getElementById('projectMessage').value.trim();
+
+    if(!name || !email || !msg) {
+      alert('Please fill in all core parameters to launch your brand enquiry transmission! 🚀');
+      return;
+    }
+    alert(`Thank you ${name}! Your transmission has been successfully routed. Our growth strategist will connect via email shortly. ✦`);
+  });
+</script>
+<script src="scriptb.js"></script>
 </body>
 </html>

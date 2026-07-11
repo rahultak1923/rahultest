@@ -77,7 +77,7 @@
   .it-hub-container {
     position: relative;
     width: 100%;
-    max-width: 550px; /* Reduced width to fit beautifully on the right column */
+    max-width: 550px;
     height: 450px;
     display: flex;
     align-items: center;
@@ -204,21 +204,16 @@
   </div>
 </section>
 
-<!-- ==========================================================================
-     🌟 NEW RE-ALIGNED SPLIT TWO-COLUMN SERVICE PROFILE COMPONENT
-     ========================================================================== -->
 <section class="scroll-reveal" style="padding: 20px 0 40px;">
   <div class="wrap">
     <div class="diagram-split-section">
       
-      <!-- 🌟 LEFT COLUMN: Premium Structured Points Presentation -->
       <div class="split-services-infobox">
         <div class="eyebrow">Integrated Capabilities</div>
         <h2 class="text-shine">Our Core Tech Ecosystem</h2>
         <p>We do not just deploy individual tasks—we integrate web engineering, market visibility parameters, and absolute brand infrastructure sync to establish scalable revenue systems for modern companies.</p>
         
         <div class="core-services-list">
-          <!-- Point 1 -->
           <div class="service-point-item">
             <div class="point-icon-badge">💻</div>
             <div class="point-text-block">
@@ -226,7 +221,6 @@
               <p>Bespoke frontend engineering setups combined with robust servers optimized flawlessly for sub-second responses and live concurrent scale spikes.</p>
             </div>
           </div>
-          <!-- Point 2 -->
           <div class="service-point-item">
             <div class="point-icon-badge">🔍</div>
             <div class="point-text-block">
@@ -234,7 +228,6 @@
               <p>Reverse-engineering intent patterns to build permanent authority networks, ranking keywords on top positions organically.</p>
             </div>
           </div>
-          <!-- Point 3 -->
           <div class="service-point-item">
             <div class="point-icon-badge">🚀</div>
             <div class="point-text-block">
@@ -245,7 +238,6 @@
         </div>
       </div>
 
-      <!-- 🌟 RIGHT COLUMN: Beautiful Floating Network Vector Diagram Component -->
       <div class="it-hub-container">
         <div class="it-core-orb">
           <span>Digital Core</span>
@@ -275,7 +267,7 @@
 
 <section class="scroll-reveal" style="padding: 30px 0 100px;">
   <div class="wrap">
-    <div class="work-grid-container" id="gridWorkspace">
+    <div class="services-cards-wrapper">
        </div>
   </div>
 </section>
@@ -283,42 +275,28 @@
 <footer id="footer"></footer>
 
 <script src="scriptb.js"></script>
+<script src="services-script.js"></script>
 
 <script>
-  // Dynamic navigation parameter router
+  // Dynamic navigation parameter router to redirect into services-detailsw.html
   function navigateToService(id) {
     window.location.href = `services-detailsw.html?id=${id}`;
   }
 
-  // ONLY IN THIS PAGE ENGINE: Card rendering complete hone ke baad buttons inject karne ka logic
+  // 🕹️ DYNAMIC REDIRECTS TRIGGER AT DOM LOAD FOR ALL DYNAMIC CARDS
   document.addEventListener('DOMContentLoaded', () => {
     const checkGridRendered = setInterval(() => {
-      const cards = document.querySelectorAll('#gridWorkspace .work-card');
+      // 🌟 FIX: अब स्क्रिप्ट सही कंटेनर के अंदर जनरेट हुए सर्विस कार्ड्स को ट्रैक करेगी
+      const cards = document.querySelectorAll('.services-cards-wrapper .service-card-core');
       
       if (cards.length > 0) {
         clearInterval(checkGridRendered); 
         
         cards.forEach((card, index) => {
           card.style.cursor = 'pointer';
-          card.setAttribute('onclick', `navigateToService(${index})`);
+          // हर कार्ड पर क्लिक करने पर वो अपने रेस्पेक्टिव इंडेक्स वाले डिटेल्स पेज पर चला जाएगा
+          card.setAttribute('onclick', `MapsToService(${index})`);
           card.classList.add('active'); 
-          
-          const cardBody = card.querySelector('.work-card-body');
-          if (cardBody) {
-            if (!cardBody.querySelector('.btn-ghost')) {
-              const readMoreBtn = document.createElement('button');
-              readMoreBtn.className = 'btn btn-ghost';
-              readMoreBtn.style.cssText = 'padding: 8px 16px; font-size: 12px; border-color: rgba(0, 82, 255, 0.2); color: #0052ff; margin-top: 12px; display: inline-flex; width: auto;';
-              readMoreBtn.innerHTML = 'Read More ✦';
-              
-              readMoreBtn.addEventListener('click', (e) => {
-                e.stopPropagation(); 
-                navigateToService(index);
-              });
-
-              cardBody.appendChild(readMoreBtn);
-            }
-          }
         });
       }
     }, 50); 

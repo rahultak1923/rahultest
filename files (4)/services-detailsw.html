@@ -6,7 +6,6 @@
 <title>Service Details | Digital Whopper</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;500;600;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
-<!-- 🌟 Exact main responsive stylesheet linked -->
 <link rel="stylesheet" href="styleb.css">
 <style>
   /* ==========================================================================
@@ -21,10 +20,10 @@
 }
 
   /* ==========================================================================
-     🖼️ NO-CARD FULL WIDTH RE-CALIBRATED GRAPHIC STYLES
+     🖼 shrink-to-fit NO-CARD FULL WIDTH RE-CALIBRATED GRAPHIC STYLES
      ========================================================================== */
   .detail-hero-section {
-    padding: 180px 0 80px !important; /* 🚀 Home page hero section se bilkul exact match padding */
+    padding: 180px 0 80px !important; /* Home page hero section se bilkul exact match padding */
     position: relative;
     z-index: 2;
     width: 100%;
@@ -37,7 +36,7 @@
     margin-bottom: 40px; /* Text se sahi gap maintain karne ke liye */
   }
 
-  /* Split Layout Grid - Ab direct canvas layout par float karega (No card backdrop) */
+  /* Split Layout Grid - Ab direct canvas layout par float karega */
   .detail-split-layout {
     display: grid;
     grid-template-columns: 1.15fr 0.85fr; /* Exact grid synchronization with home page layouts */
@@ -153,26 +152,20 @@
 <div class="custom-cursor" id="customCursor"></div>
 <div class="custom-cursor-blur" id="customCursorBlur"></div>
 
-<!-- 🌟 Global Injection Header Anchor Frame -->
 <header id="mainHeader"></header>
 
 <section class="detail-hero-section">
-  <!-- 🛡️ Blobs are locked inside safety wrappers to shield the navbar matrix layout -->
   <div class="pink-blob"></div>
   <div class="purple-ambient-glow"></div>
 
-  <!-- 🌟 Pure Full-Width Container Synced Globally -->
   <div class="wrap">
     
-    <!-- Back Navigation Trigger Panel -->
     <div class="back-btn-wrapper">
       <a href="servicesw.html" class="btn btn-ghost" style="padding: 10px 22px; font-size: 13px; border-color: rgba(0, 82, 255, 0.15); color: #0052ff;">← Back to Services</a>
     </div>
     
-    <!-- Split Infrastructure Deck (Direct Layout - No Card Box) -->
     <div class="detail-split-layout">
       
-      <!-- Left Side: Header, Text Content and Deliverables Grid -->
       <div class="detail-text-col">
         <div style="font-size: 54px; margin-bottom: 4px;" id="serviceIcon">🚀</div>
         <h1 class="text-shine" id="serviceTitle">Loading Strategy...</h1>
@@ -188,13 +181,11 @@
         </div>
       </div>
 
-      <!-- Right Side: Graphic Visual Media Asset with Interactive Vector Diagram -->
       <div class="detail-graphic-col">
         <div class="detail-media-panel">
           <img src="" alt="Service Showcase" id="serviceImage" class="detail-service-img">
         </div>
 
-        <!-- Micro Node Vector Diagram Integration Component -->
         <div class="mini-diagram-box">
           <svg class="diagram-svg-lines">
             <line x1="15%" y1="50%" x2="50%" y2="50%"></line>
@@ -211,23 +202,64 @@
   </div>
 </section>
 
-<!-- Global Injection Footer Frame -->
 <footer id="footer"></footer>
 
-<!-- 🌟 Swapped to scriptb.js to lock matching Top Dropdown Menu functionality -->
-<script src="scriptb.js"></script>
+<script src="services-script.js"></script>
 
 <script>
-  // Database Engine Mapping Presets
+  // 🚀 FIXED UNIFIED DATABASE ENGINE: १-टू-१ सिंक विद पैरेंट सर्विसेज लिस्ट
   const serviceDatabase = [
-    { title: "Performance Marketing", icon: "🚀", img: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=600&q=80", desc: "We plan, execute, and scale aggressive ad matrix campaigns across Meta and Google networks. No vanity metrics—pure focus on incremental margins and volume scalability.", features: ["Funnel Architecture Planning", "CBO Scaling Protocols", "Ad Creative Matrix Mapping", "ROAS Optimization System"], nodes: ["Funnel Blueprint", "Ad Deploy", "ROAS Optimization"] },
-    { title: "SEO Domination Systems", icon: "🔍", img: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=600&q=80", desc: "Reverse-engineering organic search behavior. We build scalable content clusters, high-authority backlink parameters, and technical speed frameworks that win rank positions permanently.", features: ["Intent Keyword Architecture", "Core Web Vitals Boost", "High-Velocity Link Outreach", "Semantic Content Mapping"], nodes: ["Clusters Audit", "Link Outreach", "Rank Tracking"] },
-    { title: "Shopify Store Architecture", icon: "🛒", img: "https://images.unsplash.com/photo-1557821552-17105176677c?auto=format&fit=crop&w=600&q=80", desc: "Standard themes limit revenue potential. We develop bespoke, lightning-fast Shopify architectures engineered exclusively to maximize average order value (AOV) and lifetime value.", features: ["Custom Liquid Programming", "One-Page Instant Checkout", "Retention Flow Integrations", "Speed Performance Locking"], nodes: ["Liquid Code", "Checkout Flow", "AOV Maximum"] },
-    { title: "UI/UX Cyber Blueprints", icon: "🖼️", img: "https://images.unsplash.com/photo-1541462608141-ad4979e408c9?auto=format&fit=crop&w=600&q=80", desc: "Design is product psychology. We create high-fidelity high-contrast dark wireframes and user journeys built to reduce bounce rates and enforce micro-actions.", features: ["Interactive Wireframing", "Figma Prototype Execution", "Conversion Heatmap Tuning", "Neuromarketing Visual Tones"], nodes: ["User Research", "Figma Design", "Heatmap Check"] },
-    { title: "Full Stack App Build", icon: "🔗", img: "https://images.unsplash.com/photo-1555066931-4365d14bab8c?auto=format&fit=crop&w=600&q=80", desc: "Deploying production-ready native mobile software and robust server systems capable of handling heavy database loads and real-time client micro-interactions flawlessly.", features: ["Cross-Platform App Engines", "Node.js Secure Backend Architecture", "API Connection Mapping", "Database Cloud Tuning"], nodes: ["Node.js Server", "REST API", "Cloud Deploy"] },
-    { title: "Social Authority Scaling", icon: "📢", img: "https://images.unsplash.com/photo-1611162617474-5b21e879e113?auto=format&fit=crop&w=600&q=80", desc: "Attention is the new global currency. We direct short-form retention architectures (Reels/TikToks) designed to construct thousands of absolute organic core brand advocates daily.", features: ["Script Hook Blueprints", "High-Retention Editing Systems", "Creator Alignment Pipelines", "Multi-Channel Virality Map"], nodes: ["Hook Scripting", "Fluid Editing", "Viral Distribution"] }
+    { 
+      title: "Web Design & Dev", 
+      icon: "💻", 
+      img: "https://images.unsplash.com/photo-1555066931-4365d14bab8c?auto=format&fit=crop&w=600&q=80", 
+      desc: "Crafting beautiful, modern, high-conversion websites optimized for speed and stunning user experiences across all devices.", 
+      features: ["Bespoke Frontend Engineering", "Core Web Vitals & Speed Optimization", "Interactive UI/UX Prototypes", "Cross-Platform Responsiveness"], 
+      nodes: ["UI Design", "Clean Code", "Live Deploy"] 
+    },
+    { 
+      title: "App & Shopify Build", 
+      icon: "🛍️", 
+      img: "https://images.unsplash.com/photo-1557821552-17105176677c?auto=format&fit=crop&w=600&q=80", 
+      desc: "End-to-end custom e-commerce stores and mobile application ecosystems tailored carefully to turn visitors into brand advocates.", 
+      features: ["Custom Liquid Programming", "One-Page Instant Checkout", "Retention Flow Integrations", "AOV Optimization Systems"], 
+      nodes: ["Liquid Code", "Checkout Flow", "AOV Maximum"] 
+    },
+    { 
+      title: "SEO Optimization", 
+      icon: "🔍", 
+      img: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=600&q=80", 
+      desc: "Dominate search engine results with high-intent keyword strategies, structural audits, and premium content systems.", 
+      features: ["Intent Keyword Architecture", "Core Web Vitals Boost", "High-Velocity Link Outreach", "Semantic Content Mapping"], 
+      nodes: ["Clusters Audit", "Link Outreach", "Rank Tracking"] 
+    },
+    { 
+      title: "Performance Ads", 
+      icon: "📈", 
+      img: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=600&q=80", 
+      desc: "Data-driven paid advertising architectures configured strategically to scale revenue, optimize ROI, and multiply profits.", 
+      features: ["Funnel Architecture Planning", "CBO Scaling Protocols", "Ad Creative Matrix Mapping", "ROAS Optimization System"], 
+      nodes: ["Funnel Blueprint", "Ad Deploy", "ROAS Optimization"] 
+    },
+    { 
+      title: "SMO & Branding", 
+      icon: "📱", 
+      img: "https://images.unsplash.com/photo-1611162617474-5b21e879e113?auto=format&fit=crop&w=600&q=80", 
+      desc: "Build unforgettable digital presence across social networks with trending content strategies and custom brand identity assets.", 
+      features: ["Script Hook Blueprints", "High-Retention Editing Systems", "Creator Alignment Pipelines", "Multi-Channel Virality Map"], 
+      nodes: ["Hook Scripting", "Fluid Editing", "Viral Distribution"] 
+    },
+    { 
+      title: "D2C Scaling", 
+      icon: "🚀", 
+      img: "https://images.unsplash.com/photo-1542838132-92c53300491e?auto=format&fit=crop&w=600&q=80", 
+      desc: "Accelerating direct-to-consumer digital startups from early-stage ideas into highly successful, marketplace-dominant enterprises.", 
+      features: ["Omnichannel Hyper-Growth Map", "Conversion Heatmap Tuning", "Retention Optimization", "Neuromarketing Visual Tones"], 
+      nodes: ["Market Research", "Scale Systems", "Revenue Lift"] 
+    }
   ];
 
+  // URL Parameter parsing logic
   const params = new URLSearchParams(window.location.search);
   const id = parseInt(params.get('id')) || 0;
   const currentData = serviceDatabase[id];
@@ -246,5 +278,6 @@
     document.title = `${currentData.title} | Digital Whopper`;
   }
 </script>
+<script src="scriptb.js"></script>
 </body>
 </html>
