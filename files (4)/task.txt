@@ -1,0 +1,2 @@
+backgorund - linear-gradient(135deg, #0044ff30, #00c4ff2e) !important
+whatsapp , call 

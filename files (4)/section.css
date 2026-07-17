@@ -1,0 +1,755 @@
+/* hightlight */
+/* ==========================================================================
+     📊 RE-ENGINEERED EXCLUSIVITY LIGHT STATS PANEL (-m Unique Suffix)
+   ========================================================================== */
+/* ==========================================================================
+     📊 RE-ENGINEERED EXCLUSIVITY LIGHT STATS PANEL (-m Unique Suffix)
+   ========================================================================== */
+.enterprise-marketing-bottom-shield-m {
+  background: var(--bg); /* Soft light dashboard canvas tint */
+  padding: 80px 0;
+  width: 100%;
+  position: relative;
+}
+
+.matrix-header-block-m {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  margin-bottom: 48px;
+}
+
+/* ==========================================================================
+   🎯 MATRIX HEADING WITH WEBSITE SIGNATURE NEON BLUE GRADIENT
+   ========================================================================== */
+.h2-matrix-title-m {
+  font-family: 'Sora', sans-serif;
+  font-size: clamp(28px, 3.8vw, 44px);
+  font-weight: 800;
+  color: #07132c;
+  letter-spacing: -0.02em;
+  line-height: 1.2;
+}
+
+/* 🔷 वेबसाइट के ओरिजिनल ग्रेडिएंट का परफेक्ट हुक */
+.h2-matrix-title-m .txt-blue-m {
+  background: var(--neon-pink); /* आपके थीम वेरिएबल का उपयोग */
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  display: inline-block;
+  filter: drop-shadow(0 2px 10px rgba(0, 210, 255, 0.25)); /* हल्का ग्लो इफ़ेक्ट */
+}
+
+/* ==========================================================================
+   🎴 Unique 4-Isolated Cards Grid & Glow Shadow Structure (Fixed & Sorted)
+   ========================================================================== */
+.stats-grid-quad-m {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr) !important;
+  gap: 24px;
+  width: 100%;
+}
+
+.stat-node-card-m {
+  background: #ffffff;
+  border-radius: 20px;
+  padding: 32px 24px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  position: relative;
+  overflow: hidden;
+  border: 1px solid rgba(0, 0, 0, 0.03);
+  transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.4s ease;
+}
+
+/* 🟣 Card 1: Purple Theme + Fixed Soft Purple Glow Shadow */
+.stat-node-card-m.border-purple-m {
+  box-shadow: 0 12px 30px rgba(124, 58, 237, 0.06), 0 2px 8px rgba(0, 0, 0, 0.01) !important;
+}
+.stat-node-card-m.border-purple-m:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 24px 50px rgba(124, 58, 237, 0.25) !important;
+}
+
+/* 🔵 Card 2: Blue Theme + Fixed Soft Blue Glow Shadow */
+.stat-node-card-m.border-blue-m {
+  box-shadow: 0 12px 30px rgba(0, 82, 255, 0.06), 0 2px 8px rgba(0, 0, 0, 0.01) !important;
+}
+.stat-node-card-m.border-blue-m:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 24px 50px rgba(0, 82, 255, 0.22) !important;
+}
+
+/* 🟠 Card 3: Orange Theme + Fixed Soft Orange Glow Shadow */
+.stat-node-card-m.border-orange-m {
+  box-shadow: 0 12px 30px rgba(234, 88, 12, 0.06), 0 2px 8px rgba(0, 0, 0, 0.01) !important;
+}
+.stat-node-card-m.border-orange-m:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 24px 50px rgba(234, 88, 12, 0.22) !important;
+}
+
+/* 🟢 Card 4: Green Theme + Fixed Soft Green Glow Shadow */
+.stat-node-card-m.border-green-m {
+  box-shadow: 0 12px 30px rgba(16, 185, 129, 0.06), 0 2px 8px rgba(0, 0, 0, 0.01) !important;
+}
+.stat-node-card-m.border-green-m:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 24px 50px rgba(16, 185, 129, 0.22) !important;
+}
+
+.stat-left-flex-m {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+/* 🎨 SCREENSHOT MATING: Colored Solid Bottom Borders */
+.stat-node-card-m::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 4px;
+  border-radius: 0 0 20px 24px;
+}
+.border-purple-m::after { background: #7c3aed; }
+.border-blue-m::after   { background: #0052ff; }
+.border-orange-m::after { background: #ea580c; }
+.border-green-m::after  { background: #10b981; }
+
+/* Icon Circular Aura Design */
+.stat-icon-glow-m {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+.stat-icon-glow-m.glow-purple-m { background: #f3e8ff; }
+.stat-icon-glow-m.glow-blue-m   { background: #e0f2fe; }
+.stat-icon-glow-m.glow-orange-m { background: #ffedd5; }
+.stat-icon-glow-m.glow-green-m  { background: #d1fae5; }
+
+.currency-symbol-m {
+  font-family: 'Sora', sans-serif;
+  font-size: 20px;
+  font-weight: 800;
+  color: #0052ff;
+}
+
+/* ==========================================================================
+   ⚡ ABSOLUTE TEXT COLOR FIX: SHARP COUNTER COLORS ON ANIMATION
+   ========================================================================== */
+.stat-info-m h3 {
+  font-family: 'Sora', sans-serif;
+  font-size: 26px;
+  font-weight: 800;
+  line-height: 1.1;
+  font-variant-numeric: tabular-nums;
+  display: inline-block !important;
+  
+  /* लाइव स्क्रिप्ट रिफ्लेक्शन के लिए बैकग्राउंड ब्लॉक्स क्लीनर */
+  background: none !important;
+  -webkit-background-clip: initial !important;
+  background-clip: initial !important;
+  -webkit-text-fill-color: initial !important;
+  text-fill-color: initial !important;
+}
+
+/* 🟣 Card 1: Sharp Purple Text */
+.border-purple-m .stat-info-m h3 {
+  color: #7c3aed !important;
+  filter: drop-shadow(0 2px 4px rgba(124, 58, 237, 0.1));
+}
+
+/* 🔵 Card 2: Sharp Tech Blue Text */
+.border-blue-m .stat-info-m h3 {
+  color: #0052ff !important;
+  filter: drop-shadow(0 2px 4px rgba(0, 82, 255, 0.1));
+}
+
+/* 🟠 Card 3: Sharp Vivid Orange Text */
+.border-orange-m .stat-info-m h3 {
+  color: #ea580c !important;
+  filter: drop-shadow(0 2px 4px rgba(234, 88, 12, 0.1));
+}
+
+/* 🟢 Card 4: Sharp Emerald Green Text */
+.border-green-m .stat-info-m h3 {
+  color: #10b981 !important;
+  filter: drop-shadow(0 2px 4px rgba(16, 185, 129, 0.1));
+}
+
+.stat-info-m p {
+  font-size: 11.5px;
+  color: #64748b;
+  font-weight: 600;
+  margin-top: 4px;
+  white-space: nowrap;
+}
+
+/* 📉 Right End Decorative Line Graphics Icons */
+.card-right-decor-icon-m {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0.25;
+  transition: opacity 0.3s ease;
+}
+.stat-node-card-m:hover .card-right-decor-icon-m {
+  opacity: 0.8;
+}
+
+.decor-purple-m { color: #7c3aed; }
+.decor-blue-m   { color: #0052ff; }
+.decor-orange-m { color: #ea580c; }
+.decor-green-m  { color: #10b981; }
+
+/* ==========================================================================
+     📱 MOBILE FLUID BREAKPOINTS VIEWPORTS
+   ========================================================================== */
+@media (max-width: 1100px) {
+  .stats-grid-quad-m {
+    grid-template-columns: repeat(2, 1fr) !important;
+    gap: 20px;
+  }
+}
+
+@media (max-width: 600px) {
+  .stats-grid-quad-m {
+    grid-template-columns: 1fr !important;
+    gap: 16px;
+  }
+  .stat-node-card-m {
+    padding: 24px 20px;
+  }
+}
+
+/* owner about *****************************************************************/
+/* ==========================================================================
+   🔷 ENTERPRISE OWNER MASTER ABOUT STYLES (-o Unique Suffix Protection)
+   ========================================================================== */
+#owner-profile-desk-o {
+  padding: 90px 0;
+  background: #ffffff;
+  width: 100%;
+  position: relative;
+  border-top: 1px solid rgba(0, 82, 255, 0.05);
+}
+
+.owner-main-flex-layout-o {
+  display: grid;
+  grid-template-columns: 0.85fr 1.15fr; /* इमेज बॉक्स और टेक्स्ट का परफेक्ट अनुपात */
+  gap: 56px;
+  align-items: start;
+  width: 100%;
+}
+
+/* 📸 1. LEFT SIDE - PORTRAIT FRAME WITH GRADIENT BACKGROUND */
+.owner-visual-frame-o {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+}
+
+.owner-image-mask-o {
+  width: 100%;
+  max-width: 420px;
+  height: 420px;
+  border-radius: 16px;
+  overflow: hidden;
+  /* स्क्रीनशॉट जैसा प्रीमियम सॉफ्ट पर्पल/टेक-ब्लू बैकग्राउंड ग्रैडिएंट */
+  background: linear-gradient(135deg, #e0e7ff 0%, #c7d2fe 50%, #818cf8 100%);
+  box-shadow: var(--card-shadow-default);
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+}
+
+.founder-photo-o {
+  width: 95%;
+  height: 95%;
+  object-fit: contain;
+  display: block;
+}
+
+/* ✍️ Cursive Elegant Signature Font Hook Setup */
+@import url('https://fonts.googleapis.com/css2?family=Alex+Brush&display=swap');
+
+.owner-signature-row-o {
+  font-family: 'Alex Brush', cursive;
+  font-size: 38px;
+  color: #07132c;
+  margin-top: 18px;
+  text-align: center;
+  letter-spacing: 1px;
+}
+
+/* ✍️ 2. RIGHT SIDE - NARRATIVE TEXT ARCHITECTURE */
+.owner-eyebrow-o {
+  font-family: 'Sora', sans-serif;
+  font-size: 16px;
+  font-weight: 700;
+  color: #7c3aed; /* ब्यूटीफुल डीप पर्पल टोन */
+  margin-bottom: 12px;
+}
+
+.owner-heading-o {
+  font-family: 'Sora', sans-serif;
+  font-size: 22px;
+  font-weight: 700;
+  color: #07132c;
+  line-height: 1.4;
+  margin-bottom: 20px;
+}
+
+.story-paragraph-o {
+  font-size: 14.5px;
+  color: #5c6b82;
+  line-height: 1.65;
+  margin-bottom: 16px;
+  font-weight: 500;
+}
+
+/* 🌟 SCREENSHOT EXCLUSIVITY: Yellow Highlight Quote Block Box */
+.story-highlight-quote-o {
+  background: #fffae6; /* सॉफ्ट वार्म हाइलाइट बैकग्राउंड */
+  border-left: 3px solid #eab308; /* सॉलिड गोल्ड इंडिकेटर लाइन */
+  color: #1e293b;
+  padding: 14px 20px;
+  font-size: 14.5px;
+  font-weight: 600;
+  line-height: 1.6;
+  border-radius: 0 8px 8px 0;
+  margin: 20px 0;
+}
+
+/* 📊 3. BOTTOM SIDE - TRIPLE-COLUMN STATISTICS STRIP LAYOUT */
+.owner-metrics-footer-panel-o {
+  margin-top: 56px;
+  border-top: 1px solid #edf2f7;
+  padding-top: 32px;
+  width: 100%;
+}
+
+.metrics-triple-grid-o {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr) !important;
+  width: 100%;
+}
+
+.metric-triple-node-o {
+  text-align: center;
+  position: relative;
+}
+
+/* वर्टिकल सेपरेटर लाइन्स हर कॉलम के बीच में */
+.metric-triple-node-o:not(:last-child)::after {
+  content: "";
+  position: absolute;
+  right: 0;
+  top: 15%;
+  height: 70%;
+  width: 1px;
+  background: #e2e8f0;
+}
+
+.owner-live-counter-o {
+  font-family: 'Sora', sans-serif;
+  font-size: 28px;
+  font-weight: 800;
+  color: #07132c;
+  line-height: 1.1;
+  margin-bottom: 4px;
+  font-variant-numeric: tabular-nums;
+}
+
+.metric-triple-node-o p {
+  font-size: 13.5px;
+  color: #64748b;
+  font-weight: 600;
+}
+
+/* ==========================================================================
+   📱 SYSTEM FLUID BREAKPOINT RESPONSIVENESS OVERRIDES
+   ========================================================================== */
+@media (max-width: 950px) {
+  .owner-main-flex-layout-o {
+    grid-template-columns: 1fr;
+    gap: 36px;
+  }
+  .owner-image-mask-o {
+    height: 320px;
+  }
+  .metrics-triple-grid-o {
+    grid-template-columns: 1fr !important;
+    gap: 24px 0;
+  }
+  .metric-triple-node-o:not(:last-child)::after {
+    display: none !important; /* मोबाइल पर सेपरेटर्स हाइड */
+  }
+}
+
+
+
+/* brands section-************************************************************  */
+/* ==========================================================================
+   🤝 CENTRIC BRAND ECOSYSTEM GRID SYSTEM STYLES (-e Unique Suffix)
+   ========================================================================== */
+#brand-ecosystem-shield-e {
+  padding: 90px 0;
+  background: var(--bg); /* आपकी लाइट थीम का मुख्य बैकग्राउंड */
+  width: 100%;
+  position: relative;
+  border-top: 1px solid rgba(0, 82, 255, 0.04);
+}
+
+/* 🌐 Main Balanced 3-Column Core Grid Shell */
+.ecosystem-master-board-e {
+  display: grid;
+  grid-template-columns: 1fr 340px 1fr !important; /* लेफ्ट विंग | फ़ाउंडर सेंटर | राइट विंग */
+  gap: 40px;
+  align-items: center;
+  width: 100%;
+  margin-top: 24px;
+}
+
+/* 🔷 SIDE WINGS: 2-Column Grid Rows layout for 6 Logos */
+.logos-side-wing-e {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr) !important;
+  gap: 20px;
+  width: 100%;
+}
+
+/* ब्रैंड लोगोज़ पाड्स - प्रीमियम क्लीन लाइट ग्लासमोर्फिज्म लुक */
+.partner-logo-pad-e {
+  background: rgba(255, 255, 255, 0.9);
+  border: 1px solid rgba(0, 82, 255, 0.06);
+  border-radius: 16px;
+  padding: 16px;
+  height: 84px; /* सभी बॉक्सेस की हाइट एक जैसी रखने के लिए फिक्स ग्रिड */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: var(--card-shadow-default);
+  transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* 🎯 इमेजेस का साइज़ और कंटेनमेंट फिक्स ताकि लोगो फटे या बिखरे नहीं */
+.ecosystem-img-asset-e {
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: contain;
+  display: block;
+}
+
+/* होवर करने पर लोगो पाड्स हल्के से उठेंगे और कलर ब्राइट होगा */
+.partner-logo-pad-e:hover {
+  transform: translateY(-5px) scale(1.03);
+  border-color: #0052ff;
+  box-shadow: var(--card-shadow-active);
+}
+
+/* 📸 CENTER PILLAR: FOUNDER EMBED CARD CONFIG */
+.founder-center-pillar-e {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+}
+
+.founder-card-glow-pad-e {
+  background: #ffffff;
+  border: 1px solid rgba(0, 82, 255, 0.08);
+  border-radius: 24px;
+  padding: 20px;
+  width: 100%;
+  box-shadow: 0 25px 55px rgba(0, 82, 255, 0.06);
+  text-align: center;
+  position: relative;
+  transition: transform 0.4s ease;
+}
+.founder-card-glow-pad-e:hover {
+  transform: scale(1.02);
+}
+
+.founder-image-wrapper-e {
+  width: 100%;
+  height: 300px;
+  border-radius: 16px;
+  overflow: hidden;
+  background: linear-gradient(135deg, #e0e7ff 0%, #c7d2fe 100%);
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+}
+
+.founder-photo-asset-e {
+  width: 90%;
+  height: 95%;
+  object-fit: contain;
+  display: block;
+}
+
+/* Lower Data Tag for portrait board */
+.founder-meta-badge-e {
+  margin-top: 16px;
+}
+
+.founder-meta-badge-e h4 {
+  font-family: 'Sora', sans-serif;
+  font-size: 18px;
+  font-weight: 800;
+  color: var(--text);
+}
+
+.founder-meta-badge-e p {
+  font-size: 12px;
+  color: #0052ff;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  margin-top: 2px;
+}
+
+/* ==========================================================================
+   📱 FLUID RESPONSIVE Safety Breakpoints Matrix
+   ========================================================================== */
+@media (max-width: 1100px) {
+  .ecosystem-master-board-e {
+    grid-template-columns: 1fr !important;
+    gap: 36px;
+  }
+  .founder-center-pillar-e {
+    order: 1; /* मोबाइल पर फ़ाउंडर सबसे पहले दिखेगा */
+    max-width: 340px;
+    margin: 0 auto;
+  }
+  .left-wing-e {
+    order: 2;
+  }
+  .right-wing-e {
+    order: 3;
+  }
+}
+
+@media (max-width: 550px) {
+  .logos-side-wing-e {
+    grid-template-columns: repeat(2, 1fr) !important; /* छोटे मोबाइल पर भी सुंदर 2-कॉलम ग्रिड बना रहेगा */
+    gap: 14px;
+  }
+  .partner-logo-pad-e {
+    height: 74px;
+  }
+}
+/* client suss */
+
+/* ==========================================================================
+   🎭 STRATEGIC CAROUSEL DYNAMIC COLOR THEMES & SHADOWS (-s Unique Suffix)
+   ========================================================================== */
+
+/* 🔮 Base Container Overrides for Custom Glow */
+.interview-carousel-wrapper.enterprise-glow-shield {
+  background: #ffffff;
+  border-radius: 28px;
+  border: 1px solid rgba(0, 0, 0, 0.02);
+  transition: box-shadow 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* 🟣 1. PURPLE THEME: Case Study 01 (Luxury & Deep Tone) */
+.interview-slide.theme-purple-s .client-meta { color: #7c3aed !important; }
+.interview-slide.theme-purple-s .client-tag-badge { background: #7c3aed !important; color: #ffffff; }
+.interview-slide.theme-purple-s .mini-stat-card h3 { color: #7c3aed !important; }
+.interview-slide.theme-purple-s .stat-icon-aura { background: rgba(124, 58, 237, 0.08) !important; color: #7c3aed !important; }
+
+/* जब पर्पल स्लाइड एक्टिव होगी तब पूरे कैरोसेल बॉक्स को सॉफ्ट पर्पल ग्लो मिलेगा */
+.interview-carousel-wrapper:has(.interview-slide.active.theme-purple-s) {
+  /* box-shadow: 0 30px 70px rgba(124, 58, 237, 0.12), 0 5px 15px rgba(0, 0, 0, 0.01) !important; */
+      box-shadow: 0 30px 70px rgb(124 58 237 / 46%), 0 5px 15px rgba(0, 0, 0, 0.01) !important;
+}
+
+/* 🔵 2. BLUE THEME: Case Study 02 (Corporate Tech Blue) */
+.interview-slide.theme-blue-s .client-meta { color: #0052ff !important; }
+.interview-slide.theme-blue-s .client-tag-badge { background: var(--neon-pink, #0052ff) !important; color: #ffffff; }
+.interview-slide.theme-blue-s .mini-stat-card h3 { color: #0052ff !important; }
+.interview-slide.theme-blue-s .stat-icon-aura { background: rgba(0, 82, 255, 0.08) !important; color: #0052ff !important; svg { stroke: #0052ff; } }
+
+/* जब ब्लू स्लाइड एक्टिव होगी तब पूरे कैरोसेल बॉक्स को सॉफ्ट ब्लू ग्लो मिलेगा */
+.interview-carousel-wrapper:has(.interview-slide.active.theme-blue-s) {
+  /* box-shadow: 0 30px 70px rgba(0, 82, 255, 0.12), 0 5px 15px rgba(0, 0, 0, 0.01) !important; */
+      box-shadow: 0 30px 70px rgb(0 82 255 / 32%), 0 5px 15px rgba(0, 0, 0, 0.01) !important;
+}
+
+/* 🟠 3. ORANGE THEME: Case Study 03 (Vivid ROAS Orange) */
+.interview-slide.theme-orange-s .client-meta { color: #ea580c !important; }
+.interview-slide.theme-orange-s .client-tag-badge { background: #ea580c !important; color: #ffffff; }
+.interview-slide.theme-orange-s .mini-stat-card h3 { color: #ea580c !important; }
+.interview-slide.theme-orange-s .stat-icon-aura { background: rgba(234, 88, 12, 0.08) !important; color: #ea580c !important; }
+
+/* जब ऑरेंज स्लाइड एक्टिव होगी तब पूरे कैरोसेल बॉक्स को सॉफ्ट ऑरेंज ग्लो मिलेगा */
+.interview-carousel-wrapper:has(.interview-slide.active.theme-orange-s) {
+  /* box-shadow: 0 30px 70px rgba(234, 88, 12, 0.12), 0 5px 15px rgba(0, 0, 0, 0.01) !important; */
+box-shadow: 0 30px 70px rgb(234 88 12 / 30%), 0 5px 15px rgba(0, 0, 0, 0.01) !important;}
+
+/* 🛠️ Mini Stat Cards Inner Alignment Core Fixes */
+.mini-stat-card {
+  background: rgba(255, 255, 255, 0.7) !important;
+  border: 1px solid rgba(0, 0, 0, 0.03) !important;
+  border-radius: 16px !important;
+  padding: 16px !important;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.stat-icon-aura {
+  width: 36px;
+  height: 36px;
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 14px;
+}
+
+.mini-stat-card h3 {
+  font-family: 'Sora', sans-serif;
+  font-size: 20px;
+  font-weight: 800;
+  line-height: 1.1;
+  margin: 4px 0 2px;
+}
+
+.mini-stat-card p {
+  font-size: 11px;
+  color: #64748b;
+  font-weight: 600;
+  line-height: 1.3;
+}
+
+/* testimonial  */
+/* ==========================================================================
+   🎡 WHATSAPP CHAT ZIG-ZAG CAROUSEL STYLES
+   ========================================================================== */
+.testimonial-carousel-wrapper {
+  overflow: hidden;
+  width: 100%;
+  padding: 80px 0; 
+  position: relative;
+  background: transparent;
+  cursor: default !important; /* कर्सर को हमेशा नॉर्मल रखेगा */
+}
+
+.testimonial-track {
+  display: flex;
+  gap: 40px;
+  width: max-content;
+  animation: scrollTestimonials 25s linear infinite;
+  cursor: default !important;
+}
+
+.testimonial-carousel-wrapper:hover .testimonial-track {
+  animation-play-state: paused;
+}
+
+.wp-chat-card {
+  flex-shrink: 0;
+  width: 300px;
+  background: #efeae2;
+  border-radius: 16px;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+  border: 1px solid rgba(0,0,0,0.05);
+  overflow: hidden;
+  font-family: 'Inter', sans-serif;
+  transition: all 0.45s cubic-bezier(0.34, 1.56, 0.64, 1);
+  position: relative;
+  cursor: default !important;
+}
+
+.wp-chat-header {
+  background: #075e54;
+  color: #ffffff;
+  padding: 12px 16px;
+  display: flex;
+  flex-direction: column;
+}
+
+.wp-chat-name {
+  font-weight: 600;
+  font-size: 14px;
+}
+
+.wp-chat-status {
+  font-size: 10px;
+  opacity: 0.8;
+}
+
+.wp-chat-body {
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  background-image: url('https://user-images.githubusercontent.com/15075759/28719144-86dc0f70-73b1-11e7-911d-60d70fcded21.png');
+  background-size: contain;
+}
+
+.wp-msg {
+  max-width: 85%;
+  padding: 8px 12px;
+  border-radius: 8px;
+  font-size: 12.5px;
+  line-height: 1.4;
+  box-shadow: 0 1px 2px rgba(0,0,0,0.1);
+}
+
+.wp-msg.received {
+  background: #ffffff;
+  align-self: flex-start;
+  border-top-left-radius: 0;
+  color: #0a0f18;
+}
+
+.wp-msg.sent {
+  background: #d9fdd3;
+  align-self: flex-end;
+  border-top-right-radius: 0;
+  color: #0a0f18;
+}
+
+/* 📐 100% ORIGINAL ZIG-ZAG FORMAT ANGLES */
+.card-angle-left { transform: rotate(-4deg); border-bottom: 4px solid #10b981; }
+.card-angle-right { transform: rotate(5deg); border-bottom: 4px solid #0044ff; }
+.card-angle-left-subtle { transform: rotate(-2deg); border-bottom: 4px solid #8b5cf6; }
+.card-angle-right-subtle { transform: rotate(3deg); border-bottom: 4px solid #f59e0b; }
+
+/* 🚀 EXTRA POP-UP HOVER EFFECT (Straightens & Scales Big) */
+.wp-chat-card:hover {
+  transform: rotate(0deg) translateY(-35px) scale(1.28) !important; 
+  z-index: 9999 !important; 
+  box-shadow: 0 35px 60px rgba(0, 82, 255, 0.25); 
+  border: 1px solid #0044ff;
+}
+
+@keyframes scrollTestimonials {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(calc(-340px * 4)); } /* 300px width + 40px gap */
+}
+
+/* 📱 Mobile Responsive Overrides */
+@media(max-width: 768px) {
+  .testimonial-track { gap: 20px; }
+  .wp-chat-card { transform: none !important; }
+  .wp-chat-card:hover { transform: scale(1.05) translateY(-5px) !important; }
+  @keyframes scrollTestimonials {
+    0% { transform: translateX(0); }
+    100% { transform: translateX(calc(-320px * 4)); }
+  }
+}

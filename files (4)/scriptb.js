@@ -3,13 +3,7 @@ const cursorDot = document.getElementById('customCursor');
 const cursorBlur = document.getElementById('customCursorBlur');
 
 if (cursorDot && cursorBlur && window.innerWidth > 900) {
-  window.addEventListener('mousemove', (e) => {
-    const posX = e.clientX;
-    const posY = e.clientY;
-
-    cursorDot.style.transform = `translate3d(${posX - 4}px, ${posY - 4}px, 0)`;
-    cursorBlur.style.transform = `translate3d(${posX - 17}px, ${posY - 17}px, 0)`;
-  });
+ 
 
   function applyCursorHooks() {
     const interactives = document.querySelectorAll('a, .btn, .work-card, .strategy-card, .blog-card, .faq-q, .chat-bubble, .suggest-chip, .close-chat-btn, .send-msg-btn, .service-card-core');
@@ -113,20 +107,32 @@ function updatePhoneDisplay(projectIndex, element) {
   if (placeholder) placeholder.style.display = 'none';
   if (screenWrapper) screenWrapper.classList.add('has-carousel');
 
-  const isMobile = window.innerWidth <= 900;
+  // ⚡ 1. CHECK VIEWPORT MODE FOR INTERACTION
+  const isMobileView = window.innerWidth <= 900;
   
   track.innerHTML = project.images.map(imgUrl => {
-    const mobileStyle = isMobile 
+    const mobileStyle = isMobileView 
       ? 'width: 100% !important; height: 100% !important; display: block !important; scroll-snap-align: start !important; flex-shrink: 0 !important;' 
       : 'width: 100%; height: 100%; flex: none; scroll-snap-align: start; object-fit: cover;';
       
     return `<img src="${imgUrl}" class="phone-carousel-slide" style="${mobileStyle}" alt="Showcase Slide">`;
   }).join('');
 
-  if (isMobile) {
+  if (isMobileView) {
     track.style.setProperty('flex-direction', 'column', 'important');
     track.style.setProperty('overflow-x', 'hidden', 'important');
     track.style.setProperty('overflow-y', 'scroll', 'important');
+    
+    // 🌟 MOVES PHONE SIMULATOR TO POP-UP LAYER DYNAMICALLY ON MOBILE SCREENS
+    const phoneSim = document.querySelector('.mock-device');
+    const popupAnchor = document.getElementById('popupSimulatorAnchor');
+    const popupOverlay = document.getElementById('mobileWorkPopup');
+    
+    if (phoneSim && popupAnchor && popupOverlay) {
+      popupAnchor.appendChild(phoneSim); // फ़ोन को ग्रिड से खींचकर पॉप-अप में डाल देगा
+      popupOverlay.style.display = 'flex'; // पॉप-अप शो करेगा
+      document.body.style.overflow = 'hidden'; // बैकग्राउंड स्क्रॉल को फ्रीज करेगा
+    }
   } else {
     track.style.setProperty('flex-direction', 'row');
     track.style.setProperty('overflow-x', 'scroll');
@@ -148,22 +154,28 @@ function updatePhoneDisplay(projectIndex, element) {
 
     if (window.innerWidth <= 900) {
       const slideHeight = track.clientHeight;
-      track.scrollTo({
-        top: currentSlide * slideHeight,
-        left: 0,
-        behavior: 'smooth'
-      });
+      track.scrollTo({ top: currentSlide * slideHeight, left: 0, behavior: 'smooth' });
     } else {
       const slideWidth = track.clientWidth;
-      track.scrollTo({
-        left: currentSlide * slideWidth,
-        top: 0,
-        behavior: 'smooth'
-      });
+      track.scrollTo({ left: currentSlide * slideWidth, top: 0, behavior: 'smooth' });
     }
   }, 2500); 
 }
 
+// 🌟 2. NEW GLOBAL POP-UP CLOSE ENGAGEMENT CONTROLLER
+function closeMobileWorkPopup() {
+  const popupOverlay = document.getElementById('mobileWorkPopup');
+  const phoneSim = document.querySelector('.mock-device');
+  const originalCenterColumn = document.querySelector('.phone-center-column');
+  
+  if (popupOverlay) popupOverlay.style.display = 'none';
+  document.body.style.overflow = ''; // बैकग्राउंड स्क्रॉलिंग वापस चालू
+  
+  // फ़ोन सिम्युलेटर को वापस ग्रिड लेआउट के बीच में सुरक्षित भेज देगा
+  if (phoneSim && originalCenterColumn) {
+    originalCenterColumn.appendChild(phoneSim);
+  }
+}
 function moveCarouselNext(event) {
   if(event) event.stopPropagation(); 
   const track = document.getElementById('phoneCarouselTrack');
@@ -457,6 +469,12 @@ document.addEventListener('DOMContentLoaded', () => {
               <a href="contact.html">Contact</a>
             </div>
             <div class="foot-col">
+              <h4>Quick Links</h4>
+              <a href="blogs.html">Blogs</a>
+              <a href="services.html">Services</a>
+              <a href="contact.html">Contact</a>
+            </div>
+            <div class="foot-col">
               <h4>Our services</h4>
               <a href="services.html">App &amp; Shopify Development</a>
               <a href="services.html">SEO &amp; SMO Optimisation</a>
@@ -607,4 +625,289 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   animateAINetwork();
+});
+
+
+
+// ==========================================================================
+// 🎠 ENTERPRISE STRATEGIC EVALUATION CAROUSEL ENGINE
+// ==========================================================================
+let currentIntSlide = 1; // डिफ़ॉल्ट रूप से Ekatra (Index 1) को एक्टिव रखने के लिए 
+
+function initStrategicCarousel() {
+  const intSlides = document.querySelectorAll('.custom-side-grid-section .interview-slide');
+  const intDots = document.querySelectorAll('.int-dots-container-clean .int-dot-clean');
+
+  // सुरक्षा जांच: अगर पेज पर एलिमेंट्स न मिलें तो कोड रुकेगा नहीं
+  if (!intSlides.length || !intDots.length) return;
+
+  window.showSlide = function(index) {
+    if (index >= intSlides.length) {
+      currentIntSlide = 0;
+    } else if (index < 0) {
+      currentIntSlide = intSlides.length - 1;
+    } else {
+      currentIntSlide = index;
+    }
+
+    // सभी स्लाइड्स और डॉट्स से एक्टिव क्लास हटाकर करंट वाले पर ऐड करना
+    intSlides.forEach((slide, i) => {
+      slide.classList.remove('active');
+      if (intDots[i]) intDots[i].classList.remove('active');
+      
+      if (i === currentIntSlide) {
+        slide.classList.add('active');
+        if (intDots[i]) intDots[i].classList.add('active');
+      }
+    });
+  };
+
+  window.slideNav = function(direction) {
+    showSlide(currentIntSlide + direction);
+  };
+
+  window.jumpToSlide = function(index) {
+    showSlide(index);
+  };
+
+  // पहली बार लोड होने पर सही स्लाइड दिखाने के लिए कॉल करें
+  showSlide(currentIntSlide);
+}
+
+// DOM लोड होने पर कैरोसेल को इनिशियलाइज़ करें
+document.addEventListener('DOMContentLoaded', () => {
+  initStrategicCarousel();
+
+  // ⏱️ ऑटो प्ले फ़ीचर (हर 7 सेकंड में स्लाइड अपने आप बदलेगी)
+  setInterval(() => {
+    if (typeof slideNav === 'function') {
+      slideNav(1);
+    }
+  }, 3000);
+});
+
+
+// ROI
+let currentEngineState = 'before';
+
+function toggleDashboardState() {
+  const track = document.getElementById('sliderTrack');
+  const capsule = document.getElementById('statusCapsuleBox');
+  const redPill = document.getElementById('redStatePill');
+  const greenPill = document.getElementById('greenStatePill');
+  
+  // Graph & Sidebar Nodes
+  const graphPath = document.getElementById('dynamicGraphPath');
+  const graphFill = document.getElementById('dynamicGraphFill');
+  const chartBadge = document.getElementById('chartBadge');
+  const funnelTip = document.getElementById('funnelTip');
+  
+  // Numerical Metrics
+  const audits = document.getElementById('valStoreAudits');
+  const sales = document.getElementById('valGrossSales');
+  const traffic = document.getElementById('valTraffic');
+  const funnelVal = document.getElementById('valFunnels');
+  
+  // Progress Components
+  const tConv = document.getElementById('txtConv');
+  const tTrans = document.getElementById('txtTrans');
+  const tRet = document.getElementById('txtRet');
+  const bConv = document.getElementById('barConv');
+  const bTrans = document.getElementById('barTrans');
+  const bRet = document.getElementById('barRet');
+
+  if (currentEngineState === 'before') {
+    currentEngineState = 'after';
+    track.classList.add('after-engine-active');
+    
+    // Switch Active Pills Visuals
+    redPill.classList.remove('active');
+    greenPill.classList.add('active');
+    capsule.className = "badge-capsule-border glow-green";
+    
+    // 🚀 STEP UP DIGITAL METRICS FOR AFTER ENGINE
+    audits.innerText = "18.49K";
+    sales.innerText = "$14,830";
+    traffic.innerText = "9.84K 🔥";
+    funnelVal.innerText = "76.4";
+    
+    // Transform Smooth Canvas Graph Path
+    graphPath.setAttribute('d', 'M0,90 Q40,40 80,20 T160,15 T240,10 T300,5');
+    graphFill.setAttribute('d', 'M0,90 Q40,40 80,20 T160,15 T240,10 T300,5 L300,120 L0,120 Z');
+    
+    chartBadge.innerText = "7.6x ROAS";
+    chartBadge.style.background = "#10b981";
+    
+    // Scale Interactive Progress Indicators
+    tConv.innerText = "6.8%"; bConv.style.width = "78%"; bConv.style.background = "#10b981";
+    tTrans.innerText = "9,540"; bTrans.style.width = "92%"; bTrans.style.background = "#10b981";
+    tRet.innerText = "54.1%"; bRet.style.width = "68%"; bRet.style.background = "#10b981";
+    
+    // Morph Right Funnel Engine Output Colors
+    funnelTip.innerText = "7.6x";
+    funnelTip.style.background = "#10b981";
+    document.querySelectorAll('.funnel-segment').forEach((el, idx) => {
+      el.style.background = `linear-gradient(90deg, #10b981, #059669)`;
+    });
+    
+  } else {
+    currentEngineState = 'before';
+    track.classList.remove('after-engine-active');
+    
+    redPill.classList.add('active');
+    greenPill.classList.remove('active');
+    capsule.className = "badge-capsule-border glow-red";
+    
+    // 📉 LOWER METRICS BACK TO BEFORE AUDIT
+    audits.innerText = "4.23K";
+    sales.innerText = "$1,956";
+    traffic.innerText = "2.35K +";
+    funnelVal.innerText = "12.3";
+    
+    // Reset Canvas Graph Path
+    graphPath.setAttribute('d', 'M0,90 Q40,95 80,70 T160,80 T240,65 T300,85');
+    graphFill.setAttribute('d', 'M0,90 Q40,95 80,70 T160,80 T240,65 T300,85 L300,120 L0,120 Z');
+    
+    chartBadge.innerText = "1.4x ROAS";
+    chartBadge.style.background = "#ef4444";
+    
+    // Reset Progress Bars
+    tConv.innerText = "1.3%"; bConv.style.width = "22%"; bConv.style.background = "#0052ff";
+    tTrans.innerText = "2,233"; bTrans.style.width = "45%"; bTrans.style.background = "#0052ff";
+    tRet.innerText = "17.2%"; bRet.style.width = "17%"; bRet.style.background = "#0052ff";
+    
+    // Reset Funnel Theme Colors
+    funnelTip.innerText = "1.4x";
+    funnelTip.style.background = "#ef4444";
+    const colors = ['#1d4ed8', '#2563eb', '#3b82f6', '#60a5fa'];
+    document.querySelectorAll('.funnel-segment').forEach((el, idx) => {
+      el.style.background = colors[idx];
+    });
+  }
+}
+
+// Capsule buttons triggers mapping
+document.getElementById('redStatePill').addEventListener('click', () => {
+  if (currentEngineState === 'after') toggleDashboardState();
+});
+document.getElementById('greenStatePill').addEventListener('click', () => {
+  if (currentEngineState === 'before') toggleDashboardState();
+});
+
+
+
+// whatsapp cursor
+if (typeof applyCursorHooks === "function") {
+  const dynamicSideNodes = document.querySelectorAll('.social-side-node, .sticky-whatsapp-trigger-right');
+  dynamicSideNodes.forEach(el => {
+    el.addEventListener('mouseenter', () => document.body.classList.add('cursor-hovering'));
+    el.addEventListener('mouseleave', () => document.body.classList.remove('cursor-hovering'));
+  });
+}
+
+
+
+// testimonial carousel auto-scroll
+// ==========================================================================
+// 🎡 LIVE-ARC CONTINUOUS RUNNER ENGINE WITH CLICK-TO-FOCUS FUNCTIONALITY
+// ==========================================================================
+function initCurvedTestimonialCarousel() {
+  const track = document.querySelector('.curved-deck-track-t');
+  if (!track) return;
+
+  const originalCards = Array.from(track.children);
+  const totalOriginals = originalCards.length;
+
+  // इनफिनिट फ्लो के लिए क्लोन सेट्स जोड़ें
+  for (let i = 0; i < 3; i++) {
+    originalCards.forEach(card => {
+      const clone = card.cloneNode(true);
+      track.appendChild(clone);
+    });
+  }
+
+  const allCards = track.querySelectorAll('.wa-mock-chat-bubble-t');
+  const cardWidthWithGap = 290 + 32; 
+  const singleSetWidth = totalOriginals * cardWidthWithGap;
+
+  let speed = 0.6; 
+  let currentX = 0;
+  let isPaused = false;
+
+  function animateLoop() {
+    if (!isPaused) {
+      currentX -= speed;
+
+      if (Math.abs(currentX) >= singleSetWidth) {
+        currentX = 0;
+      }
+
+      track.style.transform = `translate3d(${currentX}px, 0, 0)`;
+
+      allCards.forEach(card => {
+        // ⚡ अगर किसी कार्ड पर क्लिक करके एक्टिव किया गया है, तो उसकी लाइव वेव कैलकुलेशन रोक दें
+        if (card.classList.contains('active-click-t') || card.matches(':hover')) return;
+
+        const cardRect = card.getBoundingClientRect();
+        const screenCenter = window.innerWidth / 2;
+        const cardCenter = cardRect.left + cardRect.width / 2;
+        
+        let distanceFromCenter = (cardCenter - screenCenter) / (window.innerWidth / 1.2);
+        distanceFromCenter = Math.max(-1, Math.min(1, distanceFromCenter));
+
+        const translateY = Math.abs(distanceFromCenter) * 35 - 10; 
+        const rotation = distanceFromCenter * 12; 
+        const zIndex = Math.round((1 - Math.abs(distanceFromCenter)) * 10);
+        const opacity = 1 - Math.abs(distanceFromCenter) * 0.15;
+
+        card.style.transform = `translate3d(0, ${translateY}px, 0) rotate(${rotation}deg)`;
+        card.style.zIndex = zIndex;
+        card.style.opacity = opacity;
+      });
+    }
+    requestAnimationFrame(animateLoop);
+  }
+
+  // 🎯 CLICK LISTENER LOGIC: क्लिक करने पर फोकस मोड ऑन होगा
+  allCards.forEach(card => {
+    card.addEventListener('click', (e) => {
+      e.stopPropagation(); // डॉक्यूमेंट क्लिक इवेंट को रोकने के लिए
+
+      // अगर पहले से ही यही कार्ड एक्टिव है, तो दोबारा क्लिक करने पर बंद कर दें
+      if (card.classList.contains('active-click-t')) {
+        card.classList.remove('active-click-t');
+        isPaused = false; // कैरोसेल दोबारा चलना शुरू होगा
+      } else {
+        // बाकी सभी कार्ड्स से एक्टिव क्लास हटाएं
+        allCards.forEach(c => c.classList.remove('active-click-t'));
+        
+        // करंट कार्ड को बड़ा और सीधा करें
+        card.classList.add('active-click-t');
+        isPaused = true; // कैरोसेल को रोक दें ताकि यूज़र पढ़ सके
+      }
+    });
+  });
+
+  // 🌐 जब यूज़र कार्ड से बाहर कहीं भी स्क्रीन पर क्लिक करे, तो कार्ड वापस छोटा हो जाए और लूप चलने लगे
+  document.addEventListener('click', () => {
+    allCards.forEach(c => c.classList.remove('active-click-t'));
+    isPaused = false;
+  });
+
+  // 🕹️ माउस होवर कंट्रोल्स
+  track.addEventListener('mouseenter', () => { isPaused = true; });
+  track.addEventListener('mouseleave', () => {
+    // अगर कोई कार्ड क्लिक करके ओपन नहीं रखा गया है, तभी माउस हटाने पर कैरोसेल चालू करें
+    const hasActiveClick = track.querySelector('.active-click-t');
+    if (!hasActiveClick) {
+      isPaused = false;
+    }
+  });
+
+  requestAnimationFrame(animateLoop);
+}
+
+// DOM Init
+document.addEventListener('DOMContentLoaded', () => {
+  initCurvedTestimonialCarousel();
 });

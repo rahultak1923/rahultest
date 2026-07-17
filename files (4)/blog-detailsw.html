@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<!-- Dynamic Title will inject here -->
+<title>Blog Details | Digital Whopper</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;500;600;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<!-- Global Light Theme Sync -->
+<link rel="stylesheet" href="styleb.css">
+<style>
+  .logo-img-asset { height: 34px; width: auto; object-fit: contain; display: inline-block; margin-right: 2px; }
+  .detail-hero { padding: 160px 0 40px !important; position: relative; z-index: 2; }
+  
+  /* Layout Architecture Box */
+  .blog-detail-container { max-width: 840px; margin: 0 auto 100px; padding: 0 20px; position: relative; z-index: 5; }
+  
+  .detail-meta-row { display: flex; align-items: center; gap: 12px; font-size: 13px; color: var(--muted); margin-bottom: 16px; }
+  .author-pill { background: rgba(0, 82, 255, 0.05); color: #0052ff; padding: 4px 12px; border-radius: 4px; font-weight: 600; font-size: 12px; }
+  
+  .main-article-title { font-family: 'Sora', sans-serif; font-size: clamp(28px, 4vw, 44px); font-weight: 800; color: var(--text); line-height: 1.2; letter-spacing: -0.02em; margin-bottom: 24px; }
+  .article-intro-text { font-size: 18px; line-height: 1.6; color: var(--muted); margin-bottom: 40px; font-weight: 500; }
+  
+  .featured-banner-frame { width: 100%; height: 440px; border-radius: var(--radius); overflow: hidden; border: 1px solid rgba(0, 82, 255, 0.08); box-shadow: var(--card-shadow-default); margin-bottom: 48px; }
+  .featured-banner-frame img { width: 100%; height: 100%; object-fit: cover; }
+  
+  /* Article Rich Text Typography Styles */
+  .article-rich-body { font-family: 'Inter', sans-serif; font-size: 16px; color: var(--text); line-height: 1.8; }
+  .article-rich-body h3 { font-family: 'Sora', sans-serif; font-size: 22px; font-weight: 700; margin: 36px 0 14px; color: var(--text); }
+  .article-rich-body p { margin-bottom: 24px; color: #212936; }
+  .article-rich-body blockquote { font-family: 'Sora', sans-serif; font-size: 18px; font-style: italic; font-weight: 600; color: #0052ff; border-left: 4px solid #0052ff; padding-left: 24px; margin: 36px 0; background: rgba(0, 82, 255, 0.02); padding: 20px 24px; border-radius: 0 12px 12px 0; }
+  
+  .back-to-feed-btn { display: inline-flex; align-items: center; gap: 8px; font-size: 14px; font-weight: 700; color: #0052ff; margin-bottom: 32px; transition: transform 0.2s; }
+  .back-to-feed-btn:hover { transform: translateX(-4px); }
+
+  @media(max-width: 700px) {
+    .detail-hero { padding: 130px 0 20px !important; }
+    .featured-banner-frame { height: 240px; margin-bottom: 32px; }
+  }
+</style>
+</head>
+<body>
+
+<div id="customPreloader" class="preloader-overlay">
+  <div class="preloader-content">
+    <h2 class="preloader-brand">Digital Whopper</h2>
+    <div class="preloader-spinner"><span class="spinner-dot"></span><span class="spinner-dot"></span></div>
+  </div>
+</div>
+
+<div class="custom-cursor" id="customCursor"></div>
+<div class="custom-cursor-blur" id="customCursorBlur"></div>
+
+<!-- Global Navigation Dropdown Navbar -->
+<header id="mainHeader"></header>
+
+<!-- Background Ambients Canvas -->
+<div class="detail-hero">
+  <div class="pink-blob"></div>
+  <div class="purple-ambient-glow"></div>
+  <div class="stars-container"><canvas id="aiNodeCanvas"></canvas></div>
+</div>
+
+<!-- ==========================================================================
+     📰 DYNAMIC MASTER ARTICLES VIEW ENGINE
+     ========================================================================== -->
+<article class="blog-detail-container">
+  
+  <a href="blogs.html" class="back-to-feed-btn">← Back to Chronicles</a>
+  
+  <div class="detail-meta-row">
+    <span class="author-pill" id="artTag">Category</span>
+    <span id="artReadTime">• 0 min read</span>
+    <span>•</span>
+    <span id="artDate">Date</span>
+  </div>
+  
+  <h1 class="main-article-title" id="artTitle">Loading Blueprint Transmission...</h1>
+  <p class="article-intro-text" id="artIntro">Please standby while operational logs are rendering.</p>
+  
+  <div class="featured-banner-frame">
+    <img src="" id="artImage" alt="Featured Article Graphic">
+  </div>
+  
+  <!-- Content Body Area where HTML list items render safely -->
+  <div class="article-rich-body" id="artBody"></div>
+
+</article>
+
+<!-- Global Injection Footer Frame -->
+<footer id="footer"></footer>
+
+<!-- Database lists layer linked securely -->
+<script src="blog-data.js"></script>
+<!-- Master Scripts handling preloader and UI controls -->
+<script src="scriptb.js"></script>
+
+<!-- ==========================================================================
+     🕹️ CORE ROUTER CONTROLLER INTERACTION SCRIPT
+     ========================================================================== -->
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    // 🔍 1. URL से ?id=X पैरामीटर रीड करना
+    const urlParams = new URLSearchParams(window.location.search);
+    const blogId = parseInt(urlParams.get('id'), 10);
+
+    // 🔍 2. डेटाबेस एरे से सही ब्लॉग मैच करना
+    const currentPost = blogDatabase.find(item => item.id === blogId);
+
+    if (currentPost) {
+      // 🌟 3. डोम में डायनेमिकली सारा कंटेंट इंजेक्ट करना
+      document.title = `${currentPost.title} | Digital Whopper`;
+      document.getElementById('artTag').innerText = currentPost.tag;
+      document.getElementById('artReadTime').innerText = `• ${currentPost.readTime}`;
+      document.getElementById('artDate').innerText = currentPost.date;
+      document.getElementById('artTitle').innerText = currentPost.title;
+      document.getElementById('artIntro').innerText = currentPost.intro;
+      document.getElementById('artImage').src = currentPost.image;
+      document.getElementById('artImage').alt = currentPost.title;
+      document.getElementById('artBody').innerHTML = currentPost.content;
+    } else {
+      // अगर आईडी गलत हो या ब्लॉग न मिले
+      document.getElementById('artTitle').innerText = "Transmission Logs Not Found! ✕";
+      document.getElementById('artIntro').innerText = "The requested chronicle node parameter does not exist inside our current cloud clusters.";
+    }
+  });
+</script>
+</body>
+</html>

@@ -277,29 +277,31 @@
 <script src="scriptb.js"></script>
 <script src="services-script.js"></script>
 
-<script>
-  // Dynamic navigation parameter router to redirect into services-detailsw.html
-  function navigateToService(id) {
-    window.location.href = `services-detailsw.html?id=${id}`;
-  }
 
-  // 🕹️ DYNAMIC REDIRECTS TRIGGER AT DOM LOAD FOR ALL DYNAMIC CARDS
+<script>
   document.addEventListener('DOMContentLoaded', () => {
-    const checkGridRendered = setInterval(() => {
-      // 🌟 FIX: अब स्क्रिप्ट सही कंटेनर के अंदर जनरेट हुए सर्विस कार्ड्स को ट्रैक करेगी
-      const cards = document.querySelectorAll('.services-cards-wrapper .service-card-core');
-      
-      if (cards.length > 0) {
-        clearInterval(checkGridRendered); 
-        
-        cards.forEach((card, index) => {
-          card.style.cursor = 'pointer';
-          // हर कार्ड पर क्लिक करने पर वो अपने रेस्पेक्टिव इंडेक्स वाले डिटेल्स पेज पर चला जाएगा
-          card.setAttribute('onclick', `MapsToService(${index})`);
-          card.classList.add('active'); 
+    const filterButtons = document.querySelectorAll('.filter-btn');
+    const blogCards = document.querySelectorAll('#blogGrid .blog-master-card');
+
+    filterButtons.forEach(button => {
+      button.addEventListener('click', () => {
+        filterButtons.forEach(btn => btn.classList.remove('active-tab'));
+        button.classList.add('active-tab');
+
+        const filterValue = button.getAttribute('data-filter');
+
+        blogCards.forEach(card => {
+          // Dynamic safety filter logic mapping
+          const cardCategory = card.getAttribute('data-category');
+
+          if (filterValue === 'all' || cardCategory === filterValue) {
+            card.style.display = 'flex';
+          } else {
+            card.style.display = 'none';
+          }
         });
-      }
-    }, 50); 
+      });
+    });
   });
 </script>
 </body>
