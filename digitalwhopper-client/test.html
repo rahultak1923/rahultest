@@ -1,0 +1,535 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BuildConnect Hub | Cement & Bajri Wholesalers Network</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Inter Font -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                    },
+                    colors: {
+                        brand: {
+                            50: '#fef2e8',
+                            100: '#fde3d1',
+                            500: '#f97316', // Vibrant Construction Orange
+                            600: '#ea580c',
+                            700: '#c2410c',
+                            900: '#7c2d12',
+                        },
+                        slateDark: '#0f172a',
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        /* Custom scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #f1f5f9;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #cbd5e1;
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #94a3b8;
+        }
+        
+        /* Glassmorphism helper */
+        .glass-card {
+            background: rgba(255, 255, 255, 0.85);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(226, 232, 240, 0.8);
+        }
+
+        /* Smooth reveal animation classes */
+        .reveal {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    </style>
+</head>
+<body class="bg-slate-50 text-slate-800 font-sans antialiased selection:bg-brand-500 selection:text-white">
+
+    <!-- Navigation Bar -->
+    <header class="fixed top-0 left-0 right-0 z-50 bg-white/80 backdrop-blur-md border-b border-slate-200 transition-all duration-300">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
+            <div class="flex items-center space-x-3">
+                <div class="w-10 h-10 rounded-xl bg-gradient-to-br from-brand-500 to-amber-600 flex items-center justify-center text-white shadow-lg shadow-brand-500/30">
+                    <i class="fa-solid fa-helmet-safety text-lg"></i>
+                </div>
+                <div>
+                    <span class="text-xl font-extrabold tracking-tight text-slateDark">Build<span class="text-brand-500">Connect</span></span>
+                    <p class="text-xs text-slate-500 font-medium">Supply Chain Network</p>
+                </div>
+            </div>
+
+            <nav class="hidden md:flex items-center space-x-8 text-sm font-semibold text-slate-600">
+                <a href="#about" class="hover:text-brand-600 transition">About Me</a>
+                <a href="#directory" class="hover:text-brand-600 transition">Wholesalers (50+)</a>
+                <a href="#stats" class="hover:text-brand-600 transition">Network Scale</a>
+                <a href="#contact" class="hover:text-brand-600 transition">Join / Connect</a>
+            </nav>
+
+            <div class="flex items-center space-x-4">
+                <a href="#contact" class="hidden sm:inline-flex items-center justify-center px-5 py-2.5 rounded-xl bg-brand-500 text-white text-sm font-semibold shadow-lg shadow-brand-500/25 hover:bg-brand-600 transition transform hover:-translate-y-0.5">
+                    <i class="fa-solid fa-handshake mr-2"></i> Partner With Us
+                </a>
+                <button id="mobileMenuBtn" class="md:hidden text-slate-700 focus:outline-none p-2 rounded-lg hover:bg-slate-100">
+                    <i class="fa-solid fa-bars text-xl"></i>
+                </button>
+            </div>
+        </div>
+
+        <!-- Mobile Menu Dropdown -->
+        <div id="mobileMenu" class="hidden md:hidden bg-white border-b border-slate-200 px-6 py-4 space-y-3">
+            <a href="#about" class="block text-sm font-semibold text-slate-700 hover:text-brand-600">About Me</a>
+            <a href="#directory" class="block text-sm font-semibold text-slate-700 hover:text-brand-600">Wholesalers Directory</a>
+            <a href="#stats" class="block text-sm font-semibold text-slate-700 hover:text-brand-600">Network Scale</a>
+            <a href="#contact" class="block text-sm font-semibold text-slate-700 hover:text-brand-600">Join / Connect</a>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="relative pt-32 pb-20 md:pt-44 md:pb-32 overflow-hidden bg-gradient-to-b from-slate-900 via-slate-800 to-slateDark text-white">
+        <!-- Abstract background glow elements -->
+        <div class="absolute top-1/4 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-brand-500/15 rounded-full blur-3xl pointer-events-none"></div>
+        <div class="absolute bottom-0 right-0 w-[400px] h-[400px] bg-amber-500/10 rounded-full blur-2xl pointer-events-none"></div>
+
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 text-center">
+            <div class="inline-flex items-center space-x-2 px-4 py-2 rounded-full bg-white/10 border border-white/15 text-brand-400 text-xs sm:text-sm font-medium mb-6 backdrop-blur-md">
+                <span class="flex h-2 w-2 rounded-full bg-brand-500 animate-pulse"></span>
+                <span>Direct B2B Network • 50+ Verified Suppliers</span>
+            </div>
+            
+            <h1 class="text-4xl sm:text-6xl lg:text-7xl font-extrabold tracking-tight max-w-4xl mx-auto leading-tight">
+                Connecting Builders with Top <span class="text-transparent bg-clip-text bg-gradient-to-r from-brand-400 to-amber-400">Cement & Bajri Wholesalers</span>
+            </h1>
+            
+            <p class="mt-6 text-lg sm:text-xl text-slate-300 max-w-2xl mx-auto font-normal leading-relaxed">
+                Hi, I'm <strong class="text-white">Rahul Sharma</strong>. As your dedicated Construction Material Coordinator, I bridge the gap between premium raw material vendors and large-scale builders.
+            </p>
+
+            <div class="mt-10 flex flex-col sm:flex-row items-center justify-center gap-4">
+                <a href="#directory" class="w-full sm:w-auto px-8 py-4 rounded-xl bg-brand-500 text-white font-semibold text-base shadow-xl shadow-brand-500/30 hover:bg-brand-600 transition transform hover:-translate-y-0.5 text-center">
+                    Explore 50+ Wholesalers <i class="fa-solid fa-arrow-down ml-2"></i>
+                </a>
+                <a href="#contact" class="w-full sm:w-auto px-8 py-4 rounded-xl bg-white/10 hover:bg-white/15 border border-white/20 text-white font-semibold text-base transition backdrop-blur-md text-center">
+                    Register as Vendor <i class="fa-solid fa-user-plus ml-2"></i>
+                </a>
+            </div>
+
+            <!-- Quick Trust Badges -->
+            <div class="mt-16 pt-12 border-t border-slate-800 grid grid-cols-2 md:grid-cols-4 gap-6 text-center">
+                <div class="reveal">
+                    <p class="text-3xl font-extrabold text-brand-400">50+</p>
+                    <p class="text-xs sm:text-sm text-slate-400 mt-1">Verified Wholesalers</p>
+                </div>
+                <div class="reveal">
+                    <p class="text-3xl font-extrabold text-white">100%</p>
+                    <p class="text-xs sm:text-sm text-slate-400 mt-1">Quality Assurance</p>
+                </div>
+                <div class="reveal">
+                    <p class="text-3xl font-extrabold text-brand-400">15+ Cities</p>
+                    <p class="text-xs sm:text-sm text-slate-400 mt-1">Regional Coverage</p>
+                </div>
+                <div class="reveal">
+                    <p class="text-3xl font-extrabold text-white">24/7</p>
+                    <p class="text-xs sm:text-sm text-slate-400 mt-1">Coordination Support</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Me Section -->
+    <section id="about" class="py-24 bg-white relative">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+                <div class="lg:col-span-5 reveal">
+                    <div class="relative">
+                        <div class="absolute -inset-4 bg-gradient-to-r from-brand-500 to-amber-500 rounded-3xl opacity-20 blur-xl"></div>
+                        <div class="relative bg-slate-900 rounded-2xl p-8 text-white shadow-2xl overflow-hidden border border-slate-800">
+                            <div class="flex items-center space-x-4 mb-6">
+                                <div class="w-16 h-16 rounded-full bg-brand-500 flex items-center justify-center text-2xl font-bold shadow-lg">
+                                    RS
+                                </div>
+                                <div>
+                                    <h3 class="text-xl font-bold">Rahul Sharma</h3>
+                                    <p class="text-xs text-brand-400 uppercase tracking-widest font-semibold mt-0.5">Lead Coordinator</p>
+                                </div>
+                            </div>
+                            <p class="text-slate-300 text-sm leading-relaxed mb-6">
+                                "My mission is to eliminate supply bottlenecks in construction projects by establishing a transparent, direct pipeline between premier cement & bajri producers and contractors."
+                            </p>
+                            <div class="space-y-3 pt-4 border-t border-slate-800 text-sm">
+                                <div class="flex items-center text-slate-300">
+                                    <i class="fa-solid fa-check-circle text-brand-400 mr-3"></i> Direct Wholesale Pricing Negotiation
+                                </div>
+                                <div class="flex items-center text-slate-300">
+                                    <i class="fa-solid fa-check-circle text-brand-400 mr-3"></i> Guaranteed Timely Fleet Dispatch
+                                </div>
+                                <div class="flex items-center text-slate-300">
+                                    <i class="fa-solid fa-check-circle text-brand-400 mr-3"></i> End-to-End Deal Verification
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="lg:col-span-7 reveal">
+                    <span class="text-brand-600 font-bold uppercase tracking-wider text-xs px-3 py-1 bg-brand-50 rounded-md">About My Role</span>
+                    <h2 class="text-3xl sm:text-4xl font-extrabold text-slateDark mt-3 tracking-tight">
+                        Your Trusted Bridge in Construction Supply Chain
+                    </h2>
+                    <p class="mt-4 text-slate-600 leading-relaxed text-base sm:text-lg">
+                        Managing construction material procurement can be chaotic. With over 5+ years of experience in supply chain coordination, I manage an exclusive network of over 50+ top-tier wholesalers specializing in **PPC/OPC Cement, Grade-A River Bajri, Coarse Sand, and Red Bricks**.
+                    </p>
+                    
+                    <div class="mt-8 grid grid-cols-1 sm:grid-cols-2 gap-6">
+                        <div class="p-5 rounded-xl bg-slate-50 border border-slate-200/80 hover:border-brand-300 transition">
+                            <div class="w-10 h-10 rounded-lg bg-brand-100 text-brand-600 flex items-center justify-center font-bold mb-3">
+                                <i class="fa-solid fa-truck-fast"></i>
+                            </div>
+                            <h4 class="font-bold text-slate-800 mb-1">For Builders & Contractors</h4>
+                            <p class="text-xs text-slate-500 leading-relaxed">Get instant access to wholesale rates, bulk discounts, and reliable delivery without middlemen markups.</p>
+                        </div>
+                        <div class="p-5 rounded-xl bg-slate-50 border border-slate-200/80 hover:border-brand-300 transition">
+                            <div class="w-10 h-10 rounded-lg bg-amber-100 text-amber-600 flex items-center justify-center font-bold mb-3">
+                                <i class="fa-solid fa-store"></i>
+                            </div>
+                            <h4 class="font-bold text-slate-800 mb-1">For Wholesalers & Dealers</h4>
+                            <p class="text-xs text-slate-500 leading-relaxed">Expand your market reach, receive verified client leads, and scale your business turnover effortlessly.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Wholesalers Directory Section -->
+    <section id="directory" class="py-24 bg-slate-100/70 border-t border-b border-slate-200 relative">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-3xl mx-auto reveal">
+                <span class="text-brand-600 font-bold uppercase tracking-wider text-xs px-3 py-1 bg-brand-50 rounded-md">Trusted Network</span>
+                <h2 class="text-3xl sm:text-4xl font-extrabold text-slateDark mt-3 tracking-tight">
+                    Wholesalers Directory (<span id="vendorCount">50+</span> Listed)
+                </h2>
+                <p class="mt-3 text-slate-600 text-base">
+                    Search and filter through our verified network of cement and bajri suppliers. Click 'Connect' to request a direct callback or quote.
+                </p>
+            </div>
+
+            <!-- Search & Filter Controls -->
+            <div class="mt-10 max-w-4xl mx-auto reveal">
+                <div class="flex flex-col md:flex-row gap-4 items-center justify-between bg-white p-4 rounded-2xl shadow-sm border border-slate-200">
+                    <!-- Search Bar -->
+                    <div class="relative w-full md:w-96">
+                        <span class="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none text-slate-400">
+                            <i class="fa-solid fa-search"></i>
+                        </span>
+                        <input type="text" id="searchInput" placeholder="Search by name, location, or material..." class="w-full pl-11 pr-4 py-2.5 bg-slate-50 border border-slate-200 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-brand-500 transition">
+                    </div>
+
+                    <!-- Filter Tabs -->
+                    <div class="flex flex-wrap gap-2 w-full md:w-auto justify-start md:justify-end" id="filterTabs">
+                        <button data-filter="all" class="filter-btn px-4 py-2 rounded-xl text-xs font-semibold bg-brand-500 text-white shadow-sm transition">All (50+)</button>
+                        <button data-filter="Cement" class="filter-btn px-4 py-2 rounded-xl text-xs font-semibold bg-slate-100 text-slate-600 hover:bg-slate-200 transition">Cement</button>
+                        <button data-filter="Bajri & Sand" class="filter-btn px-4 py-2 rounded-xl text-xs font-semibold bg-slate-100 text-slate-600 hover:bg-slate-200 transition">Bajri & Sand</button>
+                        <button data-filter="Bricks" class="filter-btn px-4 py-2 rounded-xl text-xs font-semibold bg-slate-100 text-slate-600 hover:bg-slate-200 transition">Bricks</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Wholesalers Grid -->
+            <div id="vendorGrid" class="mt-10 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+                <!-- Dynamically populated via JS -->
+            </div>
+
+            <!-- Load More / Pagination indicator -->
+            <div class="mt-12 text-center reveal">
+                <p class="text-xs text-slate-500 mb-4">Showing sample curated vendors. All 50+ vendors accessible via direct inquiry.</p>
+                <a href="#contact" class="inline-flex items-center px-6 py-3 rounded-xl bg-white border border-slate-300 text-slate-700 text-sm font-semibold hover:bg-slate-50 shadow-sm transition">
+                    <i class="fa-solid fa-list-check mr-2 text-brand-500"></i> Request Full Directory PDF / List
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Network Scale & Benefits -->
+    <section id="stats" class="py-20 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="bg-gradient-to-r from-slate-900 to-slateDark rounded-3xl p-8 sm:p-12 text-white relative overflow-hidden shadow-2xl">
+                <div class="absolute right-0 bottom-0 translate-x-10 translate-y-10 w-80 h-80 bg-brand-500/20 rounded-full blur-3xl pointer-events-none"></div>
+                
+                <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center relative z-10">
+                    <div class="lg:col-span-7">
+                        <span class="text-brand-400 font-semibold text-xs tracking-widest uppercase">Why Connect Through Rahul?</span>
+                        <h2 class="text-3xl sm:text-4xl font-extrabold mt-2 tracking-tight">Streamlining Construction Supply with Direct Vendor Access</h2>
+                        <p class="mt-4 text-slate-300 text-sm sm:text-base leading-relaxed">
+                            Instead of calling dozens of dealers individually for cement truckloads or bajri supplies, get competitive quotes negotiated through a single trusted coordinator.
+                        </p>
+                    </div>
+                    <div class="lg:col-span-5 flex flex-col sm:flex-row gap-4 justify-end">
+                        <a href="#contact" class="px-6 py-3.5 rounded-xl bg-brand-500 text-white font-semibold text-sm text-center shadow-lg hover:bg-brand-600 transition">
+                            Get Instant Quote <i class="fa-solid fa-arrow-right ml-2"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Connection & Inquiry Form Section -->
+    <section id="contact" class="py-24 bg-slate-100/70 border-t border-slate-200">
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="bg-white rounded-3xl shadow-xl border border-slate-200 p-8 sm:p-12 reveal">
+                <div class="text-center max-w-xl mx-auto mb-10">
+                    <span class="text-brand-600 font-bold uppercase tracking-wider text-xs px-3 py-1 bg-brand-50 rounded-md">Let's Connect</span>
+                    <h2 class="text-3xl font-extrabold text-slateDark mt-3 tracking-tight">Connect with Wholesalers or Rahul</h2>
+                    <p class="mt-2 text-slate-600 text-sm">Fill out this quick form whether you are a builder looking for material or a wholesaler wanting to join the 50+ network.</p>
+                </div>
+
+                <!-- Success Message Box (Hidden by default) -->
+                <div id="successBox" class="hidden mb-8 p-6 rounded-2xl bg-emerald-50 border border-emerald-200 text-emerald-800 text-center">
+                    <div class="w-12 h-12 bg-emerald-500 text-white rounded-full flex items-center justify-center mx-auto mb-3 text-lg shadow-md">
+                        <i class="fa-solid fa-check"></i>
+                    </div>
+                    <h3 class="font-bold text-lg">Inquiry Submitted Successfully!</h3>
+                    <p class="text-xs text-emerald-700 mt-1">Thank you! Rahul Sharma or one of our verified wholesalers will get in touch with you shortly.</p>
+                </div>
+
+                <form id="connectionForm" class="space-y-6">
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
+                        <div>
+                            <label class="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-2">Your Full Name *</label>
+                            <input type="text" id="fullName" required placeholder="e.g. Amit Verma" class="w-full px-4 py-3 rounded-xl bg-slate-50 border border-slate-200 text-sm focus:outline-none focus:ring-2 focus:ring-brand-500 transition">
+                        </div>
+                        <div>
+                            <label class="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-2">Business / Company Name *</label>
+                            <input type="text" id="businessName" required placeholder="e.g. Verma Constructions" class="w-full px-4 py-3 rounded-xl bg-slate-50 border border-slate-200 text-sm focus:outline-none focus:ring-2 focus:ring-brand-500 transition">
+                        </div>
+                    </div>
+
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
+                        <div>
+                            <label class="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-2">Primary Material Required *</label>
+                            <select id="materialType" required class="w-full px-4 py-3 rounded-xl bg-slate-50 border border-slate-200 text-sm focus:outline-none focus:ring-2 focus:ring-brand-500 transition">
+                                <option value="" disabled selected>Select material type</option>
+                                <option value="Cement (OPC/PPC)">Cement (OPC / PPC)</option>
+                                <option value="River Bajri & Sand">River Bajri & Sand</option>
+                                <option value="Red Bricks / Blocks">Red Bricks / Blocks</option>
+                                <option value="Multiple / Bulk Order">Multiple / All Construction Materials</option>
+                            </select>
+                        </div>
+                        <div>
+                            <label class="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-2">Phone Number *</label>
+                            <input type="tel" id="phoneNumber" required placeholder="e.g. +91 98765 43210" class="w-full px-4 py-3 rounded-xl bg-slate-50 border border-slate-200 text-sm focus:outline-none focus:ring-2 focus:ring-brand-500 transition">
+                        </div>
+                    </div>
+
+                    <div>
+                        <label class="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-2">Your Message / Requirement Details *</label>
+                        <textarea id="messageText" required rows="4" placeholder="Mention required quantity, delivery location, or if you are a wholesaler looking to register..." class="w-full px-4 py-3 rounded-xl bg-slate-50 border border-slate-200 text-sm focus:outline-none focus:ring-2 focus:ring-brand-500 transition"></textarea>
+                    </div>
+
+                    <div>
+                        <button type="submit" class="w-full py-4 rounded-xl bg-brand-500 text-white font-bold text-base shadow-lg shadow-brand-500/25 hover:bg-brand-600 transition transform hover:-translate-y-0.5">
+                            <i class="fa-solid fa-paper-plane mr-2"></i> Submit Connection Request
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-slateDark text-white py-12 border-t border-slate-800">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col md:flex-row items-center justify-between gap-6">
+            <div class="flex items-center space-x-3">
+                <div class="w-9 h-9 rounded-xl bg-brand-500 flex items-center justify-center text-white">
+                    <i class="fa-solid fa-helmet-safety"></i>
+                </div>
+                <div>
+                    <span class="text-lg font-bold">BuildConnect Hub</span>
+                    <p class="text-xs text-slate-400">Cement & Bajri 50+ Wholesaler Coordinator Network</p>
+                </div>
+            </div>
+
+            <p class="text-xs text-slate-400 text-center">
+                &copy; <span id="currentYear"></span> Rahul Sharma. All rights reserved. Built with professional UI standards.
+            </p>
+
+            <div class="flex space-x-4 text-slate-400 text-sm">
+                <a href="#about" class="hover:text-brand-400 transition"><i class="fa-solid fa-user"></i></a>
+                <a href="#directory" class="hover:text-brand-400 transition"><i class="fa-solid fa-store"></i></a>
+                <a href="#contact" class="hover:text-brand-400 transition"><i class="fa-solid fa-envelope"></i></a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- JavaScript Application Code -->
+    <script>
+        // Set dynamic copyright year
+        document.getElementById('currentYear').textContent = new Date().getFullYear();
+
+        // Mobile Menu Toggle
+        const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+        const mobileMenu = document.getElementById('mobileMenu');
+        mobileMenuBtn.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+        });
+
+        // Sample Wholesalers Data (representing 50+ network)
+        const wholesalersData = [
+            { id: 1, name: "Shree Ram Cement & Building Supplies", category: "Cement", location: "Industrial Area, Phase 1", rating: 4.9, badge: "Top Supplier", badgeColor: "bg-amber-100 text-amber-700", phone: "+91 98290 XXXXX" },
+            { id: 2, name: "Aravalli River Bajri & Sand Co.", category: "Bajri & Sand", location: "North Highway Yard", rating: 4.8, badge: "Verified", badgeColor: "bg-blue-100 text-blue-700", phone: "+91 94141 XXXXX" },
+            { id: 3, name: "Maharaja OPC & PPC Cement Depot", category: "Cement", location: "Central Market Hub", rating: 4.9, badge: "Wholesale Bulk", badgeColor: "bg-brand-100 text-brand-700", phone: "+91 98280 XXXXX" },
+            { id: 4, name: "Shiv Shakti Red Bricks & Aggregates", category: "Bricks", location: "Ring Road Bypass", rating: 4.7, badge: "Direct Kiln", badgeColor: "bg-emerald-100 text-emerald-700", phone: "+91 93520 XXXXX" },
+            { id: 5, name: "Apex Sand & Construction Metals", category: "Bajri & Sand", location: "West District Depot", rating: 4.8, badge: "Verified", badgeColor: "bg-blue-100 text-blue-700", phone: "+91 97850 XXXXX" },
+            { id: 6, name: "Jai Bajrang Cement & Hardware Wholesalers", category: "Cement", location: "East Zone Sector 4", rating: 4.9, badge: "Top Supplier", badgeColor: "bg-amber-100 text-amber-700", phone: "+91 92140 XXXXX" }
+        ];
+
+        // Render Wholesaler Cards
+        const vendorGrid = document.getElementById('vendorGrid');
+
+        function renderVendors(filter = 'all', searchQuery = '') {
+            vendorGrid.innerHTML = '';
+            
+            const filtered = wholesalersData.filter(v => {
+                const matchesFilter = filter === 'all' || v.category === filter;
+                const matchesSearch = v.name.toLowerCase().includes(searchQuery.toLowerCase()) || 
+                                      v.location.toLowerCase().includes(searchQuery.toLowerCase()) ||
+                                      v.category.toLowerCase().includes(searchQuery.toLowerCase());
+                return matchesFilter && matchesSearch;
+            });
+
+            if (filtered.length === 0) {
+                vendorGrid.innerHTML = `
+                    <div class="col-span-full py-12 text-center text-slate-500 bg-white rounded-2xl border border-slate-200">
+                        <i class="fa-solid fa-search text-3xl mb-3 text-slate-300"></i>
+                        <p class="font-semibold">No wholesalers found matching your query.</p>
+                        <p class="text-xs mt-1">Try searching for another keyword or submit an inquiry to Rahul.</p>
+                    </div>
+                `;
+                return;
+            }
+
+            filtered.forEach(v => {
+                const card = document.createElement('div');
+                card.className = "glass-card rounded-2xl p-6 shadow-sm hover:shadow-md transition transform hover:-translate-y-1 flex flex-col justify-between";
+                card.innerHTML = `
+                    <div>
+                        <div class="flex items-start justify-between gap-2 mb-3">
+                            <span class="px-2.5 py-1 rounded-md text-[10px] font-bold uppercase tracking-wider ${v.badgeColor}">${v.badge}</span>
+                            <span class="flex items-center text-xs font-semibold text-amber-600 bg-amber-50 px-2 py-0.5 rounded-md">
+                                <i class="fa-solid fa-star mr-1"></i> ${v.rating}
+                            </span>
+                        </div>
+                        <h3 class="font-bold text-lg text-slateDark leading-snug mb-2">${v.name}</h3>
+                        <p class="text-xs text-slate-500 mb-1 flex items-center"><i class="fa-solid fa-location-dot mr-2 text-brand-500"></i> ${v.location}</p>
+                        <p class="text-xs text-slate-500 mb-4 flex items-center"><i class="fa-solid fa-tag mr-2 text-brand-500"></i> Speciality: <strong class="text-slate-700 ml-1">${v.category}</strong></p>
+                    </div>
+                    <div class="pt-4 border-t border-slate-200 flex items-center justify-between">
+                        <span class="text-xs text-slate-400 font-medium">50+ Network Partner</span>
+                        <a href="#contact" onclick="prefillForm('${v.name}', '${v.category}')" class="px-4 py-2 rounded-xl bg-slate-900 text-white text-xs font-semibold hover:bg-brand-600 transition shadow-sm">
+                            Connect <i class="fa-solid fa-arrow-right ml-1"></i>
+                        </a>
+                    </div>
+                `;
+                vendorGrid.appendChild(card);
+            });
+        }
+
+        // Pre-fill form when clicking connect on vendor card
+        window.prefillForm = function(vendorName, category) {
+            document.getElementById('messageText').value = `Hello Rahul, I would like to connect with wholesaler "${vendorName}" regarding ${category} supplies. Please share direct contact details.`;
+            document.getElementById('materialType').value = category.includes('Cement') ? 'Cement (OPC/PPC)' : (category.includes('Bricks') ? 'Red Bricks / Blocks' : 'River Bajri & Sand');
+        };
+
+        // Filter button event listeners
+        const filterBtns = document.querySelectorAll('.filter-btn');
+        filterBtns.forEach(btn => {
+            btn.addEventListener('click', (e) => {
+                filterBtns.forEach(b => {
+                    b.classList.remove('bg-brand-500', 'text-white');
+                    b.classList.add('bg-slate-100', 'text-slate-600');
+                });
+                e.target.classList.remove('bg-slate-100', 'text-slate-600');
+                e.target.classList.add('bg-brand-500', 'text-white');
+
+                const filterValue = e.target.getAttribute('data-filter');
+                const searchQuery = document.getElementById('searchInput').value;
+                renderVendors(filterValue, searchQuery);
+            });
+        });
+
+        // Search input event listener
+        const searchInput = document.getElementById('searchInput');
+        searchInput.addEventListener('input', (e) => {
+            const activeFilterBtn = document.querySelector('.filter-btn.bg-brand-500');
+            const activeFilter = activeFilterBtn ? activeFilterBtn.getAttribute('data-filter') : 'all';
+            renderVendors(activeFilter, e.target.value);
+        });
+
+        // Initial render
+        renderVendors();
+
+        // Contact Form Submission Handler
+        const connectionForm = document.getElementById('connectionForm');
+        const successBox = document.getElementById('successBox');
+
+        connectionForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+            
+            // Show success message with slick feedback
+            successBox.classList.remove('hidden');
+            connectionForm.reset();
+            
+            // Scroll to success box smoothly
+            successBox.scrollIntoView({ behavior: 'smooth', block: 'center' });
+
+            setTimeout(() => {
+                successBox.classList.add('hidden');
+            }, 7000);
+        });
+
+        // Scroll Reveal Animation with Intersection Observer
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries, observer) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('active');
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.reveal').forEach(el => {
+            observer.observe(el);
+        });
+    </script>
+</body>
+</html>
