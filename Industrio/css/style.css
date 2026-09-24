@@ -1,9 +1,40 @@
 /********** Template CSS **********/
 :root {
-    --primary: #FF5E14;
+    /* --primary: #FF5E14; */
+    --primary: #1e88e5;
     --secondary: #5F656F;
     --light: #F5F5F5;
     --dark: #02245B;
+}
+
+/* Sabhi headings aur text jahan orange color aa raha hai */
+h1, h2, h3, h4, h5, h6, 
+.text-primary, 
+.navbar .navbar-nav .nav-link:hover, 
+.navbar .navbar-nav .nav-link.active,
+.testimonial-carousel .owl-nav .owl-prev, 
+.testimonial-carousel .owl-nav .owl-next {
+    color: #1e88e5 !important;
+}
+
+/* Sabhi buttons aur background elements */
+.btn-primary, 
+.btn-outline-primary:hover, 
+.topbar-right, 
+.topbar-right::before, 
+.navbar .navbar-brand, 
+.navbar .navbar-brand::after, 
+.carousel-control-prev-icon, 
+.carousel-control-next-icon, 
+.btn-play, 
+.btn-play:before, 
+.btn-play:after, 
+.service-item .btn:hover, 
+.project-carousel .owl-nav .owl-prev, 
+.project-carousel .owl-nav .owl-next, 
+.team-item .team-social {
+    background-color: #1e88e5 !important;
+    border-color: #1e88e5 !important;
 }
 
 .back-to-top {
@@ -93,7 +124,8 @@ h6,
 
 .topbar-right {
     position: relative;
-    background: var(--primary);
+    /* background: var(--primary); */
+    background: #56b0ff !important;
 }
 
 .topbar-right::before {
@@ -104,7 +136,8 @@ h6,
     top: 0;
     left: -15px;
     transform: skewX(-30deg);
-    background-color: var(--primary);
+    /* background-color: var(--primary); */
+    background-color: #56b0ff !important;
 }
 
 
@@ -132,6 +165,7 @@ h6,
     right: -25px;
     transform: skewX(-30deg);
     background-color: var(--primary);
+    background-color: #0194d8 !important;
 }
 
 .navbar .navbar-nav .nav-link {
@@ -501,6 +535,7 @@ h6,
     justify-content: center;
     text-align: center;
     background: var(--dark);
+    background: #1e75c2 !important;
     transition: .5s;
 }
 
@@ -517,7 +552,8 @@ h6,
     top: -15px;
     left: 0;
     transform: skewY(-5deg);
-    background: var(--dark);
+    /* background: var(--dark); */
+    background:#1e75c2 !important;
     transition: .5s;
 }
 
@@ -698,4 +734,94 @@ h6,
 .copyright {
     color: #B0B9AE;
     border-top: 1px solid rgba(255, 255, 255, .1);
+}
+
+
+/* new section add  */
+/* Client Logo Infinite Slider CSS */
+.client-logo-section {
+    background: #fdfdfd;
+}
+
+.logo-slider {
+    overflow: hidden;
+    position: relative;
+    width: 100%;
+    white-space: nowrap;
+}
+
+.logo-slider::before,
+.logo-slider::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    width: 100px;
+    height: 100%;
+    z-index: 2;
+    pointer-events: none;
+}
+
+.logo-slider::before {
+    left: 0;
+    background: linear-gradient(to right, #fdfdfd, rgba(253, 253, 253, 0));
+}
+
+.logo-slider::after {
+    right: 0;
+    background: linear-gradient(to left, #fdfdfd, rgba(253, 253, 253, 0));
+}
+
+.logo-track-left,
+.logo-track-right {
+    display: flex;
+    width: max-content; /* Automatically calculate total width based on slides */
+    display: flex;
+    gap: 0px;
+}
+
+.logo-track-left {
+    animation: scrollLeft 25s linear infinite;
+}
+
+.logo-track-right {
+    animation: scrollRight 25s linear infinite;
+}
+
+.logo-slide {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 200px;
+    flex-shrink: 0; /* Prevents images from shrinking */
+    padding: 0 20px;
+}
+
+.logo-slide img {
+    max-width: 155px;
+    height: auto;
+    transition: 0.3s;
+}
+
+.logo-slide img:hover {
+    filter: grayscale(0%);
+    opacity: 1;
+}
+
+/* Keyframes using percentage for a seamless infinite loop */
+@keyframes scrollLeft {
+    0% {
+        transform: translateX(0);
+    }
+    100% {
+        transform: translateX(-50%); /* Moves exactly half way through the doubled track */
+    }
+}
+
+@keyframes scrollRight {
+    0% {
+        transform: translateX(-50%);
+    }
+    100% {
+        transform: translateX(0);
+    }
 }
