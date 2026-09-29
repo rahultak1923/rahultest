@@ -1,0 +1,549 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <title>Supreme Advertising - Our Gallery</title>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <meta content="" name="keywords">
+    <meta content="" name="description">
+
+    <!-- Favicon -->
+    <link href="img/logo.png" rel="icon">
+
+    <!-- Google Web Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;500;600&family=Rubik:wght@500;600;700&display=swap"
+        rel="stylesheet">
+
+    <!-- Icon Font Stylesheet -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css" rel="stylesheet">
+
+    <!-- Libraries Stylesheet -->
+    <link href="lib/animate/animate.min.css" rel="stylesheet">
+    <link href="lib/owlcarousel/assets/owl.carousel.min.css" rel="stylesheet">
+
+    <!-- Customized Bootstrap Stylesheet -->
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Template Stylesheet -->
+    <link href="css/style.css" rel="stylesheet">
+
+    <!-- Custom Style for Gallery & Filter Tabs -->
+    <style>
+        .filter-btn {
+            border: 2px solid #0194d8;
+            color: #02245B;
+            background: #ffffff;
+            font-weight: 600;
+            padding: 8px 18px;
+            border-radius: 30px;
+            transition: all 0.3s ease;
+            margin: 5px;
+        }
+        .filter-btn.active, .filter-btn:hover {
+            background-color: #0194d8;
+            color: #ffffff;
+        }
+        .gallery-item-box {
+            flex: 0 0 20%;
+            max-width: 20%;
+            transition: transform 0.3s ease, opacity 0.3s ease;
+        }
+        @media (max-width: 992px) {
+            .gallery-item-box {
+                flex: 0 0 33.333%;
+                max-width: 33.333%;
+            }
+        }
+        @media (max-width: 768px) {
+            .gallery-item-box {
+                flex: 0 0 50%;
+                max-width: 50%;
+            }
+        }
+        @media (max-width: 576px) {
+            .gallery-item-box {
+                flex: 0 0 100%;
+                max-width: 100%;
+            }
+        }
+        .gallery-img {
+            cursor: pointer;
+            transition: transform 0.3s ease;
+            width: 100%;
+            height: 220px;
+            object-fit: cover;
+            border-radius: 8px;
+        }
+        .gallery-img:hover {
+            transform: scale(1.03);
+        }
+
+        /* Fixed Fullscreen Lightbox Modal */
+        #imageModal {
+            display: none;
+            position: fixed;
+            z-index: 99999;
+            left: 0;
+            top: 0;
+            width: 100vw;
+            height: 100vh;
+            background-color: rgba(0, 0, 0, 0.95);
+            align-items: center;
+            justify-content: center;
+        }
+        .image-modal-content {
+            max-width: 85vw;
+            max-height: 85vh;
+            object-fit: contain;
+            border-radius: 5px;
+            box-shadow: 0 0 25px rgba(0, 0, 0, 0.8);
+        }
+        .image-modal-close {
+            position: fixed;
+            top: 25px;
+            right: 40px;
+            color: #ffffff;
+            font-size: 50px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: 0.3s;
+            z-index: 100000;
+            line-height: 1;
+        }
+        .image-modal-close:hover {
+            color: #0194d8;
+        }
+        .modal-nav-btn {
+            position: fixed;
+            top: 50%;
+            transform: translateY(-50%);
+            background-color: rgba(255, 255, 255, 0.15);
+            color: white;
+            padding: 18px 22px;
+            font-size: 26px;
+            border: none;
+            cursor: pointer;
+            border-radius: 6px;
+            transition: 0.3s;
+            z-index: 100000;
+        }
+        .modal-nav-btn:hover {
+            background-color: #0194d8;
+        }
+        .modal-prev { left: 30px; }
+        .modal-next { right: 30px; }
+        
+                .page-header {
+    background: linear-gradient(to right, rgba(2, 36, 91, 1) 0%, rgba(2, 36, 91, 0) 100%), url(img/store-branding/1.jpeg) center center no-repeat;
+    background-size: cover;
+}
+    </style>
+</head>
+
+<body>
+    <!-- Spinner Start -->
+    <div id="spinner"
+        class="show bg-white position-fixed translate-middle w-100 vh-100 top-50 start-50 d-flex align-items-center justify-content-center">
+        <div class="spinner-border text-primary" role="status" style="width: 3rem; height: 3rem;"></div>
+    </div>
+    <!-- Spinner End -->
+
+    <!-- Topbar Start -->
+    <div class="container-fluid bg-dark px-0">
+        <div class="row g-0 d-none d-lg-flex" style="background-color: #0194d8 !important;">
+            <div class="col-lg-6 ps-5 text-start">
+                <div class="h-100 d-inline-flex align-items-center text-white">
+                    <span>Follow Us:</span>
+                    <a class="btn btn-link text-light" href=""><i class="fab fa-facebook-f"></i></a>
+                    <a class="btn btn-link text-light" href=""><i class="fab fa-twitter"></i></a>
+                    <a class="btn btn-link text-light" href=""><i class="fab fa-linkedin-in"></i></a>
+                    <a class="btn btn-link text-light" href=""><i class="fab fa-instagram"></i></a>
+                </div>
+            </div>
+            <div class="col-lg-6 text-end">
+                <div class="h-100 topbar-right d-inline-flex align-items-center text-white py-2 px-5">
+                    <span class="fs-5 fw-bold me-2"><i class="fa fa-phone-alt me-2"></i>Call Us:</span>
+                    <span class="fs-5 fw-bold">+91 93512 17939 , +91 77339 99071</span>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Topbar End -->
+
+    <!-- Navbar Start -->
+    <nav class="navbar navbar-expand-lg bg-white navbar-light sticky-top py-0 pe-5">
+        <a href="index.html" class="navbar-brand ps-5 me-0 pt-0" style="background-color: white !important; flex-direction: column;">
+            <img src="img/solution-logo-top.png" alt="Logo" style="max-height: 63px;">
+            <img src="img/solution-logo-bottom.png" alt="Logo" style="max-height: 12px;">
+        </a>
+        <button type="button" class="navbar-toggler me-0" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarCollapse">
+            <div class="navbar-nav ms-auto p-4 p-lg-0">
+                <a href="index.html" class="nav-item nav-link">Home</a>
+                <a href="about.html" class="nav-item nav-link">About</a>
+                <a href="index.html#service" class="nav-item nav-link">Services</a>
+                <a href="gallery.html" class="nav-item nav-link active">Gallery</a>
+                <a href="index.html#contact" class="nav-item nav-link">Contact</a>
+            </div>
+            <a href="index.html#query" class="btn btn-primary px-3 d-none d-lg-block" style="background-color: #0194d8 !important;">Get A Quote</a>
+        </div>
+    </nav>
+    <!-- Navbar End -->
+
+    <!-- Page Header Start -->
+    <div class="container-fluid page-header py-2  wow fadeIn" data-wow-delay="0.1s">
+        <div class="container">
+            <h1 class="display-3 text-white animated slideInRight">Our Image Gallery</h1>
+            <nav aria-label="breadcrumb">
+                <ol class="breadcrumb animated slideInRight mb-0">
+                    <li class="breadcrumb-item"><a href="index.html">Home</a></li>
+                    <li class="breadcrumb-item active" aria-current="page">Gallery</li>
+                </ol>
+            </nav>
+        </div>
+    </div>
+    <!-- Page Header End -->
+
+    <!-- Gallery Section Start -->
+    <div class="container-fluid py-5 px-lg-5">
+        <div class="container-fluid">
+            <div class="text-center mx-auto mb-5 wow fadeInUp" data-wow-delay="0.1s" style="max-width: 600px;">
+                <p class="fw-medium text-uppercase text-primary mb-2">Gallery</p>
+                <!-- <h1 class="display-5 mb-4">Explore Our Work By Categories</h1> -->
+            </div>
+
+            <!-- Filter Tabs Buttons -->
+            <div class="text-center mb-5">
+                <button class="filter-btn active" onclick="filterGallery('all')">All Images</button>
+                <button class="filter-btn" onclick="filterGallery('billboards')">Billboards</button>
+                <button class="filter-btn" onclick="filterGallery('store')">Store Branding</button>
+                <button class="filter-btn" onclick="filterGallery('acp')">ACP Cladding</button>
+                <button class="filter-btn" onclick="filterGallery('unipoles')">Unipoles</button>
+                <button class="filter-btn" onclick="filterGallery('standee')">Standee</button>
+                <button class="filter-btn" onclick="filterGallery('highway')">Highway Boarding</button>
+                <button class="filter-btn" onclick="filterGallery('arch')">Arch Gates</button>
+            </div>
+
+            <!-- Gallery Images Grid (5 images per row, individually written) -->
+            <div class="row g-3" id="galleryGrid">
+                
+                <!-- ==================== 1. BILLBOARDS (1 to 17) ==================== -->
+                <div class="col gallery-item-box mb-3" data-category="billboards">
+                    <img src="img/billboards/1.jpeg" alt="Billboard 1" class="gallery-img shadow-sm" onclick="openLightbox(this)">
+                </div>
+                <div class="col gallery-item-box mb-3" data-category="billboards">
+                    <img src="img/billboards/2.jpeg" alt="Billboard 2" class="gallery-img shadow-sm" onclick="openLightbox(this)">
+                </div>
+                <div class="col gallery-item-box mb-3" data-category="billboards">
+                    <img src="img/billboards/3.jpeg" alt="Billboard 3" class="gallery-img shadow-sm" onclick="openLightbox(this)">
+                </div>
+                <div class="col gallery-item-box mb-3" data-category="billboards">
+                    <img src="img/billboards/4.jpeg" alt="Billboard 4" class="gallery-img shadow-sm" onclick="openLightbox(this)">
+                </div>
+                <div class="col gallery-item-box mb-3" data-category="billboards">
+                    <img src="img/billboards/5.jpeg" alt="Billboard 5" class="gallery-img shadow-sm" onclick="openLightbox(this)">
+                </div>
+                <div class="col gallery-item-box mb-3" data-category="billboards">
+                    <img src="img/billboards/6.jpeg" alt="Billboard 6" class="gallery-img shadow-sm" onclick="openLightbox(this)">
+                </div>
+                <div class="col gallery-item-box mb-3" data-category="billboards">
+                    <img src="img/billboards/7.jpeg" alt="Billboard 7" class="gallery-img shadow-sm" onclick="openLightbox(this)">
+                </div>
+                <div class="col gallery-item-box mb-3" data-category="billboards">
+                    <img src="img/billboards/8.jpeg" alt="Billboard 8" class="gallery-img shadow-sm" onclick="openLightbox(this)">
+                </div>
+                <div class="col gallery-item-box mb-3" data-category="billboards">
+                    <img src="img/billboards/9.png" alt="Billboard 9" class="gallery-img shadow-sm" onclick="openLightbox(this)">
+                </div>
+                <div class="col gallery-item-box mb-3" data-category="billboards">
+                    <img src="img/billboards/10.jpeg" alt="Billboard 10" class="gallery-img shadow-sm" onclick="openLightbox(this)">
+                </div>
+                <div class="col gallery-item-box mb-3" data-category="billboards">
+                    <img src="img/billboards/11.png" alt="Billboard 11" class="gallery-img shadow-sm" onclick="openLightbox(this)">
+                </div>
+                <div class="col gallery-item-box mb-3" data-category="billboards">
+                    <img src="img/billboards/12.png" alt="Billboard 12" class="gallery-img shadow-sm" onclick="openLightbox(this)">
+                </div>
+                <div class="col gallery-item-box mb-3" data-category="billboards">
+                    <img src="img/billboards/13.jpeg" alt="Billboard 13" class="gallery-img shadow-sm" onclick="openLightbox(this)">
+                </div>
+                <div class="col gallery-item-box mb-3" data-category="billboards">
+                    <img src="img/billboards/14.jpeg" alt="Billboard 14" class="gallery-img shadow-sm" onclick="openLightbox(this)">
+                </div>
+                <div class="col gallery-item-box mb-3" data-category="billboards">
+                    <img src="img/billboards/15.jpeg" alt="Billboard 15" class="gallery-img shadow-sm" onclick="openLightbox(this)">
+                </div>
+                <div class="col gallery-item-box mb-3" data-category="billboards">
+                    <img src="img/billboards/16.jpeg" alt="Billboard 16" class="gallery-img shadow-sm" onclick="openLightbox(this)">
+                </div>
+                <div class="col gallery-item-box mb-3" data-category="billboards">
+                    <img src="img/billboards/17.jpeg" alt="Billboard 17" class="gallery-img shadow-sm" onclick="openLightbox(this)">
+                </div>
+
+                <!-- ==================== 2. STORE BRANDING (1 to 15) ==================== -->
+                <div class="col gallery-item-box mb-3" data-category="store">
+                    <img src="img/store-branding/1.jpeg" alt="Store Branding 1" class="gallery-img shadow-sm" onclick="openLightbox(this)">
+                </div>
+                <div class="col gallery-item-box mb-3" data-category="store">
+                    <img src="img/store-branding/2.jpeg" alt="Store Branding 2" class="gallery-img shadow-sm" onclick="openLightbox(this)">
+                </div>
+                <div class="col gallery-item-box mb-3" data-category="store">
+                    <img src="img/store-branding/3.jpeg" alt="Store Branding 3" class="gallery-img shadow-sm" onclick="openLightbox(this)">
+                </div>
+                <div class="col gallery-item-box mb-3" data-category="store">
+                    <img src="img/store-branding/4.jpeg" alt="Store Branding 4" class="gallery-img shadow-sm" onclick="openLightbox(this)">
+                </div>
+                <div class="col gallery-item-box mb-3" data-category="store">
+                    <img src="img/store-branding/5.jpeg" alt="Store Branding 5" class="gallery-img shadow-sm" onclick="openLightbox(this)">
+                </div>
+                <div class="col gallery-item-box mb-3" data-category="store">
+                    <img src="img/store-branding/6.jpeg" alt="Store Branding 6" class="gallery-img shadow-sm" onclick="openLightbox(this)">
+                </div>
+                <div class="col gallery-item-box mb-3" data-category="store">
+                    <img src="img/store-branding/7.png" alt="Store Branding 7" class="gallery-img shadow-sm" onclick="openLightbox(this)">
+                </div>
+                <div class="col gallery-item-box mb-3" data-category="store">
+                    <img src="img/store-branding/8.png" alt="Store Branding 8" class="gallery-img shadow-sm" onclick="openLightbox(this)">
+                </div>
+                <div class="col gallery-item-box mb-3" data-category="store">
+                    <img src="img/store-branding/9.jpeg" alt="Store Branding 9" class="gallery-img shadow-sm" onclick="openLightbox(this)">
+                </div>
+                <div class="col gallery-item-box mb-3" data-category="store">
+                    <img src="img/store-branding/10.jpeg" alt="Store Branding 10" class="gallery-img shadow-sm" onclick="openLightbox(this)">
+                </div>
+                <div class="col gallery-item-box mb-3" data-category="store">
+                    <img src="img/store-branding/11.jpeg" alt="Store Branding 11" class="gallery-img shadow-sm" onclick="openLightbox(this)">
+                </div>
+                <div class="col gallery-item-box mb-3" data-category="store">
+                    <img src="img/store-branding/12.jpeg" alt="Store Branding 12" class="gallery-img shadow-sm" onclick="openLightbox(this)">
+                </div>
+                <div class="col gallery-item-box mb-3" data-category="store">
+                    <img src="img/store-branding/13.jpeg" alt="Store Branding 13" class="gallery-img shadow-sm" onclick="openLightbox(this)">
+                </div>
+                <div class="col gallery-item-box mb-3" data-category="store">
+                    <img src="img/store-branding/14.jpeg" alt="Store Branding 14" class="gallery-img shadow-sm" onclick="openLightbox(this)">
+                </div>
+                <div class="col gallery-item-box mb-3" data-category="store">
+                    <img src="img/store-branding/15.jpeg" alt="Store Branding 15" class="gallery-img shadow-sm" onclick="openLightbox(this)">
+                </div>
+
+                <!-- ==================== 3. ACP (1 to 5) ==================== -->
+                <div class="col gallery-item-box mb-3" data-category="acp">
+                    <img src="img/acp/1.jpeg" alt="ACP 1" class="gallery-img shadow-sm" onclick="openLightbox(this)">
+                </div>
+                <div class="col gallery-item-box mb-3" data-category="acp">
+                    <img src="img/acp/2.jpeg" alt="ACP 2" class="gallery-img shadow-sm" onclick="openLightbox(this)">
+                </div>
+                <div class="col gallery-item-box mb-3" data-category="acp">
+                    <img src="img/acp/3.jpeg" alt="ACP 3" class="gallery-img shadow-sm" onclick="openLightbox(this)">
+                </div>
+                <div class="col gallery-item-box mb-3" data-category="acp">
+                    <img src="img/acp/4.jpeg" alt="ACP 4" class="gallery-img shadow-sm" onclick="openLightbox(this)">
+                </div>
+                <div class="col gallery-item-box mb-3" data-category="acp">
+                    <img src="img/acp/5.jpeg" alt="ACP 5" class="gallery-img shadow-sm" onclick="openLightbox(this)">
+                </div>
+
+                <!-- ==================== 4. UNIPOLES (1 to 3) ==================== -->
+                <div class="col gallery-item-box mb-3" data-category="unipoles">
+                    <img src="img/unipoles/1.jpeg" alt="Unipoles 1" class="gallery-img shadow-sm" onclick="openLightbox(this)">
+                </div>
+                <div class="col gallery-item-box mb-3" data-category="unipoles">
+                    <img src="img/unipoles/2.jpeg" alt="Unipoles 2" class="gallery-img shadow-sm" onclick="openLightbox(this)">
+                </div>
+                <div class="col gallery-item-box mb-3" data-category="unipoles">
+                    <img src="img/unipoles/3.jpeg" alt="Unipoles 3" class="gallery-img shadow-sm" onclick="openLightbox(this)">
+                </div>
+
+                <!-- ==================== 5. STANDEE (1 to 6) ==================== -->
+                <div class="col gallery-item-box mb-3" data-category="standee">
+                    <img src="img/standee/1.jpeg" alt="Standee 1" class="gallery-img shadow-sm" onclick="openLightbox(this)">
+                </div>
+                <div class="col gallery-item-box mb-3" data-category="standee">
+                    <img src="img/standee/2.jpeg" alt="Standee 2" class="gallery-img shadow-sm" onclick="openLightbox(this)">
+                </div>
+                <div class="col gallery-item-box mb-3" data-category="standee">
+                    <img src="img/standee/3.jpeg" alt="Standee 3" class="gallery-img shadow-sm" onclick="openLightbox(this)">
+                </div>
+                <div class="col gallery-item-box mb-3" data-category="standee">
+                    <img src="img/standee/4.jpeg" alt="Standee 4" class="gallery-img shadow-sm" onclick="openLightbox(this)">
+                </div>
+                <div class="col gallery-item-box mb-3" data-category="standee">
+                    <img src="img/standee/5.jpeg" alt="Standee 5" class="gallery-img shadow-sm" onclick="openLightbox(this)">
+                </div>
+                <div class="col gallery-item-box mb-3" data-category="standee">
+                    <img src="img/standee/6.jpeg" alt="Standee 6" class="gallery-img shadow-sm" onclick="openLightbox(this)">
+                </div>
+
+                <!-- ==================== 6. HIGHWAY BOARDING (1 to 6) ==================== -->
+                <div class="col gallery-item-box mb-3" data-category="highway">
+                    <img src="img/highway/1.jpeg" alt="Highway Boarding 1" class="gallery-img shadow-sm" onclick="openLightbox(this)">
+                </div>
+                <div class="col gallery-item-box mb-3" data-category="highway">
+                    <img src="img/highway/2.jpeg" alt="Highway Boarding 2" class="gallery-img shadow-sm" onclick="openLightbox(this)">
+                </div>
+                <div class="col gallery-item-box mb-3" data-category="highway">
+                    <img src="img/highway/3.jpeg" alt="Highway Boarding 3" class="gallery-img shadow-sm" onclick="openLightbox(this)">
+                </div>
+                <div class="col gallery-item-box mb-3" data-category="highway">
+                    <img src="img/highway/4.jpeg" alt="Highway Boarding 4" class="gallery-img shadow-sm" onclick="openLightbox(this)">
+                </div>
+                
+
+                <!-- ==================== 7. ARCH (1 to 6) ==================== -->
+                <div class="col gallery-item-box mb-3" data-category="arch">
+                    <img src="img/arch/1.jpeg" alt="Arch 1" class="gallery-img shadow-sm" onclick="openLightbox(this)">
+                </div>
+                <div class="col gallery-item-box mb-3" data-category="arch">
+                    <img src="img/arch/2.jpeg" alt="Arch 2" class="gallery-img shadow-sm" onclick="openLightbox(this)">
+                </div>
+                <div class="col gallery-item-box mb-3" data-category="arch">
+                    <img src="img/arch/3.jpeg" alt="Arch 3" class="gallery-img shadow-sm" onclick="openLightbox(this)">
+                </div>
+                <div class="col gallery-item-box mb-3" data-category="arch">
+                    <img src="img/arch/4.jpeg" alt="Arch 4" class="gallery-img shadow-sm" onclick="openLightbox(this)">
+                </div>
+                <div class="col gallery-item-box mb-3" data-category="arch">
+                    <img src="img/arch/5.jpeg" alt="Arch 5" class="gallery-img shadow-sm" onclick="openLightbox(this)">
+                </div>
+                <div class="col gallery-item-box mb-3" data-category="arch">
+                    <img src="img/arch/6.jpeg" alt="Arch 6" class="gallery-img shadow-sm" onclick="openLightbox(this)">
+                </div>
+
+            </div>
+        </div>
+    </div>
+    <!-- Gallery Section End -->
+
+    <!-- Fullscreen Image Modal (Lightbox) -->
+    <div id="imageModal">
+        <span class="image-modal-close" onclick="closeModal()">&times;</span>
+        <button class="modal-nav-btn modal-prev" onclick="changeImage(-1)">&#10094;</button>
+        <img class="image-modal-content" id="modalImage">
+        <button class="modal-nav-btn modal-next" onclick="changeImage(1)">&#10095;</button>
+    </div>
+
+    <!-- Footer Start -->
+    <div class="container-fluid bg-dark footer mt-5 py-5 wow fadeIn" data-wow-delay="0.1s"
+        style="background: #1e75c2 !important;">
+        <div class="container py-5">
+            <div class="row g-5">
+                <div class="col-lg-3 col-md-6">
+                    <h5 class="text-white mb-4">Our Office</h5>
+                    <p class="mb-2 text-white"><i class="fa fa-map-marker-alt me-3"></i>Plot NO.99 Kamla Nehru Nagar, Hasanpura-C</p>
+                    <p class="mb-2 text-white"><i class="fa fa-phone-alt me-3"></i>+91 93512 17939 , +91 77339 99071</p>
+                    <p class="mb-2 text-white"><i class="fa fa-envelope me-3"></i>supremead.jaipur@gmail.com</p>
+                    <div class="d-flex pt-3">
+                        <a class="btn btn-square btn-primary rounded-circle me-2" href=""><i class="fab fa-twitter"></i></a>
+                        <a class="btn btn-square btn-primary rounded-circle me-2" href=""><i class="fab fa-facebook-f"></i></a>
+                        <a class="btn btn-square btn-primary rounded-circle me-2" href=""><i class="fab fa-youtube"></i></a>
+                        <a class="btn btn-square btn-primary rounded-circle me-2" href=""><i class="fab fa-linkedin-in"></i></a>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-6">
+                    <h5 class="text-white mb-4">Quick Links</h5>
+                    <a class="btn btn-link text-white" href="about.html">About Us</a>
+                    <a class="btn btn-link text-white" href="index.html#contact">Contact Us</a>
+                    <a class="btn btn-link text-white" href="index.html#service">Our Services</a>
+                    <a class="btn btn-link text-white" href="gallery.html">Gallery</a>
+                </div>
+                <div class="col-lg-3 col-md-6">
+                    <h5 class="text-white mb-4">Business Hours</h5>
+                    <p class="mb-1 text-white">Monday - Saturday :-</p>
+                    <h6 class="text-light">10:00 am - 08:00 pm</h6>
+                    <p class="mb-1 text-white">Sunday :-</p>
+                    <h6 class="text-light">Closed</h6>
+                </div>
+                <div class="col-lg-3 col-md-6">
+                    <h5 class="text-white mb-4">Newsletter</h5>
+                    <p class="text-white">Stay updated with our latest media campaigns and advertising innovations.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Footer End -->
+
+    <!-- Copyright Start -->
+    <div class="container-fluid copyright bg-dark py-4" style="background: #1e75c2 !important;">
+        <div class="container text-center">
+            <p class="mb-2 text-white">Copyright &copy; All Rights Reserved.</p>
+            <p class="mb-0 text-white">
+                Designed & Developed by <a class="fw-semi-bold text-white" href="https://digitalwhopper.com/">Digital Whopper</a>
+            </p>
+        </div>
+    </div>
+    <!-- Copyright End -->
+
+    <!-- Back to Top -->
+    <a href="#" class="btn btn-lg btn-primary btn-lg-square rounded-circle back-to-top"><i class="bi bi-arrow-up"></i></a>
+
+    <!-- JavaScript Libraries -->
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="lib/wow/wow.min.js"></script>
+    <script src="lib/easing/easing.min.js"></script>
+    <script src="lib/waypoints/waypoints.min.js"></script>
+    <script src="lib/owlcarousel/owl.carousel.min.js"></script>
+    <script src="lib/counterup/counterup.min.js"></script>
+
+    <!-- Template Javascript -->
+    <script src="js/main.js"></script>
+
+    <!-- Filter & Lightbox Script -->
+    <script>
+        // Category Filtering Logic
+        function filterGallery(category) {
+            const items = document.querySelectorAll('.gallery-item-box');
+            const buttons = document.querySelectorAll('.filter-btn');
+
+            buttons.forEach(btn => btn.classList.remove('active'));
+            event.target.classList.add('active');
+
+            items.forEach(item => {
+                if (category === 'all' || item.getAttribute('data-category') === category) {
+                    item.style.display = 'block';
+                } else {
+                    item.style.display = 'none';
+                }
+            });
+        }
+
+        // Lightbox Zoom & Navigation Logic
+        let currentImages = [];
+        let currentIndex = 0;
+
+        function openLightbox(imgElement) {
+            const modal = document.getElementById("imageModal");
+            const modalImg = document.getElementById("modalImage");
+            
+            currentImages = Array.from(document.querySelectorAll('.gallery-item-box')).filter(item => item.style.display !== 'none').map(item => item.querySelector('img').src);
+            currentIndex = currentImages.indexOf(imgElement.src);
+
+            modal.style.display = "flex";
+            modalImg.src = imgElement.src;
+        }
+
+        function closeModal() {
+            document.getElementById("imageModal").style.display = "none";
+        }
+
+        function changeImage(direction) {
+            currentIndex += direction;
+            if (currentIndex >= currentImages.length) {
+                currentIndex = 0;
+            } else if (currentIndex < 0) {
+                currentIndex = currentImages.length - 1;
+            }
+            document.getElementById("modalImage").src = currentImages[currentIndex];
+        }
+    </script>
+</body>
+
+</html>
