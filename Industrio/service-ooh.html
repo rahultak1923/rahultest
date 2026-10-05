@@ -113,6 +113,44 @@
     background: linear-gradient(to right, rgba(2, 36, 91, 1) 0%, rgba(2, 36, 91, 0) 100%), url(img/doh/1.jpeg) center center no-repeat;
     background-size: cover;
 }
+
+/* Default Laptop View: Ek row me 6 images (16.6666% width) */
+.col-custom-gallery {
+    flex: 0 0 16.6666%;
+    max-width: 16.6666%;
+    padding-left: 6px;
+    padding-right: 6px;
+    margin-bottom: 12px;
+}
+
+.gallery-img {
+    cursor: pointer;
+    transition: transform 0.3s ease;
+    width: 100%;
+    height: 180px;
+    object-fit: cover;
+    border-radius: 8px;
+}
+
+.gallery-img:hover {
+    transform: scale(1.03);
+}
+
+/* Sirf Mobile Devices (max-width: 768px) ke liye: Automatically 3 images per row (33.3333% width) */
+@media (max-width: 768px) {
+    .col-custom-gallery {
+        flex: 0 0 33.3333% !important;
+        max-width: 33.3333% !important;
+        padding-left: 4px !important;
+        padding-right: 4px !important;
+        margin-bottom: 8px;
+    }
+    
+    .gallery-img {
+        height: 115px !important; /* Mobile ke liye perfect height taaki image stretch ya kharab na ho */
+        object-fit: cover;
+    }
+}
     </style>
 </head>
 
@@ -334,61 +372,62 @@
     <script src="js/main.js"></script>
 
     <!-- Script for Dynamic Gallery Rendering and Lightbox Modal -->
-    <script>
-        const galleryImages = [
-            "img/doh/1.jpeg",
-            "img/doh/2.jpeg",
-            "img/doh/3.jpeg",
-            "img/doh/4.jpeg",
-            "img/doh/5.jpeg",
-        ];
+   <script>
+    const galleryImages = [
+        "img/doh/1.jpeg",
+        "img/doh/2.jpeg",
+        "img/doh/3.jpeg",
+        "img/doh/4.jpeg",
+        "img/doh/5.jpeg",
+    ];
 
-        let currentIndex = 0;
+    let currentIndex = 0;
 
-        function renderGallery() {
-            const container = document.getElementById("galleryContainer");
-            let html = "";
-            
-            for (let i = 0; i < galleryImages.length; i += 5) {
-                html += '<div class="row g-4 mb-4">';
-                for (let j = i; j < i + 5 && j < galleryImages.length; j++) {
-                    html += `
-                        <div class="col-lg-1/5 col-md-4 col-sm-6" style="flex: 0 0 20%; max-width: 20%;">
-                            <img src="${galleryImages[j]}" alt="Gallery Image ${j+1}" class="gallery-img shadow-sm" onclick="openModal(${j})">
-                        </div>
-                    `;
-                }
-                html += '</div>';
+    function renderGallery() {
+        const container = document.getElementById("galleryContainer");
+        let html = "";
+        
+        // Laptop ke liye ek row me 6 images render honge, jo mobile par automatic 3-3 ke format me dikhengi
+        for (let i = 0; i < galleryImages.length; i += 6) {
+            html += '<div class="row g-2 justify-content-center">';
+            for (let j = i; j < i + 6 && j < galleryImages.length; j++) {
+                html += `
+                    <div class="col-custom-gallery">
+                        <img src="${galleryImages[j]}" alt="Gallery Image ${j+1}" class="gallery-img shadow-sm" onclick="openModal(${j})">
+                    </div>
+                `;
             }
-            container.innerHTML = html;
+            html += '</div>';
         }
+        container.innerHTML = html;
+    }
 
-        window.onload = function() {
-            renderGallery();
-        };
+    window.onload = function() {
+        renderGallery();
+    };
 
-        function openModal(index) {
-            currentIndex = index;
-            var modal = document.getElementById("imageModal");
-            var modalImg = document.getElementById("modalImage");
-            modal.style.display = "flex";
-            modalImg.src = galleryImages[currentIndex];
+    function openModal(index) {
+        currentIndex = index;
+        var modal = document.getElementById("imageModal");
+        var modalImg = document.getElementById("modalImage");
+        modal.style.display = "flex";
+        modalImg.src = galleryImages[currentIndex];
+    }
+
+    function closeModal() {
+        document.getElementById("imageModal").style.display = "none";
+    }
+
+    function changeImage(direction) {
+        currentIndex += direction;
+        if (currentIndex >= galleryImages.length) {
+            currentIndex = 0; 
+        } else if (currentIndex < 0) {
+            currentIndex = galleryImages.length - 1; 
         }
-
-        function closeModal() {
-            document.getElementById("imageModal").style.display = "none";
-        }
-
-        function changeImage(direction) {
-            currentIndex += direction;
-            if (currentIndex >= galleryImages.length) {
-                currentIndex = 0; 
-            } else if (currentIndex < 0) {
-                currentIndex = galleryImages.length - 1; 
-            }
-            document.getElementById("modalImage").src = galleryImages[currentIndex];
-        }
-    </script>
+        document.getElementById("modalImage").src = galleryImages[currentIndex];
+    }
+</script>
 </body>
 
 </html>
